@@ -1,0 +1,48 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  padding: 10px;
+  font-weight: 400;
+  text-align: left;
+  border-bottom: 1px solid rgb(238, 238, 237);
+}
+
+.table-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.table-label {
+  color: rgba(55, 53, 47, 0.65);
+}
+
+.table-icon {
+  margin-right: 6px;
+}
+
+.table-row {
+  border-bottom: 1px solid rgb(238, 238, 237);
+  height: 40px;
+  min-height: 40px;
+  font-size: 14px;
+}
+
+.table-row td {
+  padding: 8px;
+  text-align: left;
+}
+.table-row td:not(:last-child) {
+  border-right: 1px solid rgb(238, 238, 237);
+}
