@@ -1,48 +1,90 @@
-.table-container {
+.header-container {
+  /* outline: 2px solid blue; */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-}
-
-.table-container table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-th {
-  padding: 10px;
-  font-weight: 400;
-  text-align: left;
+  justify-content: space-between;
+  margin: 0 100px;
   border-bottom: 1px solid rgb(238, 238, 237);
+  min-width: 1500px;
 }
 
 .table-header {
+  /* outline: 2px solid pink; */
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 30px;
+  font-weight: 400;
+  width: 200px;
+  max-width: 200px;
+}
+
+.table-header:not(:first-child) {
+  border-left: 1px solid rgb(238, 238, 237);
+}
+
+.table-icon {
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 .table-label {
   color: rgba(55, 53, 47, 0.65);
 }
 
-.table-icon {
-  margin-right: 6px;
+/* ///////////////////////////////////////////// */
+
+.body-container {
+  /* outline: 2px solid red; */
+  margin: 0 100px;
 }
 
-.table-row {
+.table-body {
+  /* outline: 2px solid pink; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  min-width: 1500px;
+}
+
+.table-body div {
+  /* outline: 2px solid pink; */
+  display: flex;
+  align-items: center;
+
+  height: 30px;
+  font-weight: 400;
+  width: 200px;
+  max-width: 200px;
+  padding-left: 7px;
+  padding-right: 7px;
   border-bottom: 1px solid rgb(238, 238, 237);
-  height: 40px;
-  min-height: 40px;
+  overflow: hidden;
   font-size: 14px;
 }
 
-.table-row td {
-  padding: 8px;
-  text-align: left;
+.table-body div:not(:first-child) {
+  border-left: 1px solid rgb(238, 238, 237);
 }
-.table-row td:not(:last-child) {
-  border-right: 1px solid rgb(238, 238, 237);
+
+.count-container {
+  display: flex;
+  align-items: center;
+
+  background-color: white;
+  border-top: 1px solid rgb(238, 238, 237);
+  padding-left: 95px;
+  position: sticky;
+  bottom: 0;
+  height: 32px;
+}
+
+.count-container span {
+  letter-spacing: 2px;
+  font-size: smaller;
+  color: rgba(55, 53, 47, 0.65);
+}
+
+.count-container b {
+  font-size: smaller;
 }

@@ -1,0 +1,57 @@
+.selectableBar-container {
+  /* border: 1px solid green; */
+  margin: 10px 100px 0 100px;
+  display: flex;
+  border-bottom: 1px solid rgb(238, 238, 237);
+}
+
+.selectableBar-container div:first-child {
+  /* background-color: cadetblue; */
+  display: flex;
+  flex-direction: row;
+}
+
+.selectableBar-container div:last-child {
+  /* background-color: brown; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.selectableBar-container span {
+  color: rgba(55, 53, 47, 0.65);
+  padding-left: 4px;
+  /* border: 1px solid rgb(46, 170, 220); */
+}
+
+.selectableBar-individual {
+  padding: 0 15px;
+  /* border: 1px solid rgb(46, 170, 220); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-entry__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 3px;
+  background: rgb(46, 170, 220);
+  margin: 3px 10px;
+}
+
+.new-entry__button p {
+  color: white;
+  padding-right: 3px;
+}
+
+.selectableBar-adjustments span {
+  /* border: 1px solid pink; */
+  padding: 3px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
