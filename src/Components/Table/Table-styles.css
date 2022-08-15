@@ -105,5 +105,9 @@
 
 .filter-input {
   width: 50px;
-  margin: auto;
+  padding-left: 100px;
+}
+
+.sort-container {
+  padding-left: 100px;
 }

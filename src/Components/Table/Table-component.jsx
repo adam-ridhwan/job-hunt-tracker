@@ -16,22 +16,80 @@ const HEADER_TITLES = [
   'Date Applied',
 ];
 
+const defaultJobInput = [...jobInput];
+
 const Table = () => {
   const [searchField, setSearchField] = useState('');
   const [entries, setEntries] = useState(jobInput);
-  const [filteredEntries, setFilteredEntries] = useState(entries);
+  const [sortedEntries, setSortedEntries] = useState(entries);
+  const [filteredEntries, setFilteredEntries] = useState(sortedEntries);
+  const [sort, setSort] = useState();
 
   useEffect(() => {
-    const newFilteredEntry = entries.filter(entry => {
+    console.log('main', sort);
+    console.log('sorting');
+
+    if (sort === 'default') {
+      setSortedEntries(defaultJobInput);
+      console.log('sorted entries', sortedEntries);
+    }
+
+    if (sort === 'ascending') {
+      console.log(sort);
+      setSortedEntries(
+        sortedEntries.sort((a, b) => {
+          const nameA = a.company.toUpperCase();
+          const nameB = b.company.toUpperCase();
+
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        })
+      );
+    }
+
+    if (sort === 'descending') {
+      console.log(sort);
+      setSortedEntries(
+        sortedEntries.sort((a, b) => {
+          const nameA = a.company.toUpperCase();
+          const nameB = b.company.toUpperCase();
+
+          if (nameA > nameB) return -1;
+          if (nameA < nameB) return 1;
+          return 0;
+        })
+      );
+    }
+
+    console.log('filtering');
+    const newFilteredEntry = sortedEntries.filter(entry => {
       return entry.company.toLocaleLowerCase().includes(searchField);
     });
+    console.log('sorted entries', sortedEntries);
+    console.log('new filtered entries', newFilteredEntry);
 
     setFilteredEntries(newFilteredEntry);
-  }, [entries, searchField]);
+  }, [entries, searchField, sort, sortedEntries]);
 
-  const onSearchChange = event => {
+  // console.log(filteredEntries);
+
+  const handleSearchChange = event => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
+  };
+
+  const handleClickSortAscending = () => {
+    setSort('ascending');
+  };
+
+  const handleClickSortDescending = () => {
+    setSort('descending');
+  };
+
+  const handleClickResetSort = () => {
+    console.log('reset button clicked');
+    setSort('default');
   };
 
   return (
@@ -41,11 +99,15 @@ const Table = () => {
           type='search'
           name='filter'
           placeholder='filter'
-          onChange={onSearchChange}
+          onChange={handleSearchChange}
         />
       </form>
 
-      <button>Sort</button>
+      <div className='sort-container'>
+        <button onClick={handleClickSortAscending}>Sort Ascending</button>
+        <button onClick={handleClickSortDescending}>Sort Descending</button>
+        <button onClick={handleClickResetSort}>Reset Sort</button>
+      </div>
 
       {/* headers */}
       <div className='header-container'>
