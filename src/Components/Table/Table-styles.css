@@ -1,21 +1,22 @@
 .header-container {
   /* outline: 2px solid blue; */
   display: flex;
-  justify-content: space-between;
+
   margin: 0 100px;
   border-bottom: 1px solid rgb(238, 238, 237);
-  min-width: 1500px;
 }
 
 .table-header {
-  /* outline: 2px solid pink; */
+  /* outline: 1px solid pink; */
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 30px;
   font-weight: 400;
+  font-size: 14px;
   width: 200px;
   max-width: 200px;
+  min-width: 200px;
 }
 
 .table-header:not(:first-child) {
@@ -34,21 +35,21 @@
 /* ///////////////////////////////////////////// */
 
 .body-container {
-  /* outline: 2px solid red; */
+  /* outline: 1px solid blue; */
   margin: 0 100px;
+  /* width: 1800px;
+  max-width: 1800px; */
 }
 
 .table-body {
   /* outline: 2px solid pink; */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-content: center;
-  min-width: 1500px;
 }
 
 .table-body div {
-  /* outline: 2px solid pink; */
+  /* outline: 1px solid green; */
   display: flex;
   align-items: center;
 
@@ -56,8 +57,9 @@
   font-weight: 400;
   width: 200px;
   max-width: 200px;
+  min-width: 200px;
   padding-left: 7px;
-  padding-right: 7px;
+
   border-bottom: 1px solid rgb(238, 238, 237);
   overflow: hidden;
   font-size: 14px;
@@ -67,13 +69,16 @@
   border-left: 1px solid rgb(238, 238, 237);
 }
 
+/* ///////////////////////////////////////////// */
+
 .count-container {
+  /* outline: 1px solid purple; */
   display: flex;
   align-items: center;
 
   background-color: white;
   border-top: 1px solid rgb(238, 238, 237);
-  padding-left: 95px;
+
   position: sticky;
   bottom: 0;
   height: 32px;
@@ -81,10 +86,11 @@
 
 .count-container span {
   letter-spacing: 2px;
-  font-size: smaller;
+  font-size: 14px;
   color: rgba(55, 53, 47, 0.65);
+  margin-left: 215px;
 }
 
 .count-container b {
-  font-size: smaller;
+  font-size: 14px;
 }

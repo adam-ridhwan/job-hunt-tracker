@@ -8,18 +8,22 @@
     Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji',
     'Segoe UI Symbol';
   -webkit-font-smoothing: auto;
-  font-size: 16px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
 }
 
-.body {
-  padding-left: 50px;
-  padding-top: 40px;
+.heading {
 }
 
 .main-heading {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
+}
+
+.sub-heading {
+  padding: 50px 100px 0 100px;
 }
 
 footer {

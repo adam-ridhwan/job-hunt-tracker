@@ -28,7 +28,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Better',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -41,7 +41,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'DoorDash',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -54,7 +54,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Robinhood',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -67,7 +67,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Samsara',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -80,7 +80,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Brooklinen',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -93,7 +93,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Google',
+    company: 'Attentive',
     stage: 'Applied',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -106,7 +106,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Loom',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -119,7 +119,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Varkada',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -132,7 +132,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Nuvia',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -145,7 +145,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Durchie',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -158,7 +158,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Brex',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -171,7 +171,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Capsule',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -184,7 +184,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Google',
+    company: 'Modern Health',
     stage: 'Applied',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -197,7 +197,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Curative',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -210,7 +210,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Modern Health',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -223,7 +223,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Curative',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -236,7 +236,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Nuro',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -249,7 +249,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Quibi',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -262,7 +262,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Deliver',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -275,7 +275,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Google',
+    company: 'Drift',
     stage: 'Applied',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -288,7 +288,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Instabase',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -301,7 +301,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Upkey',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -314,7 +314,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'UnQork',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -327,7 +327,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Tula Skincare',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -340,7 +340,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Masterclass',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
@@ -353,7 +353,7 @@ const jobInput = [
   },
   {
     id: generateId(),
-    company: 'Facebook',
+    company: 'Trello',
     stage: 'Rejected',
     interviewDate: '01/013/2022',
     position: 'Software Engineer',
