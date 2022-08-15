@@ -33,7 +33,6 @@ const Table = () => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   };
-  // console.log(searchField);
 
   return (
     <div>
@@ -46,6 +45,8 @@ const Table = () => {
         />
       </form>
 
+      <button>Sort</button>
+
       {/* headers */}
       <div className='header-container'>
         {HEADER_TITLES.map((title, index) => {
@@ -57,14 +58,15 @@ const Table = () => {
           );
         })}
       </div>
+
       <div className='body-container'>
         {/* Entries */}
         {filteredEntries.map(entry => {
           return (
             <div className='table-body' key={entry.id}>
-              <div>
+              <div className='table-body-company'>
                 {bodyIcons.pageIcon}
-                {entry.company}
+                <span>{entry.company}</span>
               </div>
               <div>{entry.stage}</div>
               <div>{entry.interviewDate}</div>
@@ -78,6 +80,7 @@ const Table = () => {
           );
         })}
       </div>
+
       <div className='count-container'>
         <span>
           COUNT

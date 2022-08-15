@@ -3,11 +3,11 @@
   display: flex;
 
   margin: 0 100px;
-  border-bottom: 1px solid rgb(238, 238, 237);
 }
 
 .table-header {
   /* outline: 1px solid pink; */
+  border-bottom: 1px solid rgb(238, 238, 237);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,7 +32,7 @@
   color: rgba(55, 53, 47, 0.65);
 }
 
-/* ///////////////////////////////////////////// */
+/* ////////////////////////////////////////// */
 
 .body-container {
   /* outline: 1px solid blue; */
@@ -69,7 +69,11 @@
   border-left: 1px solid rgb(238, 238, 237);
 }
 
-/* ///////////////////////////////////////////// */
+.table-body-company span {
+  padding-left: 4px;
+}
+
+/* ////////////////////////////////////////// */
 
 .count-container {
   /* outline: 1px solid purple; */
@@ -97,7 +101,7 @@
   font-size: 14px;
 }
 
-/* ///////////////////////////////////////////// */
+/* //////////////////////////////////////// */
 
 .filter-input {
   width: 50px;
