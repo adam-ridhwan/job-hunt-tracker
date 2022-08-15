@@ -16,7 +16,7 @@ const HEADER_TITLES = [
   'Date Applied',
 ];
 
-const defaultJobInput = [...jobInput];
+const DEFAULT_JOB_INPUT = [...jobInput];
 
 const Table = () => {
   const [searchField, setSearchField] = useState('');
@@ -30,7 +30,7 @@ const Table = () => {
     console.log('sorting');
 
     if (sort === 'default') {
-      setSortedEntries(defaultJobInput);
+      setSortedEntries(DEFAULT_JOB_INPUT);
       console.log('sorted entries', sortedEntries);
     }
 
