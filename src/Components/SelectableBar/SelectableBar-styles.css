@@ -34,6 +34,13 @@
   justify-content: center;
 }
 
+.selectableBar-individual:hover {
+  transition: background-color 20ms ease-in 0s;
+  background: rgba(55, 53, 47, 0.08);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
 .new-entry__button {
   display: flex;
   align-items: center;
@@ -41,7 +48,10 @@
   white-space: nowrap;
   border-radius: 3px;
   background: rgb(46, 170, 220);
+  padding: 4px 7px;
   margin: 3px 10px;
+  border: none;
+  cursor: pointer;
 }
 
 .new-entry__button p {
@@ -56,3 +66,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.selectableBar-adjustments span:hover {
+  transition: background-color 20ms ease-in 0s;
+  background: rgba(55, 53, 47, 0.08);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+/* ///////////////////////////////////////////// */

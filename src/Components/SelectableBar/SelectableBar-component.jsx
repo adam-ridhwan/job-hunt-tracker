@@ -3,7 +3,7 @@ import './SelectableBar-styles.css';
 
 const { searchIcon, allAppsIcon, calendarIcon, plusIcon } = selectableBarIcons;
 
-const styles = {
+const STYLES = {
   border: {
     borderBottom: '2px solid rgb(55, 53, 47)',
   },
@@ -22,10 +22,10 @@ const SelectableBar = () => {
         <div>
           <div
             className='selectableBar-individual'
-            style={Object.assign(styles.border)}
+            style={Object.assign(STYLES.border)}
           >
             {allAppsIcon}
-            <span style={Object.assign(styles.fontColor)}>
+            <span style={Object.assign(STYLES.fontColor)}>
               All Applications
             </span>
           </div>
@@ -34,14 +34,15 @@ const SelectableBar = () => {
             <span>Calendar</span>
           </div>
         </div>
+
         <div className='selectableBar-adjustments'>
           <span>Filter</span>
           <span>Sort</span>
           <span>{searchIcon}</span>
-          <span className='new-entry__button'>
+          <button className='new-entry__button'>
             <p>New</p>
             {plusIcon}
-          </span>
+          </button>
         </div>
       </div>
     </>
