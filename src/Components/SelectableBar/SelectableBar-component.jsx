@@ -17,35 +17,40 @@ const STYLES = {
 
 const SelectableBar = () => {
   return (
-    <>
-      <div className='selectableBar-container'>
-        <div>
-          <div
-            className='selectableBar-individual'
-            style={Object.assign(STYLES.border)}
-          >
-            {allAppsIcon}
-            <span style={Object.assign(STYLES.fontColor)}>
-              All Applications
-            </span>
-          </div>
-          <div className='selectableBar-individual'>
-            {calendarIcon}
-            <span>Calendar</span>
-          </div>
+    <div className='selectableBar-container'>
+      <div>
+        <div
+          className='selectableBar-individual'
+          style={Object.assign(STYLES.border)}
+        >
+          {allAppsIcon}
+          <span style={Object.assign(STYLES.fontColor)}>All Applications</span>
         </div>
-
-        <div className='selectableBar-adjustments'>
-          <span>Filter</span>
-          <span>Sort</span>
-          <span>{searchIcon}</span>
-          <button className='new-entry__button'>
-            <p>New</p>
-            {plusIcon}
-          </button>
+        <div className='selectableBar-individual'>
+          {calendarIcon}
+          <span>Calendar</span>
         </div>
       </div>
-    </>
+
+      <div className='selectableBar-adjustments'>
+        <span>Filter</span>
+        <span>Sort</span>
+
+        <div className='search-container'>
+          <span>{searchIcon}</span>
+          <input
+            type='text'
+            placeholder='Type to search...'
+            aria-label='search'
+          />
+        </div>
+
+        <button className='new-entry__button'>
+          <p>New</p>
+          {plusIcon}
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -1,8 +1,8 @@
 .selectableBar-container {
-  /* border: 1px solid green; */
+  /* outline: 1px solid green; */
   margin: 10px 100px 0 100px;
   display: flex;
-  border-bottom: 1px solid rgb(238, 238, 237);
+  /* border-bottom: 1px solid rgb(238, 238, 237); */
   font-size: 14px;
 }
 
@@ -12,7 +12,7 @@
   flex-direction: row;
 }
 
-.selectableBar-container div:last-child {
+.selectableBar-adjustments {
   /* background-color: brown; */
   display: flex;
   flex-direction: row;
@@ -41,6 +41,30 @@
   border-radius: 3px;
 }
 
+/* ////////////////////////////////////////// */
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid pink;
+}
+
+.search-container input {
+  border: none;
+  font-size: 12px;
+}
+
+.search-container input:focus {
+  outline: none;
+}
+
+.search-container input::placeholder {
+  color: rgba(101, 100, 95, 0.65);
+}
+
+/* ////////////////////////////////////////// */
+
 .new-entry__button {
   display: flex;
   align-items: center;
@@ -49,7 +73,7 @@
   border-radius: 3px;
   background: rgb(46, 170, 220);
   padding: 4px 7px;
-  margin: 3px 10px;
+  margin: 0 10px;
   border: none;
   cursor: pointer;
 }

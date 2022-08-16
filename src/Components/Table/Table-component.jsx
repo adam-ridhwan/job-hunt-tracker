@@ -88,7 +88,7 @@ const Table = () => {
 
   return (
     <div>
-      <form className='filter-input'>
+      {/* <form className='filter-input'>
         <input
           type='search'
           name='filter'
@@ -101,7 +101,7 @@ const Table = () => {
         <button onClick={handleClickSortAscending}>Sort Ascending</button>
         <button onClick={handleClickSortDescending}>Sort Descending</button>
         <button onClick={handleClickResetSort}>Reset Sort</button>
-      </div>
+      </div> */}
 
       {/* headers */}
       <div className='header-container'>
