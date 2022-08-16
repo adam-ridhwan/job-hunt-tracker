@@ -23,19 +23,14 @@ const Table = () => {
   const [entries, setEntries] = useState(jobInput);
   const [sortedEntries, setSortedEntries] = useState(entries);
   const [filteredEntries, setFilteredEntries] = useState(sortedEntries);
-  const [sort, setSort] = useState();
+  const [sortValue, setSortValue] = useState();
 
   useEffect(() => {
-    console.log('main', sort);
-    console.log('sorting');
+    // console.log('main', sort);
+    // console.log('sorting');
 
-    if (sort === 'default') {
-      setSortedEntries(DEFAULT_JOB_INPUT);
-      console.log('sorted entries', sortedEntries);
-    }
-
-    if (sort === 'ascending') {
-      console.log(sort);
+    if (sortValue === 'ascending') {
+      // console.log(sort);
       setSortedEntries(
         sortedEntries.sort((a, b) => {
           const nameA = a.company.toUpperCase();
@@ -48,8 +43,8 @@ const Table = () => {
       );
     }
 
-    if (sort === 'descending') {
-      console.log(sort);
+    if (sortValue === 'descending') {
+      // console.log(sort);
       setSortedEntries(
         sortedEntries.sort((a, b) => {
           const nameA = a.company.toUpperCase();
@@ -63,16 +58,13 @@ const Table = () => {
     }
 
     console.log('filtering');
+    console.log(sortedEntries);
     const newFilteredEntry = sortedEntries.filter(entry => {
       return entry.company.toLocaleLowerCase().includes(searchField);
     });
-    console.log('sorted entries', sortedEntries);
-    console.log('new filtered entries', newFilteredEntry);
 
     setFilteredEntries(newFilteredEntry);
-  }, [entries, searchField, sort, sortedEntries]);
-
-  // console.log(filteredEntries);
+  }, [entries, searchField, sortValue, sortedEntries]);
 
   const handleSearchChange = event => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
@@ -80,16 +72,18 @@ const Table = () => {
   };
 
   const handleClickSortAscending = () => {
-    setSort('ascending');
+    setSortValue('ascending');
   };
 
   const handleClickSortDescending = () => {
-    setSort('descending');
+    setSortValue('descending');
   };
 
   const handleClickResetSort = () => {
     console.log('reset button clicked');
-    setSort('default');
+
+    setSortValue('default');
+    setSortedEntries([...DEFAULT_JOB_INPUT]);
   };
 
   return (
