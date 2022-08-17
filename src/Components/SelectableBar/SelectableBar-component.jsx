@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar-styles.css';
 
-const { searchIcon, allAppsIcon, calendarIcon, plusIcon } = selectableBarIcons;
+const { searchIcon, allAppsIcon, calendarIcon, plusIcon, clearIcon } =
+  selectableBarIcons;
 
 const STYLES = {
   border: {
@@ -15,7 +17,16 @@ const STYLES = {
   },
 };
 
+const customx = document.getElementById('customx');
+console.log(customx);
+console.log(customx);
+
 const SelectableBar = () => {
+  const clear = () => {
+    const customx = document.getElementById('customx');
+    customx.value = '';
+  };
+
   return (
     <div className='selectableBar-container'>
       <div>
@@ -33,16 +44,25 @@ const SelectableBar = () => {
       </div>
 
       <div className='selectableBar-adjustments'>
-        <span>Filter</span>
-        <span>Sort</span>
+        <div className='main-search'>
+          <div className='search-container'>
+            <span>Filter</span>
+            <span>Sort</span>
 
-        <div className='search-container'>
-          <span>{searchIcon}</span>
-          <input
-            type='text'
-            placeholder='Type to search...'
-            aria-label='search'
-          />
+            {/* <span className='search-icon' onClick={toggleSearch}>
+              {searchIcon}
+            </span> */}
+            <div className='search-navigation'>
+              <input
+                id='customx'
+                type='search'
+                placeholder='Search'
+                ariaaria-label='search'
+                className='search-bar'
+                required
+              />
+            </div>
+          </div>
         </div>
 
         <button className='new-entry__button'>
