@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import jobInput from '../../Data';
+import { useContext } from 'react';
 import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
+import { SearchContext } from '../Contexts/SearchContext';
 import './Table-styles.css';
 
 const HEADER_TITLES = [
@@ -16,93 +16,11 @@ const HEADER_TITLES = [
   'Date Applied',
 ];
 
-const DEFAULT_JOB_INPUT = [...jobInput];
-
 const Table = () => {
-  const [searchField, setSearchField] = useState('');
-  const [entries, setEntries] = useState(jobInput);
-  const [sortedEntries, setSortedEntries] = useState(entries);
-  const [filteredEntries, setFilteredEntries] = useState(sortedEntries);
-  const [sortValue, setSortValue] = useState();
-
-  useEffect(() => {
-    // console.log('main', sort);
-    // console.log('sorting');
-
-    if (sortValue === 'ascending') {
-      // console.log(sort);
-      setSortedEntries(
-        sortedEntries.sort((a, b) => {
-          const nameA = a.company.toUpperCase();
-          const nameB = b.company.toUpperCase();
-
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
-        })
-      );
-    }
-
-    if (sortValue === 'descending') {
-      // console.log(sort);
-      setSortedEntries(
-        sortedEntries.sort((a, b) => {
-          const nameA = a.company.toUpperCase();
-          const nameB = b.company.toUpperCase();
-
-          if (nameA > nameB) return -1;
-          if (nameA < nameB) return 1;
-          return 0;
-        })
-      );
-    }
-
-    console.log('filtering');
-    console.log(sortedEntries);
-    const newFilteredEntry = sortedEntries.filter(entry => {
-      return entry.company.toLocaleLowerCase().includes(searchField);
-    });
-
-    setFilteredEntries(newFilteredEntry);
-  }, [entries, searchField, sortValue, sortedEntries]);
-
-  const handleSearchChange = event => {
-    const searchFieldString = event.target.value.toLocaleLowerCase();
-    setSearchField(searchFieldString);
-  };
-
-  const handleClickSortAscending = () => {
-    setSortValue('ascending');
-  };
-
-  const handleClickSortDescending = () => {
-    setSortValue('descending');
-  };
-
-  const handleClickResetSort = () => {
-    console.log('reset button clicked');
-
-    setSortValue('default');
-    setSortedEntries([...DEFAULT_JOB_INPUT]);
-  };
+  const { filteredEntries } = useContext(SearchContext);
 
   return (
     <div>
-      {/* <form className='filter-input'>
-        <input
-          type='search'
-          name='filter'
-          placeholder='filter'
-          onChange={handleSearchChange}
-        />
-      </form>
-
-      <div className='sort-container'>
-        <button onClick={handleClickSortAscending}>Sort Ascending</button>
-        <button onClick={handleClickSortDescending}>Sort Descending</button>
-        <button onClick={handleClickResetSort}>Reset Sort</button>
-      </div> */}
-
       {/* headers */}
       <div className='header-container'>
         {HEADER_TITLES.map((title, index) => {
