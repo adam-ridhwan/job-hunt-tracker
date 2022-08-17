@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
+import EditableElement from '../../Utilities/EditableElement';
 import { SearchContext } from '../Contexts/SearchContext';
 import './Table-styles.css';
 
@@ -42,7 +43,9 @@ const Table = () => {
                 {bodyIcons.pageIcon}
                 <span>{entry.company}</span>
               </div>
-              <div>{entry.stage}</div>
+              <EditableElement>
+                <div>{entry.stage}</div>
+              </EditableElement>
               <div>{entry.interviewDate}</div>
               <div>{entry.position}</div>
               <div>{entry.location}</div>

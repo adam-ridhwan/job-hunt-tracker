@@ -32,10 +32,7 @@ const SelectableBar = () => {
   } = useContext(SearchContext);
 
   useEffect(() => {
-    console.log('sorting');
-
     if (sortValue === 'ascending') {
-      // console.log(sort);
       setSortedEntries(
         sortedEntries.sort((a, b) => {
           const nameA = a.company.toUpperCase();
@@ -49,7 +46,6 @@ const SelectableBar = () => {
     }
 
     if (sortValue === 'descending') {
-      // console.log(sort);
       setSortedEntries(
         sortedEntries.sort((a, b) => {
           const nameA = a.company.toUpperCase();
@@ -66,15 +62,8 @@ const SelectableBar = () => {
       return entry.company.toLocaleLowerCase().includes(searchField);
     });
 
-    console.log(newFilteredEntry);
     setFilteredEntries(newFilteredEntry);
-  }, [
-    searchField,
-    sortedEntries,
-    setFilteredEntries,
-    setSortedEntries,
-    sortValue,
-  ]);
+  }, [searchField, sortValue]);
 
   const handleSearchChange = event => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
@@ -90,8 +79,10 @@ const SelectableBar = () => {
   };
 
   const handleClickResetSort = () => {
-    setSortValue('default');
-    setSortedEntries([...DEFAULT_JOB_INPUT]);
+    if (sortValue !== 'default') {
+      setSortValue('default');
+      setSortedEntries([...DEFAULT_JOB_INPUT]);
+    }
   };
 
   return (
