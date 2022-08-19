@@ -4,7 +4,7 @@ import { SearchContext } from '../../../Contexts/SearchContext';
 import './Search.styles.css';
 
 import { useContext, useEffect, useRef, useState } from 'react';
-const { searchIcon } = selectableBarIcons;
+const { searchIcon, clearIcon } = selectableBarIcons;
 
 const SearchComponent = () => {
   const { setSearchField } = useContext(SearchContext);
@@ -27,6 +27,8 @@ const SearchComponent = () => {
   };
 
   const defocusInput = () => {
+    if (inputRef.current.value) return;
+
     setTimeout(() => {
       setShowSearchBar(false);
     }, 600);
