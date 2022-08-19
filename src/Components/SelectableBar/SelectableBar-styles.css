@@ -1,5 +1,5 @@
 .selectableBar-container {
-  /* outline: 1px solid blue; */
+  outline: 1px solid blue;
   margin: 10px 100px 0 100px;
   display: flex;
   /* border-bottom: 1px solid rgb(238, 238, 237); */
@@ -12,16 +12,33 @@
   flex-direction: row;
 }
 
-.selectableBar-adjustments {
+.mappings-container {
   /* background-color: brown; */
   display: flex;
   flex-direction: row;
   justify-content: center;
+
   margin-left: auto;
 }
 
-.selectableBar-container span {
+.mappings-container span {
+  border: 1px solid pink;
   color: rgba(55, 53, 47, 0.65);
+  padding: 3px 10px;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.mappings-container span:hover {
+  transition: background-color 20ms ease-in 0s;
+  background: rgba(55, 53, 47, 0.08);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.selectableBar-individual span {
   padding-left: 4px;
   /* border: 1px solid rgb(46, 170, 220); */
 }
@@ -78,55 +95,6 @@
 
 /* ////////////////////////////////////////// */
 
-.sort-dropdown-menu {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.sort-dropdown-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-
-  left: calc(-100% - 4.25rem);
-  top: 100%;
-
-  background-color: white;
-
-  border-radius: 4px;
-  box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px,
-    rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
-
-  max-width: calc(100vw - 24px);
-  opacity: 0;
-  pointer-events: none;
-
-  width: 290px;
-  height: 290px;
-
-  transform: translateY(-10px);
-  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-}
-
-.sort-dropdown-menu.active > .sort-link,
-.sort-link:hover {
-  color: rgb(46, 170, 220);
-  transition: background-color 20ms ease-in 0s;
-  background: rgba(55, 53, 47, 0.08);
-}
-
-.sort-dropdown-menu.active > .sort-link + .sort-dropdown-content {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* ////////////////////////////////////////// */
-
 .new-entry__button {
   display: flex;
   align-items: center;
@@ -144,22 +112,6 @@
 .new-entry__button p {
   color: white;
   padding-right: 3px;
-}
-
-.selectableBar-adjustments span {
-  /* border: 1px solid pink; */
-  padding: 3px 10px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.selectableBar-adjustments span:hover {
-  transition: background-color 20ms ease-in 0s;
-  background: rgba(55, 53, 47, 0.08);
-  cursor: pointer;
-  border-radius: 3px;
 }
 
 /* ///////////////////////////////////////////// */
