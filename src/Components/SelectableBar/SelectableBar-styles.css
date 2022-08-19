@@ -1,4 +1,4 @@
-.selectableBar-container {
+.routings-container {
   outline: 1px solid blue;
   margin: 10px 100px 0 100px;
   display: flex;
@@ -6,36 +6,10 @@
   font-size: 14px;
 }
 
-.selectableBar-container div:first-child {
+.routings-container div:first-child {
   /* outline: 1px solid cadetblue; */
   display: flex;
   flex-direction: row;
-}
-
-.mappings-container {
-  /* background-color: brown; */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  margin-left: auto;
-}
-
-.mappings-container span {
-  border: 1px solid pink;
-  color: rgba(55, 53, 47, 0.65);
-  padding: 3px 10px;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-}
-
-.mappings-container span:hover {
-  transition: background-color 20ms ease-in 0s;
-  background: rgba(55, 53, 47, 0.08);
-  cursor: pointer;
-  border-radius: 3px;
 }
 
 .selectableBar-individual span {
@@ -66,31 +40,30 @@
 
 /* ////////////////////////////////////////// */
 
-.search-bar {
+.mappings-container {
+  /* background-color: brown; */
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  border: none;
-  width: 0;
-  transition: width 0.5s cubic-bezier(0.3, 0.02, 0, 1);
-  font-size: 14px;
+
+  margin-left: auto;
 }
 
-.search-bar:active {
+.mappings-container span {
+  border: 1px solid pink;
+  color: rgba(55, 53, 47, 0.65);
+  padding: 3px 10px;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.mappings-container span:hover {
+  transition: background-color 20ms ease-in 0s;
+  background: rgba(55, 53, 47, 0.08);
   cursor: pointer;
-}
-
-.search-bar:focus,
-.search-bar:valid {
-  width: 150px;
-  outline: none;
-  cursor: initial;
-}
-
-.search-navigation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 3px;
 }
 
 /* ////////////////////////////////////////// */

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { SearchContext } from '../Contexts/SearchContext';
 
 import { selectableBarIcons } from '../../Icons/Icons';
@@ -7,8 +7,7 @@ import './SelectableBar-styles.css';
 import SearchComponent from './Mappings/Search/Search.component';
 import SortComponent from './Mappings/Sort/Sort.component';
 
-const { searchIcon, allAppsIcon, calendarIcon, plusIcon, clearIcon } =
-  selectableBarIcons;
+const { allAppsIcon, calendarIcon, plusIcon } = selectableBarIcons;
 
 const STYLES = {
   border: {
@@ -85,7 +84,7 @@ const SelectableBar = () => {
   });
 
   return (
-    <div className='selectableBar-container'>
+    <div className='routings-container'>
       <div
         className='selectableBar-individual'
         style={Object.assign(STYLES.border)}

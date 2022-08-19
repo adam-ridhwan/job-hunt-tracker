@@ -1,6 +1,8 @@
 import { selectableBarIcons } from '../../../../Icons/Icons';
 import { SearchContext } from '../../../Contexts/SearchContext';
 
+import './Search.styles.css';
+
 import { useContext, useEffect, useRef, useState } from 'react';
 const { searchIcon } = selectableBarIcons;
 
