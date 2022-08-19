@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { SearchContext } from '../Contexts/SearchContext';
 
 import jobInput from '../../Data';
@@ -18,9 +18,13 @@ const STYLES = {
     fill: 'rgb(55, 53, 47)',
   },
 };
+
 const DEFAULT_JOB_INPUT = [...jobInput];
 
 const SelectableBar = () => {
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const inputRef = useRef();
+
   const {
     sortValue,
     setSortValue,
@@ -85,6 +89,41 @@ const SelectableBar = () => {
     }
   };
 
+  const focusBar = () => {
+    setShowSearchBar(!showSearchBar);
+  };
+
+  const defocusInput = () => {
+    setTimeout(() => {
+      setShowSearchBar(false);
+    }, 600);
+  };
+
+  useEffect(() => {
+    if (showSearchBar) {
+      inputRef.current.focus();
+    }
+  }, [showSearchBar]);
+
+  useEffect(() => {
+    document.addEventListener('click', e => {
+      const isDropdownButton = e.target.matches('[data-dropdown-button]');
+      if (!isDropdownButton && e.target.closest('[data-dropdown]') != null)
+        return;
+
+      let currentDropdown;
+      if (isDropdownButton) {
+        currentDropdown = e.target.closest('[data-dropdown]');
+        currentDropdown.classList.toggle('active');
+      }
+
+      document.querySelectorAll('[data-dropdown]').forEach(dropdown => {
+        if (dropdown === currentDropdown) return;
+        dropdown.classList.remove('active');
+      });
+    });
+  });
+
   return (
     <div className='selectableBar-container'>
       <div>
@@ -92,12 +131,17 @@ const SelectableBar = () => {
           className='selectableBar-individual'
           style={Object.assign(STYLES.border)}
         >
-          {allAppsIcon}
-          <span style={Object.assign(STYLES.fontColor)}>All Applications</span>
+          <div>{allAppsIcon}</div>
+          <span
+            style={Object.assign(STYLES.fontColor)}
+            className='selectable-bar-left'
+          >
+            All Applications
+          </span>
         </div>
         <div className='selectableBar-individual'>
-          {calendarIcon}
-          <span>Calendar</span>
+          <div>{calendarIcon}</div>
+          <span className='selectable-bar-left'>Calendar</span>
         </div>
       </div>
 
@@ -105,22 +149,39 @@ const SelectableBar = () => {
         <div className='main-search'>
           <div className='search-container'>
             <span>Filter</span>
-            <span>Sort</span>
-
-            {/* <span className='search-icon' onClick={toggleSearch}>
-              {searchIcon}
-            </span> */}
-            <div className='search-navigation'>
-              <input
-                id='customx'
-                type='search'
-                placeholder='Search'
-                ariaaria-label='search'
-                className='search-bar'
-                onChange={handleSearchChange}
-                required
-              />
+            {/* start sort */}
+            <div className='sort-dropdown-menu' data-dropdown>
+              <span className='sort-link' data-dropdown-button>
+                Sort
+              </span>
+              <div className='sort-dropdown-content'>
+                <button onClick={handleClickSortAscending}>Ascending</button>
+                <button onClick={handleClickSortDescending}>Descending</button>
+                <button onClick={handleClickResetSort}>Reset</button>
+              </div>
             </div>
+            {/* end sort */}
+            <span className='search-icon' onClick={focusBar}>
+              {searchIcon}
+            </span>
+
+            {showSearchBar ? (
+              <div className='search-navigation'>
+                <input
+                  ref={inputRef}
+                  id='searchBar'
+                  type='search'
+                  placeholder='Type to search...'
+                  aria-label='search'
+                  className='search-bar'
+                  onChange={handleSearchChange}
+                  onBlur={defocusInput}
+                  required
+                />
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
 
@@ -130,11 +191,11 @@ const SelectableBar = () => {
         </button>
       </div>
 
-      <div className='sort-container'>
+      {/* <div className='sort-container'>
         <button onClick={handleClickSortAscending}>Sort Ascending</button>
         <button onClick={handleClickSortDescending}>Sort Descending</button>
         <button onClick={handleClickResetSort}>Reset Sort</button>
-      </div>
+      </div> */}
     </div>
   );
 };
