@@ -2,7 +2,10 @@
   /* outline: 2px solid blue; */
   display: flex;
 
-  margin: 0 100px;
+  margin-left: 100px;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 .table-header {
@@ -36,8 +39,8 @@
 /* ////////////////////////////////////////// */
 
 .body-container {
-  /* outline: 1px solid blue; */
-  margin: 0 100px;
+  outline: 1px solid blue;
+  margin-left: 100px;
   /* width: 1800px;
   max-width: 1800px; */
 }
@@ -77,7 +80,7 @@
 /* ////////////////////////////////////////// */
 
 .count-container {
-  /* outline: 1px solid purple; */
+  outline: 1px solid purple;
   display: flex;
   align-items: center;
 
@@ -94,22 +97,11 @@
   letter-spacing: 2px;
   font-size: 14px;
   color: rgba(55, 53, 47, 0.65);
-  margin-left: 120px;
+  margin-left: 200px;
 
   display: flex;
 }
 
 .count-container b {
   font-size: 14px;
-}
-
-/* //////////////////////////////////////// */
-
-.filter-input {
-  width: 50px;
-  padding-left: 100px;
-}
-
-.sort-container {
-  padding-left: 100px;
 }
