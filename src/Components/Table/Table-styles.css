@@ -7,12 +7,9 @@
 }
 
 .header-container {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   display: flex;
   background-color: white;
-
-  position: sticky;
-  top: 0;
 }
 
 .table-header {

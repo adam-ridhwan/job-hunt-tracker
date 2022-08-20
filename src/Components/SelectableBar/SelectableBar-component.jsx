@@ -26,8 +26,7 @@ const STYLES = {
 };
 
 const SelectableBar = () => {
-  const { myRef, myElementIsVisible } = useContext(StickyContext);
-  console.log(myElementIsVisible);
+  const { myRef } = useContext(StickyContext);
 
   const {
     sortValue,

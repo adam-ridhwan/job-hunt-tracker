@@ -20,41 +20,43 @@ const HEADER_TITLES = [
 ];
 
 const Table = () => {
-  const { myRef, myElementIsVisible } = useContext(StickyContext);
+  const { myElementIsVisible } = useContext(StickyContext);
 
   const { filteredEntries } = useContext(SearchContext);
   const prevScrollY = useRef(0);
-  const [goingUp, setGoingup] = useState(false);
+  const [goingUp, setGoingup] = useState();
   const [currentScrollY, setCurrentScrollY] = useState(0);
-  const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
     // https://codesandbox.io/s/react-setstate-from-event-listener-q7to8?file=/src/App.js
-
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (prevScrollY.current < currentScrollY && goingUp) setGoingup(false);
       if (prevScrollY.current > currentScrollY && !goingUp) setGoingup(true);
+      console.log(currentScrollY);
 
-      prevScrollY.current = currentScrollY;
-      // setCurrentScrollY(currentScrollY);
+      if (!myElementIsVisible) {
+        prevScrollY.current = currentScrollY;
+        setCurrentScrollY(prevScrollY.current - 145);
+      }
+
+      if (myElementIsVisible) {
+        console.log(currentScrollY);
+
+        setCurrentScrollY(0);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [goingUp]);
-
-  const handleScroll = () => {};
+  }, [goingUp, myElementIsVisible]);
 
   return (
     <>
       <div className='main-container'>
         {/* headers */}
         <div
-          ref={myRef}
-          onScroll={handleScroll}
           className='header-container'
           style={{ transform: `translate3d(0px, ${currentScrollY}px, 0px` }}
         >
