@@ -1,65 +1,22 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext } from 'react';
 
 import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
 import EditableElement from '../../Utilities/EditableElement';
 import { SearchContext } from '../Contexts/SearchContext';
-import { StickyContext } from '../Contexts/StickyContext';
+
+import { HEADER_TITLES } from '../../Data';
+
 import './Table-styles.css';
 
-const HEADER_TITLES = [
-  'Company',
-  'Stage',
-  'Interview Date',
-  'Postion',
-  'Location',
-  'Posting URL',
-  'Point of Contact',
-  'Contact Info',
-  'Date Applied',
-];
-
 const Table = () => {
-  const { myElementIsVisible } = useContext(StickyContext);
-
   const { filteredEntries } = useContext(SearchContext);
-  const prevScrollY = useRef(0);
-  const [goingUp, setGoingup] = useState();
-  const [currentScrollY, setCurrentScrollY] = useState(0);
-
-  useEffect(() => {
-    // https://codesandbox.io/s/react-setstate-from-event-listener-q7to8?file=/src/App.js
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (prevScrollY.current < currentScrollY && goingUp) setGoingup(false);
-      if (prevScrollY.current > currentScrollY && !goingUp) setGoingup(true);
-      console.log(currentScrollY);
-
-      if (!myElementIsVisible) {
-        prevScrollY.current = currentScrollY;
-        setCurrentScrollY(prevScrollY.current - 145);
-      }
-
-      if (myElementIsVisible) {
-        console.log(currentScrollY);
-
-        setCurrentScrollY(0);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [goingUp, myElementIsVisible]);
 
   return (
     <>
       <div className='main-container'>
         {/* headers */}
-        <div
-          className='header-container'
-          style={{ transform: `translate3d(0px, ${currentScrollY}px, 0px` }}
-        >
+        <div className='header-container'>
           {HEADER_TITLES.map((title, index) => {
             return (
               <div className='table-header' key={index}>

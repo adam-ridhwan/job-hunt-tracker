@@ -1,4 +1,16 @@
 import { generateId } from './Utilities/GenerateID';
+
+export const HEADER_TITLES = [
+  'Company',
+  'Stage',
+  'Interview Date',
+  'Postion',
+  'Location',
+  'Posting URL',
+  'Point of Contact',
+  'Contact Info',
+  'Date Applied',
+];
 const jobInput = [
   {
     id: generateId(),

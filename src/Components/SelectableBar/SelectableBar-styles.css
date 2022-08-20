@@ -4,7 +4,6 @@
   display: flex;
   /* border-bottom: 1px solid rgb(238, 238, 237); */
   font-size: 14px;
-  position: relative;
 }
 
 .routings-container div:first-child {

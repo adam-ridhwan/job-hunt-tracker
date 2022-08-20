@@ -3,13 +3,14 @@
   overflow-x: auto;
   white-space: nowrap;
   margin: 0 100px;
-  position: relative;
 }
 
 .header-container {
   /* border: 2px solid blue; */
   display: flex;
   background-color: white;
+  position: sticky;
+  top: 0;
 }
 
 .table-header {
