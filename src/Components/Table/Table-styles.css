@@ -1,11 +1,18 @@
-.header-container {
-  /* outline: 2px solid blue; */
-  display: flex;
+.main-container {
+  /* outline: 2px solid red; */
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 0 100px;
+  position: relative;
+}
 
-  margin-left: 100px;
+.header-container {
+  border: 2px solid blue;
+  display: flex;
+  background-color: white;
+
   position: sticky;
   top: 0;
-  background-color: white;
 }
 
 .table-header {
@@ -39,10 +46,8 @@
 /* ////////////////////////////////////////// */
 
 .body-container {
-  outline: 1px solid blue;
-  margin-left: 100px;
-  /* width: 1800px;
-  max-width: 1800px; */
+  /* outline: 1px solid blue; */
+  /* margin-left: 100px; */
 }
 
 .table-body {
@@ -80,7 +85,7 @@
 /* ////////////////////////////////////////// */
 
 .count-container {
-  outline: 1px solid purple;
+  /* outline: 1px solid purple; */
   display: flex;
   align-items: center;
 
@@ -91,6 +96,7 @@
   position: sticky;
   bottom: 0;
   height: 32px;
+  margin: 0 100px;
 }
 
 .count-container span {

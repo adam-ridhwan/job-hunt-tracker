@@ -1,8 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { SearchContext } from '../Contexts/SearchContext';
+import { StickyContext } from '../Contexts/StickyContext';
 
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar-styles.css';
+
+import { useInView } from 'react-intersection-observer';
 
 import FilterComponent from './Mappings/Filter/Filter.component';
 import SearchComponent from './Mappings/Search/Search.component';
@@ -23,6 +26,9 @@ const STYLES = {
 };
 
 const SelectableBar = () => {
+  const { myRef, myElementIsVisible } = useContext(StickyContext);
+  console.log(myElementIsVisible);
+
   const {
     sortValue,
     setSortedEntries,
@@ -85,7 +91,7 @@ const SelectableBar = () => {
   });
 
   return (
-    <div className='routings-container'>
+    <div className='routings-container' ref={myRef}>
       <div
         className='selectableBar-individual'
         style={Object.assign(STYLES.border)}

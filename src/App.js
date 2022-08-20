@@ -11,10 +11,10 @@ const App = () => {
         {/* <h1 className='main-heading'>Job Hunt Tracker</h1> */}
         <h1 className='sub-heading'>Job Applications</h1>
       </div>
-      <SearchProvider jobInput={jobInput}>
-        <SelectableBar />
-        <Table />
-      </SearchProvider>
+
+      <SelectableBar />
+      <Table />
+
       <footer></footer>
     </>
   );
