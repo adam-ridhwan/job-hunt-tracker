@@ -44,3 +44,9 @@
   transform: translateY(0);
   pointer-events: auto;
 }
+
+.sort-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

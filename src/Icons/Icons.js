@@ -24,23 +24,10 @@ const selectableBarIcons = {
     </svg>
   ),
   plusIcon: (
-    <svg
-      viewBox='0 0 14 14'
-      width='14px'
-      height='100%'
-      // style='width: 14px; height: 14px; display: block; fill: rgba(55, 53, 47, 0.45); flex-shrink: 0; backface-visibility: hidden;'
-    >
+    <svg viewBox='0 0 14 14' width='14px' height='100%'>
       <path
         style={{ fill: 'white' }}
         d='M7.977 14.963c.407 0 .747-.324.747-.723V8.72h5.362c.399 0 .74-.34.74-.747a.746.746 0 00-.74-.738H8.724V1.706c0-.398-.34-.722-.747-.722a.732.732 0 00-.739.722v5.529h-5.37a.746.746 0 00-.74.738c0 .407.341.747.74.747h5.37v5.52c0 .399.332.723.739.723z'
-      ></path>
-    </svg>
-  ),
-  clearIcon: (
-    <svg viewBox='0 0 30  30' width='14px' height='14px'>
-      <path
-        style={{ fill: 'rgba(55, 53, 47, 0.45)' }}
-        d='M15,0C6.716,0,0,6.716,0,15s6.716,15,15,15s15-6.716,15-15S23.284,0,15,0z M22,20.6L20.6,22L15,16.4L9.4,22L8,20.6l5.6-5.6 L8,9.4L9.4,8l5.6,5.6L20.6,8L22,9.4L16.4,15L22,20.6z'
       ></path>
     </svg>
   ),

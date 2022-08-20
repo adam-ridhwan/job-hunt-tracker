@@ -4,6 +4,7 @@ import { SearchContext } from '../Contexts/SearchContext';
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar-styles.css';
 
+import FilterComponent from './Mappings/Filter/Filter.component';
 import SearchComponent from './Mappings/Search/Search.component';
 import SortComponent from './Mappings/Sort/Sort.component';
 
@@ -103,7 +104,7 @@ const SelectableBar = () => {
       </div>
 
       <div className='mappings-container'>
-        <span>Filter</span>
+        <FilterComponent />
         <SortComponent />
         <SearchComponent />
         <button className='new-entry__button'>
