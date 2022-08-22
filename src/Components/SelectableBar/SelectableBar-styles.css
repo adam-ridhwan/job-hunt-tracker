@@ -5,7 +5,7 @@
   display: flex;
 }
 
-.container-margin {
+.routings-container-margin {
   /* outline: 2px solid green; */
   padding: 4px 0;
   border-bottom: 1px solid rgba(55, 53, 47, 0.8);
@@ -17,12 +17,12 @@
   flex-direction: row;
 }
 
-.selectableBar-individual span {
+.routing-container span {
   /* border: 1px solid rgb(46, 170, 220); */
   padding-left: 4px;
 }
 
-.selectableBar-individual {
+.routing-container {
   /* outline: 1px solid rgb(46, 170, 220); */
   padding: 0 15px;
   display: flex;
@@ -31,16 +31,16 @@
   overflow: hidden;
 }
 
-.selectable-bar-left {
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.selectableBar-individual:hover {
+.routing-container:hover {
   transition: background-color 20ms ease-in 0s;
   background: rgba(55, 53, 47, 0.08);
   cursor: pointer;
   border-radius: 3px;
+}
+
+.routing-title {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* ////////////////////////////////////////// */
@@ -53,42 +53,4 @@
   margin-left: auto;
 }
 
-.mappings-container span {
-  /* border: 1px solid pink; */
-  color: rgba(55, 53, 47, 0.65);
-  padding: 3px 10px;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-}
-
-.mappings-container span:hover {
-  transition: background-color 20ms ease-in 0s;
-  background: rgba(55, 53, 47, 0.08);
-  cursor: pointer;
-  border-radius: 3px;
-}
-
 /* ////////////////////////////////////////// */
-
-.new-entry__button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  border-radius: 3px;
-  background: rgb(46, 170, 220);
-  height: 30px;
-  width: 60px;
-  margin: 0 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.new-entry__button p {
-  color: white;
-  padding-right: 3px;
-}
-
-/* ///////////////////////////////////////////// */

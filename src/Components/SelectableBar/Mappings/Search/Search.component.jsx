@@ -4,45 +4,56 @@ import { SearchContext } from '../../../Contexts/SearchContext';
 import './Search.styles.css';
 
 import { useContext, useEffect, useRef, useState } from 'react';
-const { searchIcon, clearIcon } = selectableBarIcons;
+const { searchIcon } = selectableBarIcons;
 
 const SearchComponent = () => {
-  const { setSearchField } = useContext(SearchContext);
-  const [showSearchBar, setShowSearchBar] = useState(false);
+  const { searchField, setSearchField } = useContext(SearchContext);
+  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const inputRef = useRef();
 
   useEffect(() => {
-    if (showSearchBar) {
+    if (isSearchBarVisible) {
       inputRef.current.focus();
     }
-  }, [showSearchBar]);
+  }, [isSearchBarVisible]);
 
   const handleSearchChange = event => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   };
 
-  const focusBar = () => {
-    setShowSearchBar(!showSearchBar);
+  const handleFocus = () => {
+    setIsSearchBarVisible(!isSearchBarVisible);
   };
 
-  const defocusInput = () => {
+  useEffect(() => {
+    isSearchBarVisible && searchField
+      ? setIsDisabled(true)
+      : setIsDisabled(false);
+  }, [isSearchBarVisible, searchField, isDisabled]);
+
+  const handleDefocus = () => {
     if (inputRef.current.value) return;
 
     setTimeout(() => {
-      setShowSearchBar(false);
-    }, 600);
+      setIsSearchBarVisible(false);
+    }, 700);
   };
 
   return (
     <>
       <div className='search-container'>
-        <span className='search-icon' onClick={focusBar}>
+        <button
+          disabled={isDisabled}
+          onClick={handleFocus}
+          className='search-icon'
+        >
           {searchIcon}
-        </span>
+        </button>
       </div>
 
-      {showSearchBar ? (
+      {isSearchBarVisible ? (
         <div className='search-navigation'>
           <input
             ref={inputRef}
@@ -52,7 +63,7 @@ const SearchComponent = () => {
             aria-label='search'
             className='search-bar'
             onChange={handleSearchChange}
-            onBlur={defocusInput}
+            onBlur={handleDefocus}
             required
           />
         </div>

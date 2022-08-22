@@ -1,5 +1,27 @@
 .search-container {
   padding: 4px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container button {
+  /* outline: 1px blue solid; */
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  /* outline: none; */
+  cursor: pointer;
+  width: 30px;
+  height: 100%;
+}
+
+.search-container button:hover {
+  transition: background-color 20ms ease-in 0s;
+  background: rgba(55, 53, 47, 0.08);
+  cursor: pointer;
+  border-radius: 3px;
 }
 
 .search-bar {

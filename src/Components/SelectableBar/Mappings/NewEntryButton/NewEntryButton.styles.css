@@ -1,0 +1,19 @@
+.new-entry__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 3px;
+  background: rgb(46, 170, 220);
+  margin: 4px 0;
+  margin-left: 5px;
+  width: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.new-entry__button p {
+  color: white;
+  padding-right: 3px;
+  font-size: 12px;
+}

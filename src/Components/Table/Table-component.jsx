@@ -51,11 +51,14 @@ const Table = () => {
           })}
         </div>
       </div>
+
       <div className='count-container'>
-        <span>
-          COUNT
-          <CountEntries entries={filteredEntries} />
-        </span>
+        <div className='count-container-margin'>
+          <span>
+            COUNT
+            <CountEntries entries={filteredEntries} />
+          </span>
+        </div>
       </div>
     </>
   );

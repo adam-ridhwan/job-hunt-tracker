@@ -5,10 +5,11 @@ import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar-styles.css';
 
 import FilterComponent from './Mappings/Filter/Filter.component';
+import NewEntryButton from './Mappings/NewEntryButton/NewEntryButton.component';
 import SearchComponent from './Mappings/Search/Search.component';
 import SortComponent from './Mappings/Sort/Sort.component';
 
-const { allAppsIcon, calendarIcon, plusIcon } = selectableBarIcons;
+const { allAppsIcon } = selectableBarIcons;
 
 const SelectableBar = () => {
   const {
@@ -53,47 +54,20 @@ const SelectableBar = () => {
     setFilteredEntries(newFilteredEntry);
   }, [searchField, sortValue]);
 
-  useEffect(() => {
-    document.addEventListener('click', e => {
-      const isDropdownButton = e.target.matches('[data-dropdown-button]');
-      if (!isDropdownButton && e.target.closest('[data-dropdown]') != null)
-        return;
-
-      let currentDropdown;
-      if (isDropdownButton) {
-        currentDropdown = e.target.closest('[data-dropdown]');
-        currentDropdown.classList.toggle('active');
-      }
-
-      document.querySelectorAll('[data-dropdown]').forEach(dropdown => {
-        if (dropdown === currentDropdown) return;
-        dropdown.classList.remove('active');
-      });
-    });
-  });
-
   return (
     <div className='routings-container'>
-      <div className='container-margin'>
-        <div className='selectableBar-border-bottom'>
-          <div className='selectableBar-individual'>
-            <div>{allAppsIcon}</div>
-            <span className='selectable-bar-left'>All Applications</span>
-          </div>
+      <div className='routings-container-margin'>
+        <div className='routing-container'>
+          <div>{allAppsIcon}</div>
+          <span className='routing-title'>All Applications</span>
         </div>
       </div>
 
       <div className='mappings-container'>
         <FilterComponent />
-
         <SortComponent />
-
         <SearchComponent />
-
-        <button className='new-entry__button'>
-          <p>New</p>
-          {plusIcon}
-        </button>
+        <NewEntryButton />
       </div>
     </div>
   );

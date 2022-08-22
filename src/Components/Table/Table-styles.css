@@ -8,9 +8,6 @@
 .header-container {
   /* border: 2px solid blue; */
   display: flex;
-  background-color: white;
-  position: sticky;
-  top: 0;
 }
 
 .table-header {
@@ -83,12 +80,11 @@
 /* ////////////////////////////////////////// */
 
 .count-container {
-  /* outline: 1px solid purple; */
+  /* outline: 1px solid blue; */
   display: flex;
   align-items: center;
 
   background-color: white;
-
   border-top: 1px solid rgb(238, 238, 237);
 
   position: sticky;
@@ -97,13 +93,20 @@
   margin: 0 100px;
 }
 
+.count-container-margin {
+  /* outline: 1px solid green; */
+
+  width: 200px;
+}
+
 .count-container span {
+  /* outline: 1px solid purple; */
   letter-spacing: 2px;
   font-size: 14px;
   color: rgba(55, 53, 47, 0.65);
-  margin-left: 200px;
-
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .count-container b {
