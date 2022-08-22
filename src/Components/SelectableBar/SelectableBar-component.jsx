@@ -7,6 +7,7 @@ import './SelectableBar-styles.css';
 import FilterComponent from './Mappings/Filter/Filter.component';
 import NewEntryButton from './Mappings/NewEntryButton/NewEntryButton.component';
 import SearchComponent from './Mappings/Search/Search.component';
+
 import SortComponent from './Mappings/Sort/Sort.component';
 
 const { allAppsIcon } = selectableBarIcons;

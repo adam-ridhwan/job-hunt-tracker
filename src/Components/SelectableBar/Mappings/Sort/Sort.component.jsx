@@ -1,9 +1,11 @@
 import { useContext, useEffect } from 'react';
-import jobInput from '../../../../Data';
+import jobInput, { HEADER_TITLES } from '../../../../Data';
 import { SearchContext } from '../../../Contexts/SearchContext';
 import './Sort.styles.css';
 
 const DEFAULT_JOB_INPUT = [...jobInput];
+
+const DROPDOWN_SELECTION_HEIGHT = 28;
 
 const SortComponent = () => {
   const { sortValue, setSortValue, setSortedEntries } =
@@ -49,10 +51,31 @@ const SortComponent = () => {
         <button className='sort-link' data-dropdown-button>
           Sort
         </button>
+
         <div className='sort-dropdown-content'>
-          <button onClick={handleClickSortAscending}>Ascending</button>
+          <div className='dropdown-input-searchbar'>
+            <input placeholder='Sort by...' type='text' />
+          </div>
+
+          <div className='dropdown-selection-container'>
+            {HEADER_TITLES.map(title => {
+              return (
+                <div
+                  role='button'
+                  className='dropdown-selection'
+                  style={{
+                    height: `${DROPDOWN_SELECTION_HEIGHT}px`,
+                  }}
+                >
+                  <p>{title}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* <button onClick={handleClickSortAscending}>Ascending</button>
           <button onClick={handleClickSortDescending}>Descending</button>
-          <button onClick={handleClickResetSort}>Reset</button>
+          <button onClick={handleClickResetSort}>Reset</button> */}
         </div>
       </div>
     </div>

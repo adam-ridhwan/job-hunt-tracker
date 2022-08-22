@@ -1,8 +1,7 @@
 import './App.css';
-import { SearchProvider } from './Components/Contexts/SearchContext';
+
 import SelectableBar from './Components/SelectableBar/SelectableBar-component';
 import Table from './Components/Table/Table-component';
-import jobInput from './Data';
 
 const App = () => {
   return (
