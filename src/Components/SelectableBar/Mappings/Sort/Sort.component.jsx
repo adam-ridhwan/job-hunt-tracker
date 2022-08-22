@@ -24,14 +24,16 @@ const SortComponent = () => {
     }
   };
   return (
-    <div className='sort-dropdown-menu' data-dropdown>
-      <span className='sort-link' data-dropdown-button>
-        Sort
-      </span>
-      <div className='sort-dropdown-content'>
-        <button onClick={handleClickSortAscending}>Ascending</button>
-        <button onClick={handleClickSortDescending}>Descending</button>
-        <button onClick={handleClickResetSort}>Reset</button>
+    <div className='sort-container'>
+      <div className='sort-dropdown-menu' data-dropdown>
+        <span className='sort-link' data-dropdown-button>
+          Sort
+        </span>
+        <div className='sort-dropdown-content'>
+          <button onClick={handleClickSortAscending}>Ascending</button>
+          <button onClick={handleClickSortDescending}>Descending</button>
+          <button onClick={handleClickResetSort}>Reset</button>
+        </div>
       </div>
     </div>
   );

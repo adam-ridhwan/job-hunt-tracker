@@ -10,18 +10,6 @@ import SortComponent from './Mappings/Sort/Sort.component';
 
 const { allAppsIcon, calendarIcon, plusIcon } = selectableBarIcons;
 
-const STYLES = {
-  border: {
-    borderBottom: '2px solid rgb(55, 53, 47)',
-  },
-  fontColor: {
-    color: 'rgb(55, 53, 47)',
-  },
-  logoColor: {
-    fill: 'rgb(55, 53, 47)',
-  },
-};
-
 const SelectableBar = () => {
   const {
     sortValue,
@@ -86,27 +74,22 @@ const SelectableBar = () => {
 
   return (
     <div className='routings-container'>
-      <div
-        className='selectableBar-individual'
-        style={Object.assign(STYLES.border)}
-      >
-        <div>{allAppsIcon}</div>
-        <span
-          style={Object.assign(STYLES.fontColor)}
-          className='selectable-bar-left'
-        >
-          All Applications
-        </span>
-      </div>
-      <div className='selectableBar-individual'>
-        <div>{calendarIcon}</div>
-        <span className='selectable-bar-left'>Calendar</span>
+      <div className='container-margin'>
+        <div className='selectableBar-border-bottom'>
+          <div className='selectableBar-individual'>
+            <div>{allAppsIcon}</div>
+            <span className='selectable-bar-left'>All Applications</span>
+          </div>
+        </div>
       </div>
 
       <div className='mappings-container'>
         <FilterComponent />
+
         <SortComponent />
+
         <SearchComponent />
+
         <button className='new-entry__button'>
           <p>New</p>
           {plusIcon}

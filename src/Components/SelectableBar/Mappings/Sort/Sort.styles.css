@@ -1,3 +1,7 @@
+.sort-container {
+  padding: 4px 0;
+}
+
 .sort-dropdown-menu {
   position: relative;
   display: flex;

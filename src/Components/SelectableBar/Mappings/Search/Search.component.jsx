@@ -36,9 +36,11 @@ const SearchComponent = () => {
 
   return (
     <>
-      <span className='search-icon' onClick={focusBar}>
-        {searchIcon}
-      </span>
+      <div className='search-container'>
+        <span className='search-icon' onClick={focusBar}>
+          {searchIcon}
+        </span>
+      </div>
 
       {showSearchBar ? (
         <div className='search-navigation'>
