@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import jobInput, { HEADER_TITLES } from '../../../../Data';
 import { SearchContext } from '../../../Contexts/SearchContext';
 import './Sort.styles.css';
@@ -10,7 +10,12 @@ const SortComponent = () => {
   const { sortValue, setSortValue, setSortedEntries } =
     useContext(SearchContext);
 
+  const [searchSelection, setSearchSelection] = useState('');
+  const [selection, setSelection] = useState(HEADER_TITLES);
+  const [filteredTitles, setFilteredTitles] = useState(selection);
+
   useEffect(() => {
+    console.log('rendered');
     /* https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified */
     const handleDropdown = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
@@ -32,13 +37,25 @@ const SortComponent = () => {
         background.classList.remove('active');
       });
     };
-
     document.addEventListener('click', handleDropdown);
 
     return () => {
       document.removeEventListener('click', handleDropdown);
     };
   }, []);
+
+  useEffect(() => {
+    const filteredSelections = selection.filter(title => {
+      return title.toLocaleLowerCase().includes(searchSelection);
+    });
+    setFilteredTitles(filteredSelections);
+    console.log('FILTERED TITLES', filteredTitles);
+  }, [searchSelection, selection]);
+
+  const handleSearchChange = event => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchSelection(searchFieldString);
+  };
 
   const handleClickSortAscending = () => {
     setSortValue('ascending');
@@ -55,6 +72,8 @@ const SortComponent = () => {
     }
   };
 
+  // console.log('HEADER TITLES', HEADER_TITLES);
+
   return (
     <>
       <div className='layer-container' data-background />
@@ -67,11 +86,15 @@ const SortComponent = () => {
 
           <div className='sort-dropdown-content'>
             <div className='dropdown-input-searchbar'>
-              <input placeholder='Sort by...' type='text' />
+              <input
+                placeholder='Sort by...'
+                type='text'
+                onChange={handleSearchChange}
+              />
             </div>
 
             <div className='dropdown-selection-container'>
-              {HEADER_TITLES.map((title, index) => {
+              {filteredTitles.map((title, index) => {
                 return (
                   <div
                     key={index}

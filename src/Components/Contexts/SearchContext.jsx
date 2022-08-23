@@ -4,9 +4,11 @@ export const SearchContext = createContext();
 
 export const SearchProvider = ({ children, jobInput }) => {
   const [searchField, setSearchField] = useState('');
+
   const [entries, setEntries] = useState(jobInput);
   const [sortedEntries, setSortedEntries] = useState(entries);
   const [filteredEntries, setFilteredEntries] = useState(sortedEntries);
+
   const [sortValue, setSortValue] = useState();
 
   return (
