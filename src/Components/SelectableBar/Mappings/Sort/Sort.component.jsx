@@ -7,18 +7,24 @@ const DEFAULT_JOB_INPUT = [...jobInput];
 const DROPDOWN_SELECTION_HEIGHT = 28;
 
 const SortComponent = () => {
+  // * ===========================================================================
+  // *                            HOOK DECLARATIONS
+  // * ===========================================================================
   const { sortValue, setSortValue, setSortedEntries } =
     useContext(SearchContext);
 
   const [searchSelection, setSearchSelection] = useState('');
   const [selection, setSelection] = useState(HEADER_TITLES);
   const [filteredTitles, setFilteredTitles] = useState(selection);
-  const [isFocused, setIsFocused] = useState(true);
 
   const selectionSearchRef = useRef();
 
+  // * ===========================================================================
+  // *                             HANDLE DROPDOWN
+  // * ===========================================================================
   useEffect(() => {
-    /* https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified */
+    // LINK OF TUTORIAL
+    // https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified
     const handleDropdown = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
       const background = document.querySelector('[data-background]');
@@ -49,6 +55,9 @@ const SortComponent = () => {
     };
   }, []);
 
+  // * ===========================================================================
+  // *                     HANDLE SEARCH SELECTION FILTER
+  // * ===========================================================================
   useEffect(() => {
     const filteredSelections = selection.filter(title => {
       return title.toLocaleLowerCase().includes(searchSelection);
@@ -61,6 +70,34 @@ const SortComponent = () => {
     setSearchSelection(searchFieldString);
   };
 
+  // * ===========================================================================
+  // *                 HANDLE CLICK ON SELECTION SEARCH INPUT
+  // * ===========================================================================
+  const [chosenFilterSelection, setChosenFilterSelection] = useState();
+  const handleKeyClick = index => {
+    setChosenFilterSelection(filteredTitles[index]);
+  };
+
+  useEffect(() => {
+    if (chosenFilterSelection === undefined) return;
+  }, [chosenFilterSelection]);
+
+  // * ===========================================================================
+  // *              HANDLE BACKGROUND COLOR CHANGE ON MOUSE HOVER
+  // * ===========================================================================
+  const [indexOfTitle, setIndexOfTitle] = useState(0);
+
+  const handleMouseEnter = index => {
+    setIndexOfTitle(index);
+  };
+
+  useEffect(() => {
+    setIndexOfTitle(0);
+  }, [filteredTitles]);
+
+  // * ===========================================================================
+  // *                   HANDLE SORT ASCENDING OR DESCENDING
+  // * ===========================================================================
   const handleClickSortAscending = () => {
     setSortValue('ascending');
   };
@@ -76,27 +113,9 @@ const SortComponent = () => {
     }
   };
 
-  //*
-  const [chosenFilterSelection, setChosenFilterSelection] = useState();
-  const handleKeyClick = index => {
-    setChosenFilterSelection(filteredTitles[index]);
-  };
-
-  useEffect(() => {
-    if (chosenFilterSelection === undefined) return;
-  }, [chosenFilterSelection]);
-
-  //*
-  const [indexOfTitle, setIndexOfTitle] = useState(0);
-
-  const handleMouseEnter = index => {
-    setIndexOfTitle(index);
-  };
-
-  useEffect(() => {
-    setIndexOfTitle(0);
-  }, [filteredTitles]);
-
+  // - ===========================================================================
+  // -                                 RENDER
+  // - ===========================================================================
   return (
     <>
       <div className='layer-container' data-background />
