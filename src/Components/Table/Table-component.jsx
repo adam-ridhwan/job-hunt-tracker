@@ -1,9 +1,12 @@
 import { useContext } from 'react';
+import { SearchContext } from '../Contexts/SearchContext';
+import { SortContext } from '../Contexts/SortContext';
 
 import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
 import EditableElement from '../../Utilities/EditableElement';
-import { SearchContext } from '../Contexts/SearchContext';
+
+import SortSelectionComponent from '../SelectableBar/Mappings/Sort/Sort-selection/Sort-selection.component';
 
 import { HEADER_TITLES } from '../../Data';
 
@@ -11,11 +14,13 @@ import './Table-styles.css';
 
 const Table = () => {
   const { filteredEntries } = useContext(SearchContext);
+  const { chosenFilterSelection } = useContext(SortContext);
 
   return (
     <>
+      {chosenFilterSelection ? <SortSelectionComponent /> : ''}
+
       <div className='main-container'>
-        {/* headers */}
         <div className='header-container'>
           {HEADER_TITLES.map((title, index) => {
             return (
@@ -27,7 +32,6 @@ const Table = () => {
           })}
         </div>
 
-        {/* Entries */}
         <div className='body-container'>
           {filteredEntries.map(entry => {
             return (

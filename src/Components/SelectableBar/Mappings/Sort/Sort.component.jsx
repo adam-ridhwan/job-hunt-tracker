@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import jobInput, { HEADER_TITLES } from '../../../../Data';
 import { SearchContext } from '../../../Contexts/SearchContext';
+import { SortContext } from '../../../Contexts/SortContext';
 import './Sort.styles.css';
 
 const DEFAULT_JOB_INPUT = [...jobInput];
@@ -12,6 +13,9 @@ const SortComponent = () => {
   // =============================================================================
   const { sortValue, setSortValue, setSortedEntries } =
     useContext(SearchContext);
+
+  const { chosenFilterSelection, setChosenFilterSelection } =
+    useContext(SortContext);
 
   const [searchSelection, setSearchSelection] = useState('');
   const [selection, setSelection] = useState(HEADER_TITLES);
@@ -25,7 +29,7 @@ const SortComponent = () => {
   useEffect(() => {
     // LINK OF TUTORIAL
     // https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified
-    const handleDropdown = event => {
+    const handleSortMenuDropdown = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
       const background = document.querySelector('[data-background]');
 
@@ -48,10 +52,10 @@ const SortComponent = () => {
         background.classList.remove('active');
       });
     };
-    document.addEventListener('click', handleDropdown);
+    document.addEventListener('click', handleSortMenuDropdown);
 
     return () => {
-      document.removeEventListener('click', handleDropdown);
+      document.removeEventListener('click', handleSortMenuDropdown);
     };
   }, []);
 
@@ -74,8 +78,6 @@ const SortComponent = () => {
   //                   HANDLE CLICK ON SELECTION SEARCH INPUT
   // TODO: Create a dropdown button of user's selection of sort option
   // =============================================================================
-  const [chosenFilterSelection, setChosenFilterSelection] = useState(null);
-
   const handleKeyClick = index => {
     setChosenFilterSelection(filteredTitles[index]);
   };
@@ -125,7 +127,15 @@ const SortComponent = () => {
 
       <div className='sort-container'>
         <div className='sort-dropdown-menu' data-dropdown>
-          <button className='sort-link' data-dropdown-button>
+          <button
+            className='sort-link'
+            data-dropdown-button
+            style={{
+              color: chosenFilterSelection
+                ? 'rgb(46, 170, 220)'
+                : 'rgba(55, 53, 47, 0.65)',
+            }}
+          >
             Sort
           </button>
 
