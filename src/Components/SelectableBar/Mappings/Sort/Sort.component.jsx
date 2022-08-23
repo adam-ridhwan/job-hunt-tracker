@@ -15,7 +15,6 @@ const SortComponent = () => {
   const [filteredTitles, setFilteredTitles] = useState(selection);
 
   useEffect(() => {
-    console.log('rendered');
     /* https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified */
     const handleDropdown = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
@@ -49,7 +48,6 @@ const SortComponent = () => {
       return title.toLocaleLowerCase().includes(searchSelection);
     });
     setFilteredTitles(filteredSelections);
-    console.log('FILTERED TITLES', filteredTitles);
   }, [searchSelection, selection]);
 
   const handleSearchChange = event => {
@@ -72,7 +70,27 @@ const SortComponent = () => {
     }
   };
 
-  // console.log('HEADER TITLES', HEADER_TITLES);
+  //*
+  //! NEED TO FINISH SETTING UP USER FILTERED SELECTION
+  const [chosenFilterSelection, setChosenFilterSelection] = useState();
+  const handleKeyClick = index => {
+    setChosenFilterSelection(index);
+  };
+
+  useEffect(() => {
+    if (undefined) return;
+  }, [chosenFilterSelection]);
+
+  //*
+  const [indexOfTitle, setIndexOfTitle] = useState(0);
+
+  const handleMouseEnter = index => {
+    setIndexOfTitle(index);
+  };
+
+  useEffect(() => {
+    setIndexOfTitle(0);
+  }, [filteredTitles]);
 
   return (
     <>
@@ -94,20 +112,30 @@ const SortComponent = () => {
             </div>
 
             <div className='dropdown-selection-container'>
-              {filteredTitles.map((title, index) => {
-                return (
-                  <div
-                    key={index}
-                    role='button'
-                    className='dropdown-selection'
-                    style={{
-                      height: `${DROPDOWN_SELECTION_HEIGHT}px`,
-                    }}
-                  >
-                    <p>{title}</p>
-                  </div>
-                );
-              })}
+              {filteredTitles.length > 0 ? (
+                filteredTitles.map((title, index) => {
+                  return (
+                    <div
+                      id='selection-title'
+                      key={index}
+                      role='button'
+                      className='dropdown-selection'
+                      style={{
+                        background:
+                          index === indexOfTitle
+                            ? 'rgba(55, 53, 47, 0.08)'
+                            : '',
+                      }}
+                      onClick={() => handleKeyClick(index)}
+                      onMouseEnter={() => handleMouseEnter(index)}
+                    >
+                      <p>{title}</p>
+                    </div>
+                  );
+                })
+              ) : (
+                <p className='no-results-found'>No results found</p>
+              )}
             </div>
 
             {/* <button onClick={handleClickSortAscending}>Ascending</button>
