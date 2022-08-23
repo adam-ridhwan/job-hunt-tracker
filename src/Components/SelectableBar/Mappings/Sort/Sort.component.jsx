@@ -4,7 +4,6 @@ import { SearchContext } from '../../../Contexts/SearchContext';
 import './Sort.styles.css';
 
 const DEFAULT_JOB_INPUT = [...jobInput];
-
 const DROPDOWN_SELECTION_HEIGHT = 28;
 
 const SortComponent = () => {
@@ -12,23 +11,34 @@ const SortComponent = () => {
     useContext(SearchContext);
 
   useEffect(() => {
-    document.addEventListener('click', e => {
-      const isDropdownButton = e.target.matches('[data-dropdown-button]');
-      if (!isDropdownButton && e.target.closest('[data-dropdown]') != null)
+    /* https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified */
+    const handleDropdown = event => {
+      const isDropdownButton = event.target.matches('[data-dropdown-button]');
+      const background = document.querySelector('[data-background]');
+
+      if (!isDropdownButton && event.target.closest('[data-dropdown]') !== null)
         return;
 
       let currentDropdown;
       if (isDropdownButton) {
-        currentDropdown = e.target.closest('[data-dropdown]');
+        currentDropdown = event.target.closest('[data-dropdown]');
         currentDropdown.classList.toggle('active');
+        background.classList.toggle('active');
       }
 
-      document.querySelectorAll('[data-dropdown]').forEach(dropdown => {
+      document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
         if (dropdown === currentDropdown) return;
         dropdown.classList.remove('active');
+        background.classList.remove('active');
       });
-    });
-  });
+    };
+
+    document.addEventListener('click', handleDropdown);
+
+    return () => {
+      document.removeEventListener('click', handleDropdown);
+    };
+  }, []);
 
   const handleClickSortAscending = () => {
     setSortValue('ascending');
@@ -46,39 +56,44 @@ const SortComponent = () => {
   };
 
   return (
-    <div className='sort-container'>
-      <div className='sort-dropdown-menu' data-dropdown>
-        <button className='sort-link' data-dropdown-button>
-          Sort
-        </button>
+    <>
+      <div className='layer-container' data-background />
 
-        <div className='sort-dropdown-content'>
-          <div className='dropdown-input-searchbar'>
-            <input placeholder='Sort by...' type='text' />
-          </div>
+      <div className='sort-container'>
+        <div className='sort-dropdown-menu' data-dropdown>
+          <button className='sort-link' data-dropdown-button>
+            Sort
+          </button>
 
-          <div className='dropdown-selection-container'>
-            {HEADER_TITLES.map(title => {
-              return (
-                <div
-                  role='button'
-                  className='dropdown-selection'
-                  style={{
-                    height: `${DROPDOWN_SELECTION_HEIGHT}px`,
-                  }}
-                >
-                  <p>{title}</p>
-                </div>
-              );
-            })}
-          </div>
+          <div className='sort-dropdown-content'>
+            <div className='dropdown-input-searchbar'>
+              <input placeholder='Sort by...' type='text' />
+            </div>
 
-          {/* <button onClick={handleClickSortAscending}>Ascending</button>
+            <div className='dropdown-selection-container'>
+              {HEADER_TITLES.map((title, index) => {
+                return (
+                  <div
+                    key={index}
+                    role='button'
+                    className='dropdown-selection'
+                    style={{
+                      height: `${DROPDOWN_SELECTION_HEIGHT}px`,
+                    }}
+                  >
+                    <p>{title}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* <button onClick={handleClickSortAscending}>Ascending</button>
           <button onClick={handleClickSortDescending}>Descending</button>
           <button onClick={handleClickResetSort}>Reset</button> */}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
