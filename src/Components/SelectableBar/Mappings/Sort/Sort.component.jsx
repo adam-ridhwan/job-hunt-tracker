@@ -7,9 +7,9 @@ const DEFAULT_JOB_INPUT = [...jobInput];
 const DROPDOWN_SELECTION_HEIGHT = 28;
 
 const SortComponent = () => {
-  // * ===========================================================================
-  // *                            HOOK DECLARATIONS
-  // * ===========================================================================
+  // =============================================================================
+  //                            HOOK DECLARATIONS
+  // =============================================================================
   const { sortValue, setSortValue, setSortedEntries } =
     useContext(SearchContext);
 
@@ -19,9 +19,9 @@ const SortComponent = () => {
 
   const selectionSearchRef = useRef();
 
-  // * ===========================================================================
-  // *                             HANDLE DROPDOWN
-  // * ===========================================================================
+  // =============================================================================
+  //                               HANDLE DROPDOWN
+  // =============================================================================
   useEffect(() => {
     // LINK OF TUTORIAL
     // https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified
@@ -55,9 +55,9 @@ const SortComponent = () => {
     };
   }, []);
 
-  // * ===========================================================================
-  // *                     HANDLE SEARCH SELECTION FILTER
-  // * ===========================================================================
+  // =============================================================================
+  //                       HANDLE SEARCH SELECTION FILTER
+  // =============================================================================
   useEffect(() => {
     const filteredSelections = selection.filter(title => {
       return title.toLocaleLowerCase().includes(searchSelection);
@@ -70,21 +70,24 @@ const SortComponent = () => {
     setSearchSelection(searchFieldString);
   };
 
-  // * ===========================================================================
-  // *                 HANDLE CLICK ON SELECTION SEARCH INPUT
-  // * ===========================================================================
-  const [chosenFilterSelection, setChosenFilterSelection] = useState();
+  // =============================================================================
+  //                   HANDLE CLICK ON SELECTION SEARCH INPUT
+  // TODO: Create a dropdown button of user's selection of sort option
+  // =============================================================================
+  const [chosenFilterSelection, setChosenFilterSelection] = useState(null);
+
   const handleKeyClick = index => {
     setChosenFilterSelection(filteredTitles[index]);
   };
 
   useEffect(() => {
     if (chosenFilterSelection === undefined) return;
+    console.log(chosenFilterSelection);
   }, [chosenFilterSelection]);
 
-  // * ===========================================================================
-  // *              HANDLE BACKGROUND COLOR CHANGE ON MOUSE HOVER
-  // * ===========================================================================
+  // =============================================================================
+  //                HANDLE BACKGROUND COLOR CHANGE ON MOUSE HOVER
+  // =============================================================================
   const [indexOfTitle, setIndexOfTitle] = useState(0);
 
   const handleMouseEnter = index => {
@@ -95,9 +98,9 @@ const SortComponent = () => {
     setIndexOfTitle(0);
   }, [filteredTitles]);
 
-  // * ===========================================================================
-  // *                   HANDLE SORT ASCENDING OR DESCENDING
-  // * ===========================================================================
+  // =============================================================================
+  //                     HANDLE SORT ASCENDING OR DESCENDING
+  // =============================================================================
   const handleClickSortAscending = () => {
     setSortValue('ascending');
   };
@@ -113,9 +116,9 @@ const SortComponent = () => {
     }
   };
 
-  // - ===========================================================================
-  // -                                 RENDER
-  // - ===========================================================================
+  // =============================================================================
+  //                                   RENDER
+  // =============================================================================
   return (
     <>
       <div className='layer-container' data-background />

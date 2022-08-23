@@ -131,6 +131,8 @@
   /* outline: 1px solid blue; */
   font-size: 12px;
   padding-left: 8px;
+  color: rgb(55, 53, 47);
+  font-weight: 400;
 }
 
 .no-results-found {
