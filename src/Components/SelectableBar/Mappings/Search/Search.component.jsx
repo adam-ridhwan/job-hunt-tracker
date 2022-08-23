@@ -10,6 +10,7 @@ const SearchComponent = () => {
   const { searchField, setSearchField } = useContext(SearchContext);
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+
   const inputRef = useRef();
 
   useEffect(() => {

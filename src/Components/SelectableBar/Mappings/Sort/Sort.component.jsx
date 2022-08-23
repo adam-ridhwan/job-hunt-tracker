@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import jobInput, { HEADER_TITLES } from '../../../../Data';
 import { SearchContext } from '../../../Contexts/SearchContext';
 import './Sort.styles.css';
@@ -13,6 +13,9 @@ const SortComponent = () => {
   const [searchSelection, setSearchSelection] = useState('');
   const [selection, setSelection] = useState(HEADER_TITLES);
   const [filteredTitles, setFilteredTitles] = useState(selection);
+  const [isFocused, setIsFocused] = useState(true);
+
+  const selectionSearchRef = useRef();
 
   useEffect(() => {
     /* https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified */
@@ -26,12 +29,15 @@ const SortComponent = () => {
       let currentDropdown;
       if (isDropdownButton) {
         currentDropdown = event.target.closest('[data-dropdown]');
+        selectionSearchRef.current.focus();
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
       }
 
       document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
         if (dropdown === currentDropdown) return;
+        selectionSearchRef.current.value = '';
+        setFilteredTitles(HEADER_TITLES);
         dropdown.classList.remove('active');
         background.classList.remove('active');
       });
@@ -71,14 +77,13 @@ const SortComponent = () => {
   };
 
   //*
-  //! NEED TO FINISH SETTING UP USER FILTERED SELECTION
   const [chosenFilterSelection, setChosenFilterSelection] = useState();
   const handleKeyClick = index => {
-    setChosenFilterSelection(index);
+    setChosenFilterSelection(filteredTitles[index]);
   };
 
   useEffect(() => {
-    if (undefined) return;
+    if (chosenFilterSelection === undefined) return;
   }, [chosenFilterSelection]);
 
   //*
@@ -105,8 +110,10 @@ const SortComponent = () => {
           <div className='sort-dropdown-content'>
             <div className='dropdown-input-searchbar'>
               <input
+                id='selectionSearchId'
+                ref={selectionSearchRef}
+                type='search'
                 placeholder='Sort by...'
-                type='text'
                 onChange={handleSearchChange}
               />
             </div>

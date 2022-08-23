@@ -95,6 +95,18 @@
   color: rgba(55, 53, 47, 1);
 }
 
+.dropdown-input-searchbar input:focus {
+  outline: 2px solid #c1efff;
+}
+
+.dropdown-input-searchbar input::-webkit-search-cancel-button {
+  background-image: url(/src/Icons/ClearIcon.svg);
+  -webkit-appearance: none;
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
 /* ////////////////////////////////////////////// */
 
 .dropdown-selection-container {
