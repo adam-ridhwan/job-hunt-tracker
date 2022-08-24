@@ -8,6 +8,7 @@ import FilterComponent from './Mappings/Filter/Filter.component';
 import NewEntryButton from './Mappings/NewEntryButton/NewEntryButton.component';
 import SearchComponent from './Mappings/Search/Search.component';
 
+import { SortContext } from '../Contexts/SortContext';
 import SortComponent from './Mappings/Sort/Sort.component';
 
 const { allAppsIcon } = selectableBarIcons;
@@ -21,12 +22,19 @@ const SelectableBar = () => {
     setFilteredEntries,
   } = useContext(SearchContext);
 
+  const { chosenSortSelection } = useContext(SortContext);
+
   useEffect(() => {
+    let key;
+    if (chosenSortSelection) {
+      key = chosenSortSelection.toLowerCase();
+    }
+
     if (sortValue === 'Ascending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
-          const nameA = a.company.toUpperCase();
-          const nameB = b.company.toUpperCase();
+          const nameA = a[key].toUpperCase();
+          const nameB = b[key].toUpperCase();
 
           if (nameA < nameB) return -1;
           if (nameA > nameB) return 1;
@@ -38,8 +46,8 @@ const SelectableBar = () => {
     if (sortValue === 'Descending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
-          const nameA = a.company.toUpperCase();
-          const nameB = b.company.toUpperCase();
+          const nameA = a[key].toUpperCase();
+          const nameB = b[key].toUpperCase();
 
           if (nameA > nameB) return -1;
           if (nameA < nameB) return 1;
@@ -48,12 +56,18 @@ const SelectableBar = () => {
       );
     }
 
-    const newFilteredEntry = sortedEntries.filter(entry => {
-      return entry.company.toLocaleLowerCase().includes(searchField);
-    });
+    let newFilteredEntry;
+
+    key
+      ? (newFilteredEntry = sortedEntries.filter(entry =>
+          entry[key].toLocaleLowerCase().includes(searchField)
+        ))
+      : (newFilteredEntry = sortedEntries.filter(entry =>
+          entry.company.toLocaleLowerCase().includes(searchField)
+        ));
 
     setFilteredEntries(newFilteredEntry);
-  }, [searchField, sortValue]);
+  }, [chosenSortSelection, searchField, sortValue]);
 
   return (
     <div className='routings-container'>

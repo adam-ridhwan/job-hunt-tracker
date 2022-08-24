@@ -11,6 +11,7 @@ export const HEADER_TITLES = [
   'Contact Info',
   'Date Applied',
 ];
+
 const jobInput = [
   {
     id: generateId(),
