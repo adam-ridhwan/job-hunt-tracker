@@ -1,19 +1,21 @@
 import { useContext, useEffect } from 'react';
 import { SearchContext } from '../Contexts/SearchContext';
-
-import { selectableBarIcons } from '../../Icons/Icons';
-import './SelectableBar-styles.css';
+import { SortContext } from '../Contexts/SortContext';
 
 import FilterComponent from './Mappings/Filter/Filter.component';
 import NewEntryButton from './Mappings/NewEntryButton/NewEntryButton.component';
 import SearchComponent from './Mappings/Search/Search.component';
-
-import { SortContext } from '../Contexts/SortContext';
 import SortComponent from './Mappings/Sort/Sort.component';
+
+import { selectableBarIcons } from '../../Icons/Icons';
+import './SelectableBar-styles.css';
 
 const { allAppsIcon } = selectableBarIcons;
 
 const SelectableBar = () => {
+  // ===========================================================================
+  //                             HOOK DECLARATION
+  // ===========================================================================
   const {
     sortValue,
     setSortedEntries,
@@ -24,6 +26,9 @@ const SelectableBar = () => {
 
   const { chosenSortSelection } = useContext(SortContext);
 
+  // =============================================================================
+  //                     HANDLE SORTING ASCENDING/DESCENDING
+  // =============================================================================
   useEffect(() => {
     let key;
     if (chosenSortSelection) {
@@ -57,7 +62,6 @@ const SelectableBar = () => {
     }
 
     let newFilteredEntry;
-
     key
       ? (newFilteredEntry = sortedEntries.filter(entry =>
           entry[key].toLocaleLowerCase().includes(searchField)
