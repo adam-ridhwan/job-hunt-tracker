@@ -77,7 +77,6 @@ const SortComponent = () => {
 
   // =============================================================================
   //                   HANDLE CLICK ON SELECTION SEARCH INPUT
-  // TODO: Create a dropdown button of user's selection of sort option
   // =============================================================================
   const handleKeyClick = index => {
     setChosenFilterSelection(filteredTitles[index]);

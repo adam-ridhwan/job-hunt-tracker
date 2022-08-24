@@ -37,9 +37,15 @@ const ChevronDown = (
 );
 
 const SortSelectionComponent = () => {
+  // =============================================================================
+  //                              HOOK DECLARATIONS
+  // =============================================================================
   const { chosenFilterSelection } = useContext(SortContext);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
+  //  ============================================================================
+  //                  HANDLE DROPDOWN OF CHOSEN SORT TITLE
+  //  ============================================================================
   useEffect(() => {
     const handleSortSelectionButton = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
@@ -47,43 +53,42 @@ const SortSelectionComponent = () => {
         '[data-selection-dropdown-button]'
       );
 
+      // THIS BLOCK ONLY RUNS ONCE =============================================
       if (isInitialRender) {
         const currentDropdown = document.querySelector(
           '.sort-selection-dropdown'
         );
+
         if (chosenFilterSelection || isDropdownButton) {
           setTimeout(() => {
             currentDropdown.classList.toggle('active');
           }, 5);
         }
-
         setIsInitialRender(false);
       }
 
+      // if targeted button is not clicked, return =============================
       if (
         !isSortSelectionDropdownButton &&
         event.target.closest('[data-selection-dropdown]') !== null
       )
         return;
 
-      let currentDropdown;
+      let currentDropdown; // stores current dropdown button
 
+      // If the button with chosen title is clicked, toggle dropdown ===========
       if (isSortSelectionDropdownButton) {
-        console.log(
-          'isSortSelectionDropdownButton',
-          isSortSelectionDropdownButton
-        );
         currentDropdown = event.target.closest('[data-selection-dropdown]');
         currentDropdown.classList.toggle('active');
       }
 
+      // If the 'sort' button is clicked, toggle selection dropdown ============
       if (isDropdownButton) {
         currentDropdown = document.querySelector('.sort-selection-dropdown');
         currentDropdown.classList.toggle('active');
       }
 
-      // console.log(currentDropdown);
-
+      // This removes active class (hide dropdown) =============================
       document
         .querySelectorAll('[data-selection-dropdown].active')
         .forEach(dropdown => {
@@ -98,6 +103,9 @@ const SortSelectionComponent = () => {
     };
   }, [chosenFilterSelection, isInitialRender]);
 
+  //  ============================================================================
+  //                                   RENDER
+  //  ============================================================================
   return (
     <>
       <div className='sort-selection-layer-container' />
