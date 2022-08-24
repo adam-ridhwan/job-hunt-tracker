@@ -28,12 +28,18 @@ const SelectableBar = () => {
 
   // =============================================================================
   //                     HANDLE SORTING ASCENDING/DESCENDING
+  // TODO: fix issue when user selects sort option. only accept strings and not numbers
   // =============================================================================
   useEffect(() => {
     let key;
+
     if (chosenSortSelection) {
       key = chosenSortSelection.toLowerCase();
+      console.log(key, Boolean(key.match(/^[A-Za-z]*$/)));
     }
+
+    console.log(key);
+    console.log(chosenSortSelection);
 
     if (sortValue === 'Ascending') {
       setSortedEntries(
