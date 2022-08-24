@@ -12,8 +12,9 @@
   left: 0;
   height: 100%;
   width: 100%;
-  /* background-color: red; */
+  background-color: red;
   opacity: 25%;
+  z-index: 49;
 }
 
 /* ========================================================================== */
@@ -25,19 +26,18 @@
 .sort-selection-dropdown-menu {
   position: absolute;
   left: -60px;
-  top: calc(100% + 0.2rem);
+  top: calc(100%);
   background-color: white;
   border-radius: 4px;
   box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px,
     rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
   min-width: 290px;
   max-width: calc(100vw - 24px);
-  opacity: 0;
   pointer-events: none;
   transform: translateY(-5px);
-  transition: opacity 100ms ease-in;
-  /* transform 100ms cubic-bezier(0.42, -0.02, 1, 1); */
-  z-index: -100;
+  transition: opacity 100ms cubic-bezier(0.03, -0.02, 0.58, 1),
+    transform 100ms cubic-bezier(0.65, 0.05, 0.73, 1.57);
+  z-index: -50;
   opacity: 0;
 }
 
@@ -45,7 +45,8 @@
   > .sort-selection-link
   + .sort-selection-dropdown-menu {
   opacity: 1;
-  z-index: 51;
+  transform: translateY(0);
+  z-index: 50;
   pointer-events: auto;
 }
 

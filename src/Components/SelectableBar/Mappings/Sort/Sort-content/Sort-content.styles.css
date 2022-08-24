@@ -1,3 +1,14 @@
+.sort-content-layer-container.active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  opacity: 25%;
+  z-index: 50;
+}
+
 .sort-content-container {
   display: flex;
   align-items: center;
@@ -5,12 +16,19 @@
   /* margin-right: 12px; */
   min-width: 0px;
   margin-top: 13px;
+  cursor: pointer;
 }
 
-.sort-content-container div:not(:first-child):not(:last-child) {
+/* ========================================================================== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
+  outline: 1px solid blue;
   user-select: none;
+  pointer-events: none;
   transition: background 20ms ease-in 0s;
-  cursor: pointer;
   opacity: 1;
   display: flex;
   align-items: center;
@@ -27,6 +45,46 @@
   max-width: 180px;
 }
 
+.dropdown button:hover {
+  background: rgba(55, 53, 47, 0.08);
+}
+
+.dropdown-menu {
+  user-select: none;
+  outline: 1px solid red;
+  position: absolute;
+  left: -40px;
+  top: calc(100% + 1px);
+  background-color: white;
+  padding: 6px 6px;
+  width: 180px;
+  border-radius: 3px;
+  box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px,
+    rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
+  transform: translateY(-5px);
+  transition: opacity 100ms cubic-bezier(0.03, -0.02, 0.58, 1),
+    transform 100ms cubic-bezier(0.65, 0.05, 0.73, 1.57);
+  opacity: 0;
+  z-index: -50;
+}
+
+.dropdown-menu div {
+  /* outline: 1px solid green; */
+  font-size: 14px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background: rgba(55, 53, 47, 0.08);
+}
+
+.dropdown.active > .link + .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 50;
+}
+
 .sort-content-container div:last-child {
   /* outline: 1px solid red; */
   margin-left: auto;
@@ -41,6 +99,7 @@
   justify-content: center;
   flex-direction: column;
   font-size: 14px;
+  user-select: none;
 }
 
 .sort-content-icons {
@@ -51,6 +110,7 @@
 }
 
 .sort-content-title {
+  user-select: none;
   color: rgba(55, 53, 47, 0.45);
 }
 

@@ -1,8 +1,8 @@
-import { useContext } from 'react';
-
+import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../../../Contexts/SearchContext';
 import { SortContext } from '../../../../Contexts/SortContext';
 
+import '../../../../../App.css';
 import jobInput from '../../../../../Data';
 import './Sort-content.styles.css';
 
@@ -16,6 +16,49 @@ const SortContent = () => {
     useContext(SearchContext);
   const { chosenSortSelection } = useContext(SortContext);
 
+  // ===========================================================================
+  //                           HANDLE DROPDOWN SORT
+  // ===========================================================================
+  useEffect(() => {
+    const handleSortDropdownBtn = event => {
+      const isSrtValueDropdownBtnClicked = event.target.matches(
+        '[data-sort-content-dropdown]'
+      );
+
+      const background = document.querySelector(
+        '[data-sort-content-background]'
+      );
+      const background2 = document.querySelector(
+        '[data-sort-content-background2]'
+      );
+
+      if (
+        !isSrtValueDropdownBtnClicked &&
+        event.target.closest('[data-sort-content-dropdown]' !== null)
+      )
+        return;
+
+      let currentDropdown;
+      if (isSrtValueDropdownBtnClicked) {
+        currentDropdown = event.target.closest('[data-sort-content-dropdown]');
+        currentDropdown.classList.toggle('active');
+        background.classList.toggle('active');
+      }
+
+      document
+        .querySelectorAll('[data-sort-content-dropdown].active')
+        .forEach(dropdown => {
+          if (dropdown === currentDropdown) return;
+          dropdown.classList.remove('active');
+          background.classList.remove('active');
+        });
+    };
+    document.addEventListener('click', handleSortDropdownBtn);
+
+    return () => {
+      document.removeEventListener('click', handleSortDropdownBtn);
+    };
+  }, []);
   // =============================================================================
   //                     HANDLE SORT ASCENDING OR DESCENDING
   // =============================================================================
@@ -34,20 +77,37 @@ const SortContent = () => {
     }
   };
 
+  // ===========================================================================
+  // ?                                 RENDER
+  // ===========================================================================
   return (
     <>
+      <div
+        className='sort-content-layer-container'
+        data-sort-content-background
+      />
+
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
-
-        <div className='dropdown-button'>
-          {chosenSortSelection}
-          {CHEVRON_DOWN}
+        <div className='dropdown'>
+          <button>
+            {chosenSortSelection}
+            {CHEVRON_DOWN}
+          </button>
         </div>
 
-        <div className='dropdown-button'>
-          {sortValue}
-          {CHEVRON_DOWN}
+        <div className='dropdown' data-sort-content-dropdown>
+          <button className='link' data-sort-content-dropdown-button>
+            {sortValue}
+            {CHEVRON_DOWN}
+          </button>
+
+          <div className='dropdown-menu'>
+            <div>Ascending</div>
+            <div>Descending</div>
+          </div>
         </div>
+
         <div className='sort-content-icons'>{DELETE_ICON}</div>
       </div>
 
@@ -56,6 +116,7 @@ const SortContent = () => {
           <div className='sort-content-icons'>{ADD_ICON}</div>
           <div className='sort-content-title'>Add sort</div>
         </div>
+
         <div>
           <div className='sort-content-icons'>{TRASH_ICON}</div>
           <div className='sort-content-title'>Delete sort</div>
@@ -93,7 +154,6 @@ const CHEVRON_DOWN = (
       width: '12px',
       height: '100%',
       marginLeft: '4px',
-      pointerEvents: 'none',
     }}
   >
     <polygon
@@ -109,7 +169,6 @@ const DELETE_ICON = (
     style={{
       width: '24px',
       height: '16px',
-      pointerEvents: 'none',
     }}
   >
     <path
@@ -125,7 +184,6 @@ const ADD_ICON = (
     style={{
       width: '24px',
       height: '16px',
-      pointerEvents: 'none',
     }}
   >
     <path
@@ -141,7 +199,6 @@ const TRASH_ICON = (
     style={{
       width: '24px',
       height: '16px',
-      pointerEvents: 'none',
     }}
   >
     <path
