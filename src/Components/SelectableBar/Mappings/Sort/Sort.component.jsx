@@ -29,6 +29,7 @@ const SortComponent = () => {
   useEffect(() => {
     // LINK OF TUTORIAL
     // https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified
+
     const handleSortMenuDropdown = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
       const background = document.querySelector('[data-background]');
@@ -37,7 +38,7 @@ const SortComponent = () => {
         return;
 
       let currentDropdown;
-      if (isDropdownButton) {
+      if (isDropdownButton && chosenFilterSelection === null) {
         currentDropdown = event.target.closest('[data-dropdown]');
         selectionSearchRef.current.focus();
         currentDropdown.classList.toggle('active');
@@ -57,7 +58,7 @@ const SortComponent = () => {
     return () => {
       document.removeEventListener('click', handleSortMenuDropdown);
     };
-  }, []);
+  }, [chosenFilterSelection]);
 
   // =============================================================================
   //                       HANDLE SEARCH SELECTION FILTER
@@ -80,11 +81,15 @@ const SortComponent = () => {
   // =============================================================================
   const handleKeyClick = index => {
     setChosenFilterSelection(filteredTitles[index]);
+    const background = document.querySelector('[data-background]');
+    const currentDropdown = document.querySelector('[data-dropdown]');
+    currentDropdown.classList.remove('active');
+    background.classList.remove('active');
   };
 
   useEffect(() => {
     if (chosenFilterSelection === undefined) return;
-    console.log(chosenFilterSelection);
+    // console.log(chosenFilterSelection);
   }, [chosenFilterSelection]);
 
   // =============================================================================

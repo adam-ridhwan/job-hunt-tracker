@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SortContext } from '../../../../Contexts/SortContext';
 import './Sort-selection.styles.css';
 
@@ -38,14 +38,73 @@ const ChevronDown = (
 
 const SortSelectionComponent = () => {
   const { chosenFilterSelection } = useContext(SortContext);
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+  useEffect(() => {
+    const handleSortSelectionButton = event => {
+      const isDropdownButton = event.target.matches('[data-dropdown-button]');
+      const isSortSelectionDropdownButton = event.target.matches(
+        '[data-selection-dropdown-button]'
+      );
+
+      if (isInitialRender) {
+        const currentDropdown = document.querySelector(
+          '.sort-selection-dropdown'
+        );
+        if (chosenFilterSelection || isDropdownButton) {
+          setTimeout(() => {
+            currentDropdown.classList.toggle('active');
+          }, 5);
+        }
+
+        setIsInitialRender(false);
+      }
+
+      if (
+        !isSortSelectionDropdownButton &&
+        event.target.closest('[data-selection-dropdown]') !== null
+      )
+        return;
+
+      let currentDropdown;
+
+      if (isSortSelectionDropdownButton) {
+        console.log(
+          'isSortSelectionDropdownButton',
+          isSortSelectionDropdownButton
+        );
+        currentDropdown = event.target.closest('[data-selection-dropdown]');
+        currentDropdown.classList.toggle('active');
+      }
+
+      if (isDropdownButton) {
+        currentDropdown = document.querySelector('.sort-selection-dropdown');
+        currentDropdown.classList.toggle('active');
+      }
+
+      // console.log(currentDropdown);
+
+      document
+        .querySelectorAll('[data-selection-dropdown].active')
+        .forEach(dropdown => {
+          if (dropdown === currentDropdown) return;
+          dropdown.classList.remove('active');
+        });
+    };
+    document.addEventListener('click', handleSortSelectionButton);
+
+    return () => {
+      document.removeEventListener('click', handleSortSelectionButton);
+    };
+  }, [chosenFilterSelection, isInitialRender]);
 
   return (
     <>
       <div className='sort-selection-layer-container' />
 
       <div className='sort-selection-container'>
-        <div className='sort-selection-dropdown' data-dropdown>
-          <div className='sort-selection-link' data-dropdown-button>
+        <div className='sort-selection-dropdown' data-selection-dropdown>
+          <div className='sort-selection-link' data-selection-dropdown-button>
             {AscendingArrowIcon}
             {chosenFilterSelection}
             {ChevronDown}
