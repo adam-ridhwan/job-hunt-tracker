@@ -4,15 +4,15 @@ import SortContent from '../Sort-content/Sort-content.component';
 import './Sort-selection.styles.css';
 
 const SortSelectionComponent = () => {
-  // =============================================================================
-  //                              HOOK DECLARATIONS
-  // =============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                             HOOK DECLARATIONS
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const { chosenSortSelection } = useContext(SortContext);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
-  //  ============================================================================
-  //                  HANDLE DROPDOWN OF CHOSEN SORT TITLE
-  //  ============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                   HANDLE DROPDOWN OF CHOSEN SORT TITLE
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     const handleSortSelectionButton = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
@@ -21,7 +21,7 @@ const SortSelectionComponent = () => {
       );
       const background = document.querySelector('[data-selection-background]');
 
-      // THIS BLOCK ONLY RUNS ONCE =============================================
+      // THIS BLOCK ONLY RUNS ONCE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
       if (isInitialRender) {
         const currentDropdown = document.querySelector(
           '.sort-selection-dropdown'
@@ -36,7 +36,7 @@ const SortSelectionComponent = () => {
         setIsInitialRender(false);
       }
 
-      // if targeted button is not clicked, return =============================
+      // if targeted button is not clicked, return ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
       if (
         !isSortSelectionDropdownButton &&
         event.target.closest('[data-selection-dropdown]') !== null
@@ -45,25 +45,30 @@ const SortSelectionComponent = () => {
 
       let currentDropdown; // stores current dropdown button
 
-      // If the button with chosen title is clicked, toggle dropdown ===========
+      // If the button with chosen title is clicked, toggle dropdown ■■■■■■■■■■■
       if (isSortSelectionDropdownButton) {
         currentDropdown = event.target.closest('[data-selection-dropdown]');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
       }
 
-      // If the 'sort' button is clicked, toggle selection dropdown ============
+      // If the 'sort' button is clicked, toggle selection dropdown ■■■■■■■■■■■■
       if (isDropdownButton) {
         currentDropdown = document.querySelector('.sort-selection-dropdown');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
       }
+      console.log(document.querySelector('[data-sort-content-dropdown]'));
 
-      // This removes active class (hide dropdown) =============================
+      // This removes active class (hide dropdown) ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
       document
         .querySelectorAll('[data-selection-dropdown].active')
         .forEach(dropdown => {
+          //!FIX THIS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+          if (document.querySelector('[data-sort-content-dropdown].active'))
+            return;
           if (dropdown === currentDropdown) return;
+
           dropdown.classList.remove('active');
           background.classList.remove('active');
         });
@@ -75,9 +80,9 @@ const SortSelectionComponent = () => {
     };
   }, [chosenSortSelection, isInitialRender]);
 
-  // ===========================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                                  RENDER
-  // ===========================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
       <div
@@ -104,9 +109,9 @@ const SortSelectionComponent = () => {
 
 export default SortSelectionComponent;
 
-// =============================================================================
+// ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 //                              DEFAULT ICONS SVG
-// =============================================================================
+// ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 const ASCENDING_ARROW_ICON = (
   <svg
     viewBox='0 0 16 16'

@@ -14,13 +14,14 @@
   width: 100%;
   background-color: red;
   opacity: 25%;
-  z-index: 49;
+  z-index: 1;
 }
 
 /* ========================================================================== */
 
 .sort-selection-dropdown {
   position: relative;
+  pointer-events: auto;
 }
 
 .sort-selection-dropdown-menu {
