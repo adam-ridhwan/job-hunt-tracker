@@ -14,11 +14,11 @@ import './Table-styles.css';
 
 const Table = () => {
   const { filteredEntries } = useContext(SearchContext);
-  const { chosenFilterSelection } = useContext(SortContext);
+  const { chosenSortSelection } = useContext(SortContext);
 
   return (
     <>
-      {chosenFilterSelection ? <SortSelectionComponent /> : ''}
+      {chosenSortSelection ? <SortSelectionComponent /> : ''}
 
       <div className='main-container'>
         <div className='header-container'>

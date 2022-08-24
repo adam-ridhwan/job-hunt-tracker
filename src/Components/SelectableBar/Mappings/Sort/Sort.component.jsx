@@ -1,20 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import jobInput, { HEADER_TITLES } from '../../../../Data';
+import { HEADER_TITLES } from '../../../../Data';
 import { SearchContext } from '../../../Contexts/SearchContext';
 import { SortContext } from '../../../Contexts/SortContext';
 import './Sort.styles.css';
 
-const DEFAULT_JOB_INPUT = [...jobInput];
 const DROPDOWN_SELECTION_HEIGHT = 28;
 
 const SortComponent = () => {
   // =============================================================================
   //                            HOOK DECLARATIONS
   // =============================================================================
-  const { sortValue, setSortValue, setSortedEntries } =
-    useContext(SearchContext);
-
-  const { chosenFilterSelection, setChosenFilterSelection } =
+  const { setSortValue } = useContext(SearchContext);
+  const { chosenSortSelection, setChosenSortSelection } =
     useContext(SortContext);
 
   const [searchSelection, setSearchSelection] = useState('');
@@ -38,7 +35,7 @@ const SortComponent = () => {
         return;
 
       let currentDropdown;
-      if (isDropdownButton && chosenFilterSelection === null) {
+      if (isDropdownButton && chosenSortSelection === null) {
         currentDropdown = event.target.closest('[data-dropdown]');
         selectionSearchRef.current.focus();
         currentDropdown.classList.toggle('active');
@@ -58,7 +55,7 @@ const SortComponent = () => {
     return () => {
       document.removeEventListener('click', handleSortMenuDropdown);
     };
-  }, [chosenFilterSelection]);
+  }, [chosenSortSelection]);
 
   // =============================================================================
   //                       HANDLE SEARCH SELECTION FILTER
@@ -79,17 +76,18 @@ const SortComponent = () => {
   //                   HANDLE CLICK ON SELECTION SEARCH INPUT
   // =============================================================================
   const handleKeyClick = index => {
-    setChosenFilterSelection(filteredTitles[index]);
+    setChosenSortSelection(filteredTitles[index]);
     const background = document.querySelector('[data-background]');
     const currentDropdown = document.querySelector('[data-dropdown]');
+    setSortValue('Ascending');
     currentDropdown.classList.remove('active');
     background.classList.remove('active');
   };
 
   useEffect(() => {
-    if (chosenFilterSelection === undefined) return;
-    // console.log(chosenFilterSelection);
-  }, [chosenFilterSelection]);
+    if (chosenSortSelection === undefined) return;
+    // console.log(chosenSortSelection);
+  }, [chosenSortSelection]);
 
   // =============================================================================
   //                HANDLE BACKGROUND COLOR CHANGE ON MOUSE HOVER
@@ -105,24 +103,6 @@ const SortComponent = () => {
   }, [filteredTitles]);
 
   // =============================================================================
-  //                     HANDLE SORT ASCENDING OR DESCENDING
-  // =============================================================================
-  const handleClickSortAscending = () => {
-    setSortValue('ascending');
-  };
-
-  const handleClickSortDescending = () => {
-    setSortValue('descending');
-  };
-
-  const handleClickResetSort = () => {
-    if (sortValue !== 'default') {
-      setSortValue('default');
-      setSortedEntries([...DEFAULT_JOB_INPUT]);
-    }
-  };
-
-  // =============================================================================
   //                                   RENDER
   // =============================================================================
   return (
@@ -135,7 +115,7 @@ const SortComponent = () => {
             className='sort-link'
             data-dropdown-button
             style={{
-              color: chosenFilterSelection
+              color: chosenSortSelection
                 ? 'rgb(46, 170, 220)'
                 : 'rgba(55, 53, 47, 0.65)',
             }}

@@ -22,7 +22,7 @@ const SelectableBar = () => {
   } = useContext(SearchContext);
 
   useEffect(() => {
-    if (sortValue === 'ascending') {
+    if (sortValue === 'Ascending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
           const nameA = a.company.toUpperCase();
@@ -35,7 +35,7 @@ const SelectableBar = () => {
       );
     }
 
-    if (sortValue === 'descending') {
+    if (sortValue === 'Descending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
           const nameA = a.company.toUpperCase();

@@ -6,6 +6,16 @@
   padding-bottom: 8px; /* put this back to 8px when the dropdown is fixed */
 }
 
+.sort-selection-layer-container.active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* background-color: red; */
+  opacity: 25%;
+}
+
 /* ========================================================================== */
 
 .sort-selection-dropdown {
@@ -36,7 +46,6 @@
   + .sort-selection-dropdown-menu {
   opacity: 1;
   z-index: 51;
-
   pointer-events: auto;
 }
 

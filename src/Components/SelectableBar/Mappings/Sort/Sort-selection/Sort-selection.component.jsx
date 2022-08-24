@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { SortContext } from '../../../../Contexts/SortContext';
+import SortContent from '../Sort-content/Sort-content.component';
 import './Sort-selection.styles.css';
 
-const AscendingArrowIcon = (
+const ASCENDING_ARROW_ICON = (
   <svg
     viewBox='0 0 16 16'
     style={{
@@ -19,7 +20,7 @@ const AscendingArrowIcon = (
   </svg>
 );
 
-const ChevronDown = (
+const CHEVRON_DOWN = (
   <svg
     viewBox='0 0 30 30'
     style={{
@@ -40,7 +41,7 @@ const SortSelectionComponent = () => {
   // =============================================================================
   //                              HOOK DECLARATIONS
   // =============================================================================
-  const { chosenFilterSelection } = useContext(SortContext);
+  const { chosenSortSelection } = useContext(SortContext);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
   //  ============================================================================
@@ -52,6 +53,7 @@ const SortSelectionComponent = () => {
       const isSortSelectionDropdownButton = event.target.matches(
         '[data-selection-dropdown-button]'
       );
+      const background = document.querySelector('[data-selection-background]');
 
       // THIS BLOCK ONLY RUNS ONCE =============================================
       if (isInitialRender) {
@@ -59,9 +61,10 @@ const SortSelectionComponent = () => {
           '.sort-selection-dropdown'
         );
 
-        if (chosenFilterSelection || isDropdownButton) {
+        if (chosenSortSelection || isDropdownButton) {
           setTimeout(() => {
             currentDropdown.classList.toggle('active');
+            background.classList.toggle('active');
           }, 5);
         }
         setIsInitialRender(false);
@@ -80,12 +83,14 @@ const SortSelectionComponent = () => {
       if (isSortSelectionDropdownButton) {
         currentDropdown = event.target.closest('[data-selection-dropdown]');
         currentDropdown.classList.toggle('active');
+        background.classList.toggle('active');
       }
 
       // If the 'sort' button is clicked, toggle selection dropdown ============
       if (isDropdownButton) {
         currentDropdown = document.querySelector('.sort-selection-dropdown');
         currentDropdown.classList.toggle('active');
+        background.classList.toggle('active');
       }
 
       // This removes active class (hide dropdown) =============================
@@ -94,6 +99,7 @@ const SortSelectionComponent = () => {
         .forEach(dropdown => {
           if (dropdown === currentDropdown) return;
           dropdown.classList.remove('active');
+          background.classList.remove('active');
         });
     };
     document.addEventListener('click', handleSortSelectionButton);
@@ -101,24 +107,29 @@ const SortSelectionComponent = () => {
     return () => {
       document.removeEventListener('click', handleSortSelectionButton);
     };
-  }, [chosenFilterSelection, isInitialRender]);
+  }, [chosenSortSelection, isInitialRender]);
 
   //  ============================================================================
   //                                   RENDER
   //  ============================================================================
   return (
     <>
-      <div className='sort-selection-layer-container' />
+      <div
+        className='sort-selection-layer-container'
+        data-selection-background
+      />
 
       <div className='sort-selection-container'>
         <div className='sort-selection-dropdown' data-selection-dropdown>
           <div className='sort-selection-link' data-selection-dropdown-button>
-            {AscendingArrowIcon}
-            {chosenFilterSelection}
-            {ChevronDown}
+            {ASCENDING_ARROW_ICON}
+            {chosenSortSelection}
+            {CHEVRON_DOWN}
           </div>
 
-          <div className='sort-selection-dropdown-menu'>Hello World</div>
+          <div className='sort-selection-dropdown-menu'>
+            <SortContent />
+          </div>
         </div>
       </div>
     </>
