@@ -15,19 +15,21 @@ const SortSelectionComponent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     const handleSortSelectionButton = event => {
+      // target 'sort' button and sort dropdown button
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
       const isSortSelectionDropdownButton = event.target.matches(
         '[data-selection-dropdown-button]'
       );
+
       const background = document.querySelector('[data-selection-background]');
 
-      // THIS BLOCK ONLY RUNS ONCE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+      //  THIS BLOCK ONLY RUNS ONCE
       if (isInitialRender) {
         const currentDropdown = document.querySelector(
           '.sort-selection-dropdown'
         );
 
-        if (chosenSortSelection || isDropdownButton) {
+        if (chosenSortSelection) {
           setTimeout(() => {
             currentDropdown.classList.toggle('active');
             background.classList.toggle('active');
@@ -36,38 +38,64 @@ const SortSelectionComponent = () => {
         setIsInitialRender(false);
       }
 
-      // if targeted button is not clicked, return ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+      console.log(
+        'is sort content div active',
+        document
+          .querySelector('[data-sort-content-dropdown]')
+          .classList.contains('active')
+      );
+      console.log(event.target.closest('[data-selection-dropdown]'));
+
+      // if targeted button is not clicked, return
       if (
         !isSortSelectionDropdownButton &&
         event.target.closest('[data-selection-dropdown]') !== null
-      )
+      ) {
+        const sortDropdown = document.querySelector(
+          '[data-sort-content-dropdown]'
+        );
+        if (
+          !event.target.closest('[data-sort-content-dropdown]') &&
+          sortDropdown.classList.contains('active')
+        ) {
+          sortDropdown.classList.remove('active');
+        }
         return;
+      }
 
       let currentDropdown; // stores current dropdown button
 
-      // If the button with chosen title is clicked, toggle dropdown ■■■■■■■■■■■
+      // If the button with chosen title is clicked, toggle dropdown
       if (isSortSelectionDropdownButton) {
         currentDropdown = event.target.closest('[data-selection-dropdown]');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
       }
 
-      // If the 'sort' button is clicked, toggle selection dropdown ■■■■■■■■■■■■
+      //  If the 'sort' button is clicked, toggle selection dropdown
       if (isDropdownButton) {
         currentDropdown = document.querySelector('.sort-selection-dropdown');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
       }
-      console.log(document.querySelector('[data-sort-content-dropdown]'));
 
-      // This removes active class (hide dropdown) ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+      //  This removes active class (hide dropdown)
       document
         .querySelectorAll('[data-selection-dropdown].active')
         .forEach(dropdown => {
-          //!FIX THIS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-          if (document.querySelector('[data-sort-content-dropdown].active'))
+          const sortContent = document.querySelector(
+            '[data-sort-content-dropdown]'
+          );
+
+          if (sortContent.classList.contains('active')) {
+            console.log(true);
+            sortContent.classList.remove('active');
             return;
-          if (dropdown === currentDropdown) return;
+          }
+
+          if (dropdown === currentDropdown) {
+            return;
+          }
 
           dropdown.classList.remove('active');
           background.classList.remove('active');

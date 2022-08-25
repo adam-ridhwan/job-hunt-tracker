@@ -22,38 +22,30 @@ const SortContent = () => {
   useEffect(() => {
     const handleSortDropdownBtn = event => {
       //!FIX THIS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-      const isSrtValueDropdownBtnClicked = event.target.matches(
-        '[data-sort-content-dropdown]'
+      const isSrtValueDropdownBtn = event.target.matches(
+        '[data-sort-content-dropdown-btn]'
       );
-      console.log(isSrtValueDropdownBtnClicked);
-
-      const background = document.querySelector(
-        '[data-sort-content-background]'
-      );
+      // console.log('isSrtValueDropdownBtn', isSrtValueDropdownBtn);
 
       if (
-        !isSrtValueDropdownBtnClicked &&
-        event.target.closest('[data-sort-content-dropdown]' !== null)
+        !isSrtValueDropdownBtn &&
+        event.target.closest('[data-sort-content-dropdown]') !== null
       )
         return;
 
       let currentDropdown;
-      if (isSrtValueDropdownBtnClicked) {
+      if (isSrtValueDropdownBtn) {
         currentDropdown = event.target.closest('[data-sort-content-dropdown]');
         currentDropdown.classList.toggle('active');
-        background.classList.toggle('active');
       }
 
       document
         .querySelectorAll('[data-sort-content-dropdown].active')
         .forEach(dropdown => {
           if (dropdown === currentDropdown) return;
-          dropdown.classList.remove('active');
-          background.classList.remove('active');
         });
     };
     document.addEventListener('click', handleSortDropdownBtn);
-
     return () => {
       document.removeEventListener('click', handleSortDropdownBtn);
     };
@@ -90,17 +82,17 @@ const SortContent = () => {
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
         <div className='dropdown'>
-          <button>
+          <div className='link'>
             {chosenSortSelection}
             {CHEVRON_DOWN}
-          </button>
+          </div>
         </div>
 
         <div className='dropdown' data-sort-content-dropdown>
-          <button className='link' data-sort-content-dropdown-button>
+          <div className='link' data-sort-content-dropdown-btn>
             {sortValue}
             {CHEVRON_DOWN}
-          </button>
+          </div>
 
           <div className='dropdown-menu'>
             <div>Ascending</div>
@@ -154,6 +146,7 @@ const CHEVRON_DOWN = (
       width: '12px',
       height: '100%',
       marginLeft: '4px',
+      pointerEvents: 'none',
     }}
   >
     <polygon

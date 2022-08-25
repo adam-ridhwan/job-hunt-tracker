@@ -31,6 +31,8 @@ const SortComponent = () => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
       const background = document.querySelector('[data-background]');
 
+      // console.log('isDropdownButton', isDropdownButton);
+
       if (!isDropdownButton && event.target.closest('[data-dropdown]') !== null)
         return;
 
@@ -44,6 +46,7 @@ const SortComponent = () => {
 
       document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
         if (dropdown === currentDropdown) return;
+
         selectionSearchRef.current.value = '';
         setFilteredTitles(HEADER_TITLES);
         dropdown.classList.remove('active');
@@ -72,9 +75,9 @@ const SortComponent = () => {
     setSearchSelection(searchFieldString);
   };
 
-  // =============================================================================
-  //                   HANDLE CLICK ON SELECTION SEARCH INPUT
-  // =============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                  HANDLE CLICK ON SELECTION SEARCH INPUT
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const handleKeyClick = index => {
     setChosenSortSelection(filteredTitles[index]);
     const background = document.querySelector('[data-background]');
@@ -89,9 +92,9 @@ const SortComponent = () => {
     // console.log(chosenSortSelection);
   }, [chosenSortSelection]);
 
-  // =============================================================================
-  //                HANDLE BACKGROUND COLOR CHANGE ON MOUSE HOVER
-  // =============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //               HANDLE BACKGROUND COLOR CHANGE ON MOUSE HOVER
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const [indexOfTitle, setIndexOfTitle] = useState(0);
 
   const handleMouseEnter = index => {
@@ -102,9 +105,9 @@ const SortComponent = () => {
     setIndexOfTitle(0);
   }, [filteredTitles]);
 
-  // =============================================================================
-  //                                   RENDER
-  // =============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                                  RENDER
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
       <div className='layer-container' data-background />
