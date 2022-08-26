@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { HEADER_TITLES } from '../../../../Data';
-import { SearchContext } from '../../../Contexts/SearchContext';
-import { SortContext } from '../../../Contexts/SortContext';
+import { HEADER_TITLES } from '../../../../../Data';
+import { SearchContext } from '../../../../Contexts/SearchContext';
+import { SortContext } from '../../../../Contexts/SortContext';
 import './Sort.styles.css';
 
 const DROPDOWN_SELECTION_HEIGHT = 28;
@@ -15,7 +15,7 @@ const SortComponent = () => {
     useContext(SortContext);
 
   const [searchSelection, setSearchSelection] = useState('');
-  const [selection, setSelection] = useState(HEADER_TITLES);
+  const [selection] = useState(HEADER_TITLES);
   const [filteredTitles, setFilteredTitles] = useState(selection);
 
   const selectionSearchRef = useRef();
@@ -69,6 +69,9 @@ const SortComponent = () => {
     setFilteredTitles(filteredSelections);
   }, [searchSelection, selection]);
 
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                             SET SEARCH STRING
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const handleSearchChange = event => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchSelection(searchFieldString);
@@ -85,10 +88,6 @@ const SortComponent = () => {
     currentDropdown.classList.remove('active');
     background.classList.remove('active');
   };
-
-  useEffect(() => {
-    if (chosenSortSelection === undefined) return;
-  }, [chosenSortSelection]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //               HANDLE BACKGROUND COLOR CHANGE ON MOUSE HOVER
@@ -161,10 +160,6 @@ const SortComponent = () => {
                 <p className='no-results-found'>No results found</p>
               )}
             </div>
-
-            {/* <button onClick={handleClickSortAscending}>Ascending</button>
-          <button onClick={handleClickSortDescending}>Descending</button>
-          <button onClick={handleClickResetSort}>Reset</button> */}
           </div>
         </div>
       </div>

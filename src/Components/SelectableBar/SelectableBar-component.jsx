@@ -5,7 +5,7 @@ import { SortContext } from '../Contexts/SortContext';
 import FilterComponent from './Mappings/Filter/Filter.component';
 import NewEntryButton from './Mappings/NewEntryButton/NewEntryButton.component';
 import SearchComponent from './Mappings/Search/Search.component';
-import SortComponent from './Mappings/Sort/Sort.component';
+import SortComponent from './Mappings/Sort/Sort-main/Sort.component';
 
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar-styles.css';
@@ -13,9 +13,9 @@ import './SelectableBar-styles.css';
 const { allAppsIcon } = selectableBarIcons;
 
 const SelectableBar = () => {
-  // ===========================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HOOK DECLARATION
-  // ===========================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const {
     sortValue,
     setSortedEntries,
@@ -26,9 +26,9 @@ const SelectableBar = () => {
 
   const { chosenSortSelection } = useContext(SortContext);
 
-  // ============================================================================
-  //                     HANDLE SORTING ASCENDING/DESCENDING
-  // ============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                    HANDLE SORTING ASCENDING/DESCENDING
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     let key;
 
@@ -78,6 +78,9 @@ const SelectableBar = () => {
     setFilteredEntries(newFilteredEntry);
   }, [chosenSortSelection, searchField, sortValue]);
 
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                                  RENDER
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <div className='routings-container'>
       <div className='routings-container-margin'>
