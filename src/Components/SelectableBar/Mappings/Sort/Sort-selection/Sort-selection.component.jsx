@@ -21,6 +21,13 @@ const SortSelectionComponent = () => {
         '[data-selection-dropdown-button]'
       );
 
+      const activeSortSelectionDropdown = document.querySelector(
+        '[data-selection-dropdown].active'
+      );
+      const sortContentDropdown = document.querySelector(
+        '[data-sort-content-dropdown]'
+      );
+
       const background = document.querySelector('[data-selection-background]');
 
       //  THIS BLOCK ONLY RUNS ONCE
@@ -38,27 +45,16 @@ const SortSelectionComponent = () => {
         setIsInitialRender(false);
       }
 
-      console.log(
-        'is sort content div active',
-        document
-          .querySelector('[data-sort-content-dropdown]')
-          .classList.contains('active')
-      );
-      console.log(event.target.closest('[data-selection-dropdown]'));
-
       // if targeted button is not clicked, return
       if (
         !isSortSelectionDropdownButton &&
         event.target.closest('[data-selection-dropdown]') !== null
       ) {
-        const sortDropdown = document.querySelector(
-          '[data-sort-content-dropdown]'
-        );
         if (
           !event.target.closest('[data-sort-content-dropdown]') &&
-          sortDropdown.classList.contains('active')
+          sortContentDropdown.classList.contains('active')
         ) {
-          sortDropdown.classList.remove('active');
+          sortContentDropdown.classList.remove('active');
         }
         return;
       }
@@ -79,27 +75,17 @@ const SortSelectionComponent = () => {
         background.classList.toggle('active');
       }
 
+      if (sortContentDropdown.classList.contains('active')) {
+        sortContentDropdown.classList.remove('active');
+        return;
+      }
+
       //  This removes active class (hide dropdown)
-      document
-        .querySelectorAll('[data-selection-dropdown].active')
-        .forEach(dropdown => {
-          const sortContent = document.querySelector(
-            '[data-sort-content-dropdown]'
-          );
 
-          if (sortContent.classList.contains('active')) {
-            console.log(true);
-            sortContent.classList.remove('active');
-            return;
-          }
+      if (activeSortSelectionDropdown === currentDropdown) return;
 
-          if (dropdown === currentDropdown) {
-            return;
-          }
-
-          dropdown.classList.remove('active');
-          background.classList.remove('active');
-        });
+      activeSortSelectionDropdown?.classList.remove('active');
+      background.classList.remove('active');
     };
     document.addEventListener('click', handleSortSelectionButton);
 

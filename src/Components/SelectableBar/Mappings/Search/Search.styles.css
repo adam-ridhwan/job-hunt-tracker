@@ -30,30 +30,32 @@
   align-items: center;
   border: none;
   width: 0;
-  transition: width 0.5s cubic-bezier(0.3, 0.02, 0, 1);
+  opacity: 0;
+  transition: width 0.5s cubic-bezier(0.3, 0.02, 0, 1),
+    opacity 0.5s cubic-bezier(0.3, 0.02, 0, 1);
   font-size: 14px;
 }
+
+.search-bar:focus,
+.search-bar:valid {
+  width: 140px;
+  opacity: 1;
+  outline: none;
+  cursor: initial;
+}
+
 /* https://stackoverflow.com/questions/47041672/change-the-color-of-the-clear-button-x-in-input-type-search */
 .search-bar::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;
-
+  cursor: pointer;
   height: 18px;
   width: 18px;
-  cursor: pointer;
-
   background-image: url(/src/Icons/ClearIcon.svg);
 }
 
 .search-bar:active {
   cursor: pointer;
-}
-
-.search-bar:focus,
-.search-bar:valid {
-  width: 150px;
-  outline: none;
-  cursor: initial;
 }
 
 .search-navigation {

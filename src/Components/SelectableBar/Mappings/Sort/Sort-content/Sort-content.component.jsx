@@ -21,11 +21,9 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     const handleSortDropdownBtn = event => {
-      //!FIX THIS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
       const isSrtValueDropdownBtn = event.target.matches(
         '[data-sort-content-dropdown-btn]'
       );
-      // console.log('isSrtValueDropdownBtn', isSrtValueDropdownBtn);
 
       if (
         !isSrtValueDropdownBtn &&
@@ -38,12 +36,6 @@ const SortContent = () => {
         currentDropdown = event.target.closest('[data-sort-content-dropdown]');
         currentDropdown.classList.toggle('active');
       }
-
-      document
-        .querySelectorAll('[data-sort-content-dropdown].active')
-        .forEach(dropdown => {
-          if (dropdown === currentDropdown) return;
-        });
     };
     document.addEventListener('click', handleSortDropdownBtn);
     return () => {

@@ -7,9 +7,9 @@ import './Sort.styles.css';
 const DROPDOWN_SELECTION_HEIGHT = 28;
 
 const SortComponent = () => {
-  // =============================================================================
-  //                            HOOK DECLARATIONS
-  // =============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                             HOOK DECLARATIONS
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const { setSortValue } = useContext(SearchContext);
   const { chosenSortSelection, setChosenSortSelection } =
     useContext(SortContext);
@@ -20,9 +20,9 @@ const SortComponent = () => {
 
   const selectionSearchRef = useRef();
 
-  // =============================================================================
-  //                               HANDLE DROPDOWN
-  // =============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                              HANDLE DROPDOWN
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     // LINK OF TUTORIAL
     // https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified
@@ -30,8 +30,9 @@ const SortComponent = () => {
     const handleSortMenuDropdown = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-button]');
       const background = document.querySelector('[data-background]');
-
-      // console.log('isDropdownButton', isDropdownButton);
+      const activeDropdownContent = document.querySelector(
+        '[data-dropdown].active'
+      );
 
       if (!isDropdownButton && event.target.closest('[data-dropdown]') !== null)
         return;
@@ -44,14 +45,12 @@ const SortComponent = () => {
         background.classList.toggle('active');
       }
 
-      document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
-        if (dropdown === currentDropdown) return;
+      if (activeDropdownContent === currentDropdown) return;
 
-        selectionSearchRef.current.value = '';
-        setFilteredTitles(HEADER_TITLES);
-        dropdown.classList.remove('active');
-        background.classList.remove('active');
-      });
+      selectionSearchRef.current.value = '';
+      setFilteredTitles(HEADER_TITLES);
+      activeDropdownContent?.classList.remove('active');
+      background.classList.remove('active');
     };
     document.addEventListener('click', handleSortMenuDropdown);
 
@@ -60,9 +59,9 @@ const SortComponent = () => {
     };
   }, [chosenSortSelection]);
 
-  // =============================================================================
-  //                       HANDLE SEARCH SELECTION FILTER
-  // =============================================================================
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                      HANDLE SEARCH SELECTION FILTER
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     const filteredSelections = selection.filter(title => {
       return title.toLocaleLowerCase().includes(searchSelection);
@@ -89,7 +88,6 @@ const SortComponent = () => {
 
   useEffect(() => {
     if (chosenSortSelection === undefined) return;
-    // console.log(chosenSortSelection);
   }, [chosenSortSelection]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
