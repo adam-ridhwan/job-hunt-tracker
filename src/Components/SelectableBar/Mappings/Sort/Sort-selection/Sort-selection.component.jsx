@@ -14,13 +14,12 @@ const SortSelectionComponent = () => {
   //                   HANDLE DROPDOWN OF CHOSEN SORT TITLE
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
-    const handleSortSelectionButton = event => {
+    const handleSortSelectionBtn = event => {
       // target 'sort' button and sort dropdown button
-      const isDropdownButton = event.target.matches('[data-dropdown-button]');
-      const isSortSelectionDropdownButton = event.target.matches(
-        '[data-selection-dropdown-button]'
+      const isDropdownBtn = event.target.matches('[data-dropdown-btn]');
+      const isSortSelectionDropdownBtn = event.target.matches(
+        '[data-selection-dropdown-btn]'
       );
-
       const activeSortSelectionDropdown = document.querySelector(
         '[data-selection-dropdown].active'
       );
@@ -47,7 +46,7 @@ const SortSelectionComponent = () => {
 
       // if targeted button is not clicked, return
       if (
-        !isSortSelectionDropdownButton &&
+        !isSortSelectionDropdownBtn &&
         event.target.closest('[data-selection-dropdown]') !== null
       ) {
         if (
@@ -62,14 +61,14 @@ const SortSelectionComponent = () => {
       let currentDropdown; // stores current dropdown button
 
       // If the button with chosen title is clicked, toggle dropdown
-      if (isSortSelectionDropdownButton) {
+      if (isSortSelectionDropdownBtn) {
         currentDropdown = event.target.closest('[data-selection-dropdown]');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
       }
 
       //  If the 'sort' button is clicked, toggle selection dropdown
-      if (isDropdownButton) {
+      if (isDropdownBtn) {
         currentDropdown = document.querySelector('.sort-selection-dropdown');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
@@ -80,17 +79,16 @@ const SortSelectionComponent = () => {
         return;
       }
 
-      //  This removes active class (hide dropdown)
-
       if (activeSortSelectionDropdown === currentDropdown) return;
 
+      //  This removes active class (hide dropdown)
       activeSortSelectionDropdown?.classList.remove('active');
       background.classList.remove('active');
     };
-    document.addEventListener('click', handleSortSelectionButton);
+    document.addEventListener('click', handleSortSelectionBtn);
 
     return () => {
-      document.removeEventListener('click', handleSortSelectionButton);
+      document.removeEventListener('click', handleSortSelectionBtn);
     };
   }, [chosenSortSelection, isInitialRender]);
 
@@ -106,7 +104,7 @@ const SortSelectionComponent = () => {
 
       <div className='sort-selection-container'>
         <div className='sort-selection-dropdown' data-selection-dropdown>
-          <div className='sort-selection-link' data-selection-dropdown-button>
+          <div className='sort-selection-link' data-selection-dropdown-btn>
             {ASCENDING_ARROW_ICON}
             {chosenSortSelection}
             {CHEVRON_DOWN}

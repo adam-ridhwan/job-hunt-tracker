@@ -28,7 +28,7 @@ const SortComponent = () => {
     // https://www.youtube.com/watch?v=S-VeYcOCFZw&t=657s&ab_channel=WebDevSimplified
 
     const handleSortMenuDropdown = event => {
-      const isDropdownButton = event.target.matches('[data-dropdown-button]');
+      const isDropdownButton = event.target.matches('[data-dropdown-btn]');
       const background = document.querySelector('[data-background]');
       const activeDropdownContent = document.querySelector(
         '[data-dropdown].active'
@@ -114,7 +114,7 @@ const SortComponent = () => {
         <div className='sort-dropdown-menu' data-dropdown>
           <button
             className='sort-link'
-            data-dropdown-button
+            data-dropdown-btn
             style={{
               color: chosenSortSelection
                 ? 'rgb(46, 170, 220)'

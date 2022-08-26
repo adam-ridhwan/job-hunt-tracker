@@ -2,7 +2,6 @@ import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../../../Contexts/SearchContext';
 import { SortContext } from '../../../../Contexts/SortContext';
 
-import '../../../../../App.css';
 import jobInput from '../../../../../Data';
 import './Sort-content.styles.css';
 
