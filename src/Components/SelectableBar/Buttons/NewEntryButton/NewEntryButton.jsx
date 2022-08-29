@@ -1,4 +1,4 @@
-import './NewEntryButton.styles.css';
+import './NewEntryButton.css';
 
 const NewEntryButton = () => {
   return (

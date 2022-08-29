@@ -6,11 +6,11 @@ import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
 import EditableElement from '../../Utilities/EditableElement';
 
-import SortSelectionComponent from '../SelectableBar/Mappings/Sort/SortSelection';
+import SortSelectionComponent from '../SelectableBar/Buttons/SortButton/SortSelection';
 
 import { HEADER_TITLES } from '../../Data';
 
-import './Table-styles.css';
+import './Table.css';
 
 const Table = () => {
   const { filteredEntries } = useContext(SearchContext);

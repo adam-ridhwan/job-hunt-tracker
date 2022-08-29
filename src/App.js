@@ -1,7 +1,7 @@
 import './App.css';
 
-import SelectableBar from './Components/SelectableBar/SelectableBar-component';
-import Table from './Components/Table/Table-component';
+import SelectableBar from './Components/SelectableBar/SelectableBar';
+import Table from './Components/Table/Table';
 
 const App = () => {
   return (

@@ -6,7 +6,7 @@ import './Sort.css';
 
 const DROPDOWN_SELECTION_HEIGHT = 28;
 
-const SortComponent = () => {
+const SortButton = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HOOK DECLARATIONS
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -170,4 +170,4 @@ const SortComponent = () => {
   );
 };
 
-export default SortComponent;
+export default SortButton;

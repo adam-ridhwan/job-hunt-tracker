@@ -1,6 +1,6 @@
-import './Filter.styles.css';
+import './Filter.css';
 
-const FilterComponent = () => {
+const FilterButton = () => {
   return (
     <div className='filter-container'>
       <span className='filter-link'>Filter</span>
@@ -8,4 +8,4 @@ const FilterComponent = () => {
   );
 };
 
-export default FilterComponent;
+export default FilterButton;

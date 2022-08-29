@@ -2,13 +2,13 @@ import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../Contexts/SearchContext';
 import { SortContext } from '../../Contexts/SortContext';
 
-import FilterComponent from './Mappings/Filter/Filter.component';
-import NewEntryButton from './Mappings/NewEntryButton/NewEntryButton.component';
-import SearchComponent from './Mappings/Search/Search';
-import SortComponent from './Mappings/Sort/Sort';
+import FilterButton from './Buttons/FilterButton/Filter';
+import NewEntryButton from './Buttons/NewEntryButton/NewEntryButton';
+import SearchButton from './Buttons/SearchButton/Search';
+import SortButton from './Buttons/SortButton/Sort';
 
 import { selectableBarIcons } from '../../Icons/Icons';
-import './SelectableBar-styles.css';
+import './SelectableBar.css';
 
 const { allAppsIcon } = selectableBarIcons;
 
@@ -91,9 +91,9 @@ const SelectableBar = () => {
       </div>
 
       <div className='mappings-container'>
-        <FilterComponent />
-        <SortComponent />
-        <SearchComponent />
+        <FilterButton />
+        <SortButton />
+        <SearchButton />
         <NewEntryButton />
       </div>
     </div>

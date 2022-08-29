@@ -4,7 +4,7 @@ import { selectableBarIcons } from '../../../../Icons/Icons';
 import './Search.css';
 const { searchIcon } = selectableBarIcons;
 
-const SearchComponent = () => {
+const SearchButton = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HOOK DECLARATIONS
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -94,4 +94,4 @@ const SearchComponent = () => {
   );
 };
 
-export default SearchComponent;
+export default SearchButton;
