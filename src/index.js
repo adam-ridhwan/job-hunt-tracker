@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { SearchProvider } from './Components/Contexts/SearchContext';
-import { SortProvider } from './Components/Contexts/SortContext';
+import { SearchProvider } from './Contexts/SearchContext';
+import { SortProvider } from './Contexts/SortContext';
 
 import jobInput from './Data';
 

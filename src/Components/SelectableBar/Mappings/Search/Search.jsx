@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
+import { SearchContext } from '../../../../Contexts/SearchContext';
 import { selectableBarIcons } from '../../../../Icons/Icons';
-import { SearchContext } from '../../../Contexts/SearchContext';
-import './Search.styles.css';
+import './Search.css';
 const { searchIcon } = selectableBarIcons;
 
 const SearchComponent = () => {

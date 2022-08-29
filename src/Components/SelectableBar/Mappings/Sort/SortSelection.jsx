@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { SortContext } from '../../../../Contexts/SortContext';
-import SortContent from '../Sort-content/Sort-content.component';
-import './Sort-selection.styles.css';
+import SortContent from './SortContent';
+import './Sort.css';
 
 const SortSelectionComponent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -26,6 +26,10 @@ const SortSelectionComponent = () => {
       const sortContentDropdown = document.querySelector(
         '[data-sort-content-dropdown]'
       );
+      const sortContentBackground = document.querySelector(
+        '[data-sort-content-background]'
+      );
+      const mainSortBackground = document.querySelector('[data-background]');
 
       const background = document.querySelector('[data-selection-background]');
 
@@ -54,6 +58,7 @@ const SortSelectionComponent = () => {
           sortContentDropdown.classList.contains('active')
         ) {
           sortContentDropdown.classList.remove('active');
+          sortContentBackground.classList.remove('active');
         }
         return;
       }
@@ -65,6 +70,7 @@ const SortSelectionComponent = () => {
         currentDropdown = event.target.closest('[data-selection-dropdown]');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
+        mainSortBackground.classList.toggle('active');
       }
 
       //  If the 'sort' button is clicked, toggle selection dropdown
@@ -72,10 +78,13 @@ const SortSelectionComponent = () => {
         currentDropdown = document.querySelector('.sort-selection-dropdown');
         currentDropdown.classList.toggle('active');
         background.classList.toggle('active');
+        mainSortBackground.classList.toggle('active');
       }
 
       if (sortContentDropdown.classList.contains('active')) {
         sortContentDropdown.classList.remove('active');
+        sortContentBackground.classList.remove('active');
+        mainSortBackground.classList.remove('active');
         return;
       }
 

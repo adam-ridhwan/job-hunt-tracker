@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
-import { SearchContext } from '../Contexts/SearchContext';
-import { SortContext } from '../Contexts/SortContext';
+import { SearchContext } from '../../Contexts/SearchContext';
+import { SortContext } from '../../Contexts/SortContext';
 
 import FilterComponent from './Mappings/Filter/Filter.component';
 import NewEntryButton from './Mappings/NewEntryButton/NewEntryButton.component';
-import SearchComponent from './Mappings/Search/Search.component';
-import SortComponent from './Mappings/Sort/Sort-main/Sort.component';
+import SearchComponent from './Mappings/Search/Search';
+import SortComponent from './Mappings/Sort/Sort';
 
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar-styles.css';

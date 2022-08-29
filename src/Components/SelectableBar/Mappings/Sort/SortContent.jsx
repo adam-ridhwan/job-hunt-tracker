@@ -2,8 +2,8 @@ import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../../../Contexts/SearchContext';
 import { SortContext } from '../../../../Contexts/SortContext';
 
-import jobInput from '../../../../../Data';
-import './Sort-content.styles.css';
+import jobInput from '../../../../Data';
+import './Sort.css';
 
 const DEFAULT_JOB_INPUT = [...jobInput];
 
@@ -23,6 +23,10 @@ const SortContent = () => {
       const isSrtValueDropdownBtn = event.target.matches(
         '[data-sort-content-dropdown-btn]'
       );
+      const sortContentBackground = document.querySelector(
+        '[data-sort-content-background]'
+      );
+      const mainSortBackground = document.querySelector('[data-background]');
 
       if (
         !isSrtValueDropdownBtn &&
@@ -34,6 +38,8 @@ const SortContent = () => {
       if (isSrtValueDropdownBtn) {
         currentDropdown = event.target.closest('[data-sort-content-dropdown]');
         currentDropdown.classList.toggle('active');
+        sortContentBackground.classList.toggle('active');
+        mainSortBackground.classList.toggle('active');
       }
     };
     document.addEventListener('click', handleSortDropdownBtn);

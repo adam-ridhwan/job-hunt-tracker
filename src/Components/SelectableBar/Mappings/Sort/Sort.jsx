@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { HEADER_TITLES } from '../../../../../Data';
 import { SearchContext } from '../../../../Contexts/SearchContext';
 import { SortContext } from '../../../../Contexts/SortContext';
-import './Sort.styles.css';
+import { HEADER_TITLES } from '../../../../Data';
+import './Sort.css';
 
 const DROPDOWN_SELECTION_HEIGHT = 28;
 
@@ -50,7 +50,10 @@ const SortComponent = () => {
       selectionSearchRef.current.value = '';
       setFilteredTitles(HEADER_TITLES);
       activeDropdownContent?.classList.remove('active');
-      background.classList.remove('active');
+
+      if (!isDropdownButton) {
+        background.classList.remove('active');
+      }
     };
     document.addEventListener('click', handleSortMenuDropdown);
 

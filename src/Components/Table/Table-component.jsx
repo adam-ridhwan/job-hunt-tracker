@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { SearchContext } from '../Contexts/SearchContext';
-import { SortContext } from '../Contexts/SortContext';
+import { SearchContext } from '../../Contexts/SearchContext';
+import { SortContext } from '../../Contexts/SortContext';
 
 import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
 import EditableElement from '../../Utilities/EditableElement';
 
-import SortSelectionComponent from '../SelectableBar/Mappings/Sort/Sort-selection/Sort-selection.component';
+import SortSelectionComponent from '../SelectableBar/Mappings/Sort/SortSelection';
 
 import { HEADER_TITLES } from '../../Data';
 
