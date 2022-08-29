@@ -30,7 +30,12 @@ const SortButton = () => {
 
     const handleSortMenuDropdown = event => {
       const isDropdownButton = event.target.matches('[data-dropdown-btn]');
-      const background = document.querySelector('[data-background]');
+      const activeSortSelectionDropdown = document.querySelector(
+        '[data-sort-content-dropdown]'
+      );
+      console.log(activeSortSelectionDropdown);
+      console.log(activeSortSelectionDropdown?.classList.contains('active'));
+      const mainSortBackground = document.querySelector('[data-background]');
       const activeDropdownContent = document.querySelector(
         '[data-dropdown].active'
       );
@@ -43,17 +48,22 @@ const SortButton = () => {
         currentDropdown = event.target.closest('[data-dropdown]');
         selectionSearchRef.current.focus();
         currentDropdown.classList.toggle('active');
-        background.classList.toggle('active');
+        mainSortBackground.classList.toggle('active');
       }
 
       if (activeDropdownContent === currentDropdown) return;
 
       selectionSearchRef.current.value = '';
       setFilteredTitles(HEADER_TITLES);
-      activeDropdownContent?.classList.remove('active');
+      // activeDropdownContent?.classList.remove('active');
+
+      if (activeSortSelectionDropdown === false) {
+        return;
+      }
 
       if (!isDropdownButton) {
-        background.classList.remove('active');
+        console.log('get yeeted');
+        mainSortBackground.classList.remove('active');
       }
     };
     document.addEventListener('click', handleSortMenuDropdown);
@@ -90,7 +100,7 @@ const SortButton = () => {
     const currentDropdown = document.querySelector('[data-dropdown]');
     setSortValue('Ascending');
     currentDropdown.classList.remove('active');
-    background.classList.remove('active');
+    // background.classList.remove('active');
   };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -111,7 +121,7 @@ const SortButton = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
-      <div className='layer-container' data-background />
+      <div className='main-background' data-background />
 
       <div className='sort-container'>
         <div className='sort-dropdown-menu' data-dropdown>

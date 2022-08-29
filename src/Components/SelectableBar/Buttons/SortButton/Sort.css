@@ -1,7 +1,7 @@
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 /**                                   Sort                                    */
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-.layer-container.active {
+.main-background.active {
   position: absolute;
   top: 0;
   left: 0;
@@ -9,6 +9,7 @@
   width: 100%;
   background-color: red;
   opacity: 25%;
+  z-index: 49;
 }
 
 .sort-container {
@@ -59,12 +60,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 14px;
   border: none;
   background: none;
   cursor: pointer;
-  /* outline: none; */
   padding: 0;
   width: 100%;
   height: 32px;
@@ -152,7 +151,7 @@
   margin-top: 13px;
 }
 
-.sort-content-layer-container.active {
+.dropdown-background.active {
   position: absolute;
   top: 0;
   left: 0;
@@ -286,16 +285,6 @@
   margin: 0 100px;
   padding-top: 12px;
   padding-bottom: 8px; /* put this back to 8px when the dropdown is fixed */
-}
-
-.sort-selection-layer-container.active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: red;
-  opacity: 25%;
 }
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */

@@ -26,12 +26,10 @@ const SortSelectionComponent = () => {
       const sortContentDropdown = document.querySelector(
         '[data-sort-content-dropdown]'
       );
-      const sortContentBackground = document.querySelector(
-        '[data-sort-content-background]'
+      const dropdownBackground = document.querySelector(
+        '[data-dropdown-background]'
       );
       const mainSortBackground = document.querySelector('[data-background]');
-
-      const background = document.querySelector('[data-selection-background]');
 
       //  THIS BLOCK ONLY RUNS ONCE
       if (isInitialRender) {
@@ -42,7 +40,6 @@ const SortSelectionComponent = () => {
         if (chosenSortSelection) {
           setTimeout(() => {
             currentDropdown.classList.toggle('active');
-            background.classList.toggle('active');
           }, 5);
         }
         setIsInitialRender(false);
@@ -58,7 +55,7 @@ const SortSelectionComponent = () => {
           sortContentDropdown.classList.contains('active')
         ) {
           sortContentDropdown.classList.remove('active');
-          sortContentBackground.classList.remove('active');
+          dropdownBackground.classList.remove('active');
         }
         return;
       }
@@ -69,7 +66,6 @@ const SortSelectionComponent = () => {
       if (isSortSelectionDropdownBtn) {
         currentDropdown = event.target.closest('[data-selection-dropdown]');
         currentDropdown.classList.toggle('active');
-        background.classList.toggle('active');
         mainSortBackground.classList.toggle('active');
       }
 
@@ -77,14 +73,12 @@ const SortSelectionComponent = () => {
       if (isDropdownBtn) {
         currentDropdown = document.querySelector('.sort-selection-dropdown');
         currentDropdown.classList.toggle('active');
-        background.classList.toggle('active');
         mainSortBackground.classList.toggle('active');
       }
 
       if (sortContentDropdown.classList.contains('active')) {
         sortContentDropdown.classList.remove('active');
-        sortContentBackground.classList.remove('active');
-        mainSortBackground.classList.remove('active');
+        dropdownBackground.classList.remove('active');
         return;
       }
 
@@ -92,7 +86,7 @@ const SortSelectionComponent = () => {
 
       //  This removes active class (hide dropdown)
       activeSortSelectionDropdown?.classList.remove('active');
-      background.classList.remove('active');
+      // mainSortBackground.classList.remove('active');
     };
     document.addEventListener('click', handleSortSelectionBtn);
 
@@ -106,11 +100,6 @@ const SortSelectionComponent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
-      <div
-        className='sort-selection-layer-container'
-        data-selection-background
-      />
-
       <div className='sort-selection-container'>
         <div className='sort-selection-dropdown' data-selection-dropdown>
           <div className='sort-selection-link' data-selection-dropdown-btn>

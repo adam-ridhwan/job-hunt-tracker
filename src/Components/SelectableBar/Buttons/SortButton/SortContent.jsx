@@ -23,10 +23,11 @@ const SortContent = () => {
       const isSrtValueDropdownBtn = event.target.matches(
         '[data-sort-content-dropdown-btn]'
       );
-      const sortContentBackground = document.querySelector(
-        '[data-sort-content-background]'
-      );
+
       const mainSortBackground = document.querySelector('[data-background]');
+      const dropdownBackground = document.querySelector(
+        '[data-dropdown-background]'
+      );
 
       if (
         !isSrtValueDropdownBtn &&
@@ -38,7 +39,7 @@ const SortContent = () => {
       if (isSrtValueDropdownBtn) {
         currentDropdown = event.target.closest('[data-sort-content-dropdown]');
         currentDropdown.classList.toggle('active');
-        sortContentBackground.classList.toggle('active');
+        dropdownBackground.classList.toggle('active');
         mainSortBackground.classList.toggle('active');
       }
     };
@@ -71,10 +72,7 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
-      <div
-        className='sort-content-layer-container'
-        data-sort-content-background
-      />
+      <div className='dropdown-background' data-dropdown-background />
 
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
