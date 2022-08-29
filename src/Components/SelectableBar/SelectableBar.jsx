@@ -2,10 +2,10 @@ import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../Contexts/SearchContext';
 import { SortContext } from '../../Contexts/SortContext';
 
-import FilterButton from './Buttons/FilterButton/Filter';
+import FilterButton from './Buttons/FilterButton/FilterButton';
 import NewEntryButton from './Buttons/NewEntryButton/NewEntryButton';
-import SearchButton from './Buttons/SearchButton/Search';
-import SortButton from './Buttons/SortButton/Sort';
+import SearchButton from './Buttons/SearchButton/SearchButton';
+import SortButton from './Buttons/SortButton/SortButton';
 
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar.css';
@@ -36,9 +36,6 @@ const SelectableBar = () => {
       key = chosenSortSelection.toLowerCase();
       // 'Descending'log(key, Boolean(key.match(/^[A-Za-z]*$/)));
     }
-
-    // 'Descending'log(key);
-    // 'Descending'log(chosenSortSelection);
 
     if (sortValue === 'Ascending') {
       setSortedEntries(
@@ -76,7 +73,14 @@ const SelectableBar = () => {
         ));
 
     setFilteredEntries(newFilteredEntry);
-  }, [chosenSortSelection, searchField, sortValue]);
+  }, [
+    chosenSortSelection,
+    searchField,
+    sortValue,
+    setFilteredEntries,
+    setSortedEntries,
+    sortedEntries,
+  ]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                                  RENDER
