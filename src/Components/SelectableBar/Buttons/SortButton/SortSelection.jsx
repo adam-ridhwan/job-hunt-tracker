@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { SortContext } from '../../../../Contexts/SortContext';
-import SortContent from './SortContent';
 import './Sort.css';
+import SortContent from './SortContent';
 
 const SortSelectionComponent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

@@ -2,10 +2,10 @@ import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../Contexts/SearchContext';
 import { SortContext } from '../../Contexts/SortContext';
 
-import FilterButton from './Buttons/FilterButton/FilterButton';
+import FilterButton from './Buttons/FilterButton/Filter';
 import NewEntryButton from './Buttons/NewEntryButton/NewEntryButton';
-import SearchButton from './Buttons/SearchButton/SearchButton';
-import SortButton from './Buttons/SortButton/SortButton';
+import SearchButton from './Buttons/SearchButton/Search';
+import SortButton from './Buttons/SortButton/Sort';
 
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar.css';
@@ -81,10 +81,6 @@ const SelectableBar = () => {
     setSortedEntries,
     sortedEntries,
   ]);
-
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                                  RENDER
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <div className='routings-container'>
       <div className='routings-container-margin'>

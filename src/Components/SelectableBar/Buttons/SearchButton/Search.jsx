@@ -24,6 +24,15 @@ const SearchButton = () => {
   }, [isSearchBarVisible]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                 HANDLE CHECK FOR VISIBLE SEARCH AND TEXT
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  useEffect(() => {
+    isSearchBarVisible && searchField
+      ? setIsDisabled(true)
+      : setIsDisabled(false);
+  }, [isSearchBarVisible, searchField, isDisabled]);
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             SET SEARCHSTRING
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const handleSearchChange = event => {
@@ -37,15 +46,6 @@ const SearchButton = () => {
   const handleFocus = () => {
     setIsSearchBarVisible(!isSearchBarVisible);
   };
-
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                 HANDLE CHECK FOR VISIBLE SEARCH AND TEXT
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  useEffect(() => {
-    isSearchBarVisible && searchField
-      ? setIsDisabled(true)
-      : setIsDisabled(false);
-  }, [isSearchBarVisible, searchField, isDisabled]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                    HANDLE CLICK OUTSITE OF SEARCH BAR
