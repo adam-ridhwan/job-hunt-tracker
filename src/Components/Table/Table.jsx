@@ -6,7 +6,7 @@ import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
 import EditableElement from '../../Utilities/EditableElement';
 
-import SortSelectionComponent from '../SelectableBar/Buttons/SortButton/SortSelection';
+import SortSelectionComponent from '../SelectableBar/Buttons/SortButton/View/SortSelection';
 
 import { HEADER_TITLES } from '../../Data';
 

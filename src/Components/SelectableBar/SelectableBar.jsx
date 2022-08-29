@@ -5,7 +5,7 @@ import { SortContext } from '../../Contexts/SortContext';
 import FilterButton from './Buttons/FilterButton/FilterButton';
 import NewEntryButton from './Buttons/NewEntryButton/NewEntryButton';
 import SearchButton from './Buttons/SearchButton/SearchButton';
-import SortButton from './Buttons/SortButton/SortButton';
+import SortButton from './Buttons/SortButton/View/SortButton';
 
 import { selectableBarIcons } from '../../Icons/Icons';
 import './SelectableBar.css';

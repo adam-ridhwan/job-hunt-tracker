@@ -1,78 +1,74 @@
+// import './Sort.css';
 import { useContext, useEffect } from 'react';
-import { SearchContext } from '../../../../Contexts/SearchContext';
-import { SortContext } from '../../../../Contexts/SortContext';
-
-import jobInput from '../../../../Data';
-import './Sort.css';
-
-const DEFAULT_JOB_INPUT = [...jobInput];
+import { SearchContext } from '../../../../../Contexts/SearchContext';
+import { SortContext } from '../../../../../Contexts/SortContext';
 
 const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HOOK DECLARATIONS
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  const { sortValue, setSortValue, setSortedEntries } =
-    useContext(SearchContext);
-  const { chosenSortSelection } = useContext(SortContext);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                           HANDLE DROPDOWN SORT
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  useEffect(() => {
-    const handleSortDropdownBtn = event => {
-      const isSrtValueDropdownBtn = event.target.matches(
-        '[data-sort-content-dropdown-btn]'
-      );
+  // useEffect(() => {
+  //   const handleSortDropdownBtn = event => {
+  //     const isSrtValueDropdownBtn = event.target.matches(
+  //       '[data-sort-content-dropdown-btn]'
+  //     );
 
-      const mainSortBackground = document.querySelector('[data-background]');
-      const dropdownBackground = document.querySelector(
-        '[data-dropdown-background]'
-      );
+  //     const mainSortBackground = document.querySelector('[data-background]');
+  //     const dropdownBackground = document.querySelector(
+  //       '[data-sort-dropdown-background]'
+  //     );
 
-      if (
-        !isSrtValueDropdownBtn &&
-        event.target.closest('[data-sort-content-dropdown]') !== null
-      )
-        return;
+  //     if (
+  //       !isSrtValueDropdownBtn &&
+  //       event.target.closest('[data-sort-content-dropdown]') !== null
+  //     )
+  //       return;
 
-      let currentDropdown;
-      if (isSrtValueDropdownBtn) {
-        currentDropdown = event.target.closest('[data-sort-content-dropdown]');
-        currentDropdown.classList.toggle('active');
-        dropdownBackground.classList.toggle('active');
-        mainSortBackground.classList.toggle('active');
-      }
-    };
-    document.addEventListener('click', handleSortDropdownBtn);
-    return () => {
-      document.removeEventListener('click', handleSortDropdownBtn);
-    };
-  }, []);
+  //     let currentDropdown;
+  //     if (isSrtValueDropdownBtn) {
+  //       currentDropdown = event.target.closest('[data-sort-content-dropdown]');
+  //       currentDropdown.classList.toggle('active');
+  //       dropdownBackground.classList.toggle('active');
+  //       mainSortBackground.classList.toggle('active');
+  //     }
+  //   };
+  //   document.addEventListener('click', handleSortDropdownBtn);
+  //   return () => {
+  //     document.removeEventListener('click', handleSortDropdownBtn);
+  //   };
+  // }, []);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                    HANDLE SORT ASCENDING OR DESCENDING
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  const handleClickSortAscending = () => {
-    setSortValue('Ascending');
-  };
+  // const handleClickSortAscending = () => {
+  //   setSortValue('Ascending');
+  // };
 
-  const handleClickSortDescending = () => {
-    setSortValue('Descending');
-  };
+  // const handleClickSortDescending = () => {
+  //   setSortValue('Descending');
+  // };
 
-  const handleClickResetSort = () => {
-    if (sortValue !== 'default') {
-      setSortValue('default');
-      setSortedEntries([...DEFAULT_JOB_INPUT]);
-    }
-  };
+  // const handleClickResetSort = () => {
+  //   if (sortValue !== 'default') {
+  //     setSortValue('default');
+  //     setSortedEntries([...DEFAULT_JOB_INPUT]);
+  //   }
+  // };
+
+  const { chosenSortSelection } = useContext(SortContext);
+  const { sortValue } = useContext(SearchContext);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   // ?                                 RENDER
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
-      <div className='dropdown-background' data-dropdown-background />
+      <div className='dropdown-background' data-sort-dropdown-background />
 
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
