@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { SearchContext } from '../../../../Contexts/SearchContext';
 import { SortContext } from '../../../../Contexts/SortContext';
 import { HEADER_TITLES } from '../../../../Data';
+
 import './Sort.css';
 
 const DROPDOWN_SELECTION_HEIGHT = 28;
