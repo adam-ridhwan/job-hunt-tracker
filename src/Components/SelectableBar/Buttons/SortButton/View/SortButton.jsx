@@ -12,21 +12,15 @@ const SortButton = () => {
     filteredTitles,
   } = SortButtonController();
 
+  const sortClassName = chosenSortSelection ? 'sort-link-active' : 'sort-link';
+
   return (
     <>
       <div className='main-background' data-background />
 
       <div className='sort-container'>
         <div className='sort-dropdown-menu' data-sort-dropdown>
-          <button
-            className='sort-link'
-            data-sort-dropdown-btn
-            style={{
-              color: chosenSortSelection
-                ? 'rgb(46, 170, 220)'
-                : 'rgba(55, 53, 47, 0.65)',
-            }}
-          >
+          <button className={sortClassName} data-sort-dropdown-btn>
             Sort
           </button>
 

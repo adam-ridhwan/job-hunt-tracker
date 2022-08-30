@@ -80,9 +80,11 @@ const SortButtonController = () => {
   };
 
   const [indexOfTitle, setIndexOfTitle] = useState(0);
+
   const handleMouseEnter = index => {
     setIndexOfTitle(index);
   };
+
   useEffect(() => {
     setIndexOfTitle(0);
   }, [filteredTitles]);
