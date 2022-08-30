@@ -9,7 +9,7 @@ const SortContent = () => {
 
   return (
     <>
-      <div className='dropdown-background' data-content-background />
+      <div className='dropdown-background' data-content-bckgrnd />
 
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>

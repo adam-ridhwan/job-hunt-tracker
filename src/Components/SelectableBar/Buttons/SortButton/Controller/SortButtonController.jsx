@@ -22,20 +22,20 @@ const SortButtonController = () => {
   useEffect(() => {
     if (!isInitialRender && chosenSortSelection) return;
 
-    const handleSortMenuDropdown = event => {
-      const isSortBtn = event.target.matches('[data-sort-dropdown-btn]');
+    const handleSortMenuDropdown = e => {
+      const isSortBtn = e.target.matches('[data-sort-dropdown-btn]');
       const mainSortBackground = document.querySelector('[data-background]');
 
       const activeSortDropdown = document.querySelector(
         '[data-sort-dropdown].active'
       );
 
-      if (!isSortBtn && event.target.closest('[data-sort-dropdown]') !== null)
+      if (!isSortBtn && e.target.closest('[data-sort-dropdown]') !== null)
         return;
 
       let currentDropdown;
       if (isSortBtn) {
-        currentDropdown = event.target.closest('[data-sort-dropdown]');
+        currentDropdown = e.target.closest('[data-sort-dropdown]');
         selectionSearchRef.current.focus();
         currentDropdown.classList.toggle('active');
         mainSortBackground.classList.toggle('active');

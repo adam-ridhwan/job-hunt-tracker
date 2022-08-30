@@ -7,7 +7,6 @@ const SortContentController = () => {
   useEffect(() => {
     const handleContentDropdown = e => {
       const isContentBtn = e.target.matches('[data-content-btn]');
-      console.log('isContentBtn', isContentBtn);
       const contentDrpdwn = document.querySelector('[data-content-drpdwn]');
       const activeContentDrpdwn = document.querySelector(
         '[data-content-drpdwn].active'
@@ -15,21 +14,29 @@ const SortContentController = () => {
       const activeSelectionDrpdwn = document.querySelector(
         '[data-selection-drpdwn].active'
       );
+      const mainSortBckgrnd = document.querySelector('[data-background]');
 
-      const contentBackground = document.querySelector(
-        '[data-content-background]'
-      );
+      const contentBckgrnd = document.querySelector('[data-content-bckgrnd]');
 
       if (!isContentBtn && e.target.closest('[data-content-drpdwn]')) return;
 
       if (isContentBtn) {
         contentDrpdwn.classList.toggle('active');
-        contentBackground.classList.toggle('active');
+        contentBckgrnd.classList.toggle('active');
+        return;
       }
 
       if (activeContentDrpdwn) {
         contentDrpdwn.classList.remove('active');
-        contentBackground.classList.remove('active');
+        contentBckgrnd.classList.remove('active');
+        return;
+      }
+
+      if (e.target.closest('[data-selection-drpdwn]') !== null) return;
+
+      if (activeSelectionDrpdwn) {
+        activeSelectionDrpdwn.classList.remove('active');
+        mainSortBckgrnd.classList.remove('active');
       }
     };
 
