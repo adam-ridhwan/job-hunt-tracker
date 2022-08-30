@@ -15,7 +15,6 @@ const SortContentController = () => {
         '[data-selection-drpdwn].active'
       );
       const mainSortBckgrnd = document.querySelector('[data-background]');
-
       const contentBckgrnd = document.querySelector('[data-content-bckgrnd]');
 
       if (!isContentBtn && e.target.closest('[data-content-drpdwn]')) return;
