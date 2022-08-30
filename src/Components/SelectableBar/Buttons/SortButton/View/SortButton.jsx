@@ -1,4 +1,4 @@
-import SortButtonController from '../Controller/SortController';
+import SortButtonController from '../Controller/SortButtonController';
 import '../Sort.css';
 
 const SortButton = () => {

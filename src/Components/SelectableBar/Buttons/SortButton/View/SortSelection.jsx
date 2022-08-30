@@ -1,109 +1,14 @@
-// import './Sort.css';
-import { useContext } from 'react';
-import { SortContext } from '../../../../../Contexts/SortContext';
-import SortController from '../Controller/SortController';
+import SortButtonController from '../Controller/SortButtonController';
 import SortContent from './SortContent';
 
 const SortSelectionComponent = () => {
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                             HOOK DECLARATIONS
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  const { chosenSortSelection } = SortButtonController();
 
-  // // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  // //                   HANDLE DROPDOWN OF CHOSEN SORT TITLE
-  // // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  // useEffect(() => {
-  //   const handleSortSelectionBtn = event => {
-  //     // target 'sort' button and sort dropdown button
-  //     const isDropdownBtn = event.target.matches('[data-sort-dropdown-btn]');
-  //     const isSortSelectionDropdownBtn = event.target.matches(
-  //       '[data-selection-dropdown-btn]'
-  //     );
-  //     const activeSortSelectionDropdown = document.querySelector(
-  //       '[data-selection-dropdown].active'
-  //     );
-  //     const sortContentDropdown = document.querySelector(
-  //       '[data-sort-content-dropdown]'
-  //     );
-  //     const dropdownBackground = document.querySelector(
-  //       '[data-sort-dropdown-background]'
-  //     );
-  //     const mainSortBackground = document.querySelector('[data-background]');
-
-  //     //  THIS BLOCK ONLY RUNS ONCE
-  //     if (isInitialRender) {
-  //       const currentDropdown = document.querySelector(
-  //         '.sort-selection-dropdown'
-  //       );
-
-  //       if (chosenSortSelection) {
-  //         setTimeout(() => {
-  //           currentDropdown.classList.toggle('active');
-  //         }, 5);
-  //       }
-  //       setIsInitialRender(false);
-  //     }
-
-  //     // if targeted button is not clicked, return
-  //     if (
-  //       !isSortSelectionDropdownBtn &&
-  //       event.target.closest('[data-selection-dropdown]') !== null
-  //     ) {
-  //       if (
-  //         !event.target.closest('[data-sort-content-dropdown]') &&
-  //         sortContentDropdown.classList.contains('active')
-  //       ) {
-  //         sortContentDropdown.classList.remove('active');
-  //         dropdownBackground.classList.remove('active');
-  //       }
-  //       return;
-  //     }
-
-  //     let currentDropdown; // stores current dropdown button
-
-  //     // If the button with chosen title is clicked, toggle dropdown
-  //     if (isSortSelectionDropdownBtn) {
-  //       currentDropdown = event.target.closest('[data-selection-dropdown]');
-  //       currentDropdown.classList.toggle('active');
-  //       mainSortBackground.classList.toggle('active');
-  //     }
-
-  //     //  If the 'sort' button is clicked, toggle selection dropdown
-  //     if (isDropdownBtn) {
-  //       currentDropdown = document.querySelector('.sort-selection-dropdown');
-  //       currentDropdown.classList.toggle('active');
-  //       mainSortBackground.classList.toggle('active');
-  //     }
-
-  //     if (sortContentDropdown.classList.contains('active')) {
-  //       sortContentDropdown.classList.remove('active');
-  //       dropdownBackground.classList.remove('active');
-  //       return;
-  //     }
-
-  //     if (activeSortSelectionDropdown === currentDropdown) return;
-
-  //     //  This removes active class (hide dropdown)
-  //     activeSortSelectionDropdown?.classList.remove('active');
-  //     // mainSortBackground.classList.remove('active');
-  //   };
-  //   document.addEventListener('click', handleSortSelectionBtn);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleSortSelectionBtn);
-  //   };
-  // }, [chosenSortSelection, isInitialRender]);
-
-  const { chosenSortSelection } = useContext(SortContext);
-
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                                  RENDER
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
       <div className='sort-selection-container'>
-        <div className='sort-selection-dropdown' data-selection-dropdown>
-          <div className='sort-selection-link' data-selection-dropdown-btn>
+        <div className='sort-selection-dropdown' data-selection-drpdwn>
+          <div className='sort-selection-link' data-selection-btn>
             {ASCENDING_ARROW_ICON}
             {chosenSortSelection}
             {CHEVRON_DOWN}
