@@ -31,6 +31,10 @@ const SortSelectionController = () => {
       }
 
       if (isSelectionBtn || isSortBtn) {
+        // ! FIX THIS ISSUE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        console.log('isSortBtn', isSortBtn);
+        console.log('isSelectionBtn', isSelectionBtn);
+        console.log(selectionDrpdwn);
         selectionDrpdwn.classList.toggle('active');
         mainSortBckgrnd.classList.toggle('active');
         return;
@@ -41,7 +45,7 @@ const SortSelectionController = () => {
     return () => {
       document.removeEventListener('click', handleSelectionDropdown);
     };
-  }, [chosenSortSelection, isInitialRender]);
+  }, [chosenSortSelection, isInitialRender, sortValue]);
 
   return { chosenSortSelection, sortValue };
 };

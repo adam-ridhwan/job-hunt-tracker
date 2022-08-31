@@ -21,6 +21,7 @@ const SortButtonController = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     if (!isInitialRender && chosenSortSelection) return;
+    console.log('not chosen yet and not initial render');
 
     const handleSortMenuDropdown = e => {
       const isSortBtn = e.target.matches('[data-sort-dropdown-btn]');
@@ -74,6 +75,7 @@ const SortButtonController = () => {
 
   const handleKeyClick = index => {
     setChosenSortSelection(filteredTitles[index]);
+
     const currentDropdown = document.querySelector('[data-sort-dropdown]');
     setSortValue('Ascending');
     currentDropdown.classList.remove('active');

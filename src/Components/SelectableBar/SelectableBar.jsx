@@ -40,8 +40,8 @@ const SelectableBar = () => {
     if (sortValue === 'Ascending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
-          const nameA = a[key].toUpperCase();
-          const nameB = b[key].toUpperCase();
+          const nameA = a[key].toUpperCase().trim();
+          const nameB = b[key].toUpperCase().trim();
 
           if (nameA < nameB) return -1;
           if (nameA > nameB) return 1;
@@ -53,8 +53,8 @@ const SelectableBar = () => {
     if (sortValue === 'Descending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
-          const nameA = a[key].toUpperCase();
-          const nameB = b[key].toUpperCase();
+          const nameA = a[key].toUpperCase().trim();
+          const nameB = b[key].toUpperCase().trim();
 
           if (nameA > nameB) return -1;
           if (nameA < nameB) return 1;

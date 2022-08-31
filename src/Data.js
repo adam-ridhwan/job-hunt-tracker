@@ -4,7 +4,7 @@ export const HEADER_TITLES = [
   'Company',
   'Stage',
   'Interview Date',
-  'Postion',
+  'Position',
   'Location',
   'Posting URL',
   'Point of Contact',

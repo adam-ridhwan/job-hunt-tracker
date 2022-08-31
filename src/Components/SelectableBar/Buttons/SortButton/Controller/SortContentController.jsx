@@ -1,8 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../../../../Contexts/SearchContext';
+import { SortContext } from '../../../../../Contexts/SortContext';
 
 const SortContentController = () => {
   const { sortValue } = useContext(SearchContext);
+  const { chosenSortSelection } = useContext(SortContext);
 
   useEffect(() => {
     const handleContentDropdown = e => {
@@ -43,7 +45,7 @@ const SortContentController = () => {
     return () => {
       document.removeEventListener('click', handleContentDropdown);
     };
-  }, [sortValue]);
+  }, [chosenSortSelection, sortValue]);
 
   return { sortValue };
 };
