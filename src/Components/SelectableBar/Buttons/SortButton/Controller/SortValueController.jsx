@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { SearchContext } from '../../../../../Contexts/SearchContext';
 
 const SortValueController = () => {
-  const { sortValue } = useContext(SearchContext);
+  const { sortValue, setSortValue } = useContext(SearchContext);
   const [hoveredOnDrpdwn, setHoverOnDrpdwn] = useState(false);
   const [hoveredOnAscending, setHoveredOnAscending] = useState(false);
   const [hoveredOnDescending, setHoveredOnDescending] = useState(false);
@@ -84,6 +84,16 @@ const SortValueController = () => {
     previousRef.current = sortValueProp;
   };
 
+  const handleSortValueClick = sortValueProp => {
+    if (sortValue === sortValueProp) return;
+
+    setSortValue(sortValueProp);
+    const contentDrpdwn = document.querySelector('[data-content-drpdwn]');
+    const contentBckgrnd = document.querySelector('[data-content-bckgrnd]');
+    contentDrpdwn.classList.remove('active');
+    contentBckgrnd.classList.remove('active');
+  };
+
   return {
     handleSortValueDrpdwnEnter,
     handleSortValueDrpdwnLeave,
@@ -91,6 +101,7 @@ const SortValueController = () => {
     hoveredOnDescending,
     handleSortValueEnter,
     handleSortValueLeave,
+    handleSortValueClick,
   };
 };
 

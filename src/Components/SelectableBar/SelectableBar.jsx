@@ -81,6 +81,7 @@ const SelectableBar = () => {
     setSortedEntries,
     sortedEntries,
   ]);
+
   return (
     <div className='routings-container'>
       <div className='routings-container-margin'>

@@ -8,6 +8,7 @@ const SortContent = () => {
   const { chosenSortSelection } = SortSelectionController();
   const { sortValue } = SortContentController();
   const {
+    handleSortValueClick,
     handleSortValueDrpdwnEnter,
     handleSortValueDrpdwnLeave,
     hoveredOnAscending,
@@ -43,6 +44,7 @@ const SortContent = () => {
             <div
               onMouseEnter={() => handleSortValueEnter('Ascending')}
               onMouseLeave={() => handleSortValueLeave('Ascending')}
+              onClick={() => handleSortValueClick('Ascending')}
             >
               <span
                 style={{
@@ -55,6 +57,7 @@ const SortContent = () => {
             <div
               onMouseEnter={() => handleSortValueEnter('Descending')}
               onMouseLeave={() => handleSortValueLeave('Descending')}
+              onClick={() => handleSortValueClick('Descending')}
             >
               <span
                 style={{
