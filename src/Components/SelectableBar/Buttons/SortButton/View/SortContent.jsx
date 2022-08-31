@@ -2,10 +2,20 @@
 
 import SortContentController from '../Controller/SortContentController';
 import SortSelectionController from '../Controller/SortSelectionController';
+import SortValueController from '../Controller/SortValueController';
 
 const SortContent = () => {
   const { chosenSortSelection } = SortSelectionController();
   const { sortValue } = SortContentController();
+  const {
+    handleLeaveDrpdwn,
+    hoveredOnAscending,
+    hoveredOnDescending,
+    handleAscendingEnter,
+    handleAscendingLeave,
+    handleDescendingEnter,
+    handleDescendingLeave,
+  } = SortValueController();
 
   return (
     <>
@@ -26,9 +36,25 @@ const SortContent = () => {
             {CHEVRON_DOWN}
           </div>
 
-          <div className='dropdown-menu'>
-            <div>Ascending</div>
-            <div>Descending</div>
+          <div className='dropdown-menu' onMouseLeave={handleLeaveDrpdwn}>
+            <div
+              onMouseEnter={handleAscendingEnter}
+              onMouseLeave={handleAscendingLeave}
+              style={{
+                background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
+              }}
+            >
+              Ascending
+            </div>
+            <div
+              onMouseEnter={handleDescendingEnter}
+              onMouseLeave={handleDescendingLeave}
+              style={{
+                background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
+              }}
+            >
+              Descending
+            </div>
           </div>
         </div>
 
