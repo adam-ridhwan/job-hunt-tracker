@@ -223,7 +223,6 @@
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 .dropdown-menu {
   user-select: none;
-  padding: 6px 0;
   transition: background 20ms ease-in 0s;
   cursor: pointer;
   border-radius: 3px;
@@ -246,7 +245,14 @@
   z-index: -50;
 }
 
-.dropdown-menu div {
+.dropdown-menu div:first-child {
+  padding-top: 6px;
+}
+.dropdown-menu div:last-child {
+  padding-bottom: 6px;
+}
+
+.dropdown-menu span {
   font-size: 14px;
   display: flex;
   align-items: center;

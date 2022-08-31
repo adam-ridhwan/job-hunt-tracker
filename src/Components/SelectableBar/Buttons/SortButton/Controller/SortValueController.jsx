@@ -1,15 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { SearchContext } from '../../../../../Contexts/SearchContext';
 
 const SortValueController = () => {
   const { sortValue } = useContext(SearchContext);
+  const [hoveredOnDrpdwn, setHoverOnDrpdwn] = useState(false);
   const [hoveredOnAscending, setHoveredOnAscending] = useState(false);
   const [hoveredOnDescending, setHoveredOnDescending] = useState(false);
+  const previousRef = useRef('Descending');
 
   useEffect(() => {
     const handleSortValueDropdown = event => {
       const sortValueDrpdwn = document.querySelector('.dropdown-menu');
-      console.log(sortValueDrpdwn);
     };
 
     document.addEventListener('click', handleSortValueDropdown);
@@ -18,40 +19,65 @@ const SortValueController = () => {
     };
   });
 
-  // useEffect(() => {
-  //   if (sortValue === 'Ascending') {
-  //     setHoveredOnAscending(true);
-  //     return;
-  //   }
-  //   if (sortValue === 'Descending') {
-  //     setHoveredOnDescending(true);
-  //     return;
-  //   }
-  // }, [sortValue]);
+  useEffect(() => {
+    if (!hoveredOnDrpdwn) {
+      switch (previousRef.current) {
+        case 'Ascending':
+          setHoveredOnAscending(true);
+          break;
+        case 'Descending':
+          setHoveredOnDescending(true);
+          break;
+        default:
+          return;
+      }
+    }
+  }, [sortValue, hoveredOnDrpdwn]);
 
-  const handleAscendingEnter = () => {
-    setHoveredOnAscending(true);
+  const handleSortValueDrpdwnEnter = () => {
+    setHoverOnDrpdwn(true);
   };
 
-  const handleAscendingLeave = () => {
-    setHoveredOnAscending(false);
+  const handleSortValueDrpdwnLeave = () => {
+    setHoverOnDrpdwn(false);
   };
 
-  const handleDescendingEnter = () => {
-    setHoveredOnDescending(true);
+  const handleSortValueEnter = sortValue => {
+    switch (sortValue) {
+      case 'Ascending':
+        setHoveredOnAscending(true);
+        setHoveredOnDescending(false);
+        break;
+      case 'Descending':
+        setHoveredOnDescending(true);
+        setHoveredOnAscending(false);
+        break;
+      default:
+        console.log('get yeeted');
+    }
   };
 
-  const handleDescendingLeave = () => {
-    setHoveredOnDescending(false);
+  const handleSortValueLeave = sortValue => {
+    previousRef.current = sortValue;
+    switch (sortValue) {
+      case 'Ascending':
+        setHoveredOnAscending(false);
+        break;
+      case 'Descending':
+        setHoveredOnDescending(false);
+        break;
+      default:
+        console.log('get yeeted');
+    }
   };
 
   return {
+    handleSortValueDrpdwnEnter,
+    handleSortValueDrpdwnLeave,
     hoveredOnAscending,
     hoveredOnDescending,
-    handleAscendingEnter,
-    handleAscendingLeave,
-    handleDescendingEnter,
-    handleDescendingLeave,
+    handleSortValueEnter,
+    handleSortValueLeave,
   };
 };
 

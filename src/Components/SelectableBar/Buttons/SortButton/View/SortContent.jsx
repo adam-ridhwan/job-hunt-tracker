@@ -8,13 +8,12 @@ const SortContent = () => {
   const { chosenSortSelection } = SortSelectionController();
   const { sortValue } = SortContentController();
   const {
-    handleLeaveDrpdwn,
+    handleSortValueDrpdwnEnter,
+    handleSortValueDrpdwnLeave,
     hoveredOnAscending,
     hoveredOnDescending,
-    handleAscendingEnter,
-    handleAscendingLeave,
-    handleDescendingEnter,
-    handleDescendingLeave,
+    handleSortValueEnter,
+    handleSortValueLeave,
   } = SortValueController();
 
   return (
@@ -36,24 +35,34 @@ const SortContent = () => {
             {CHEVRON_DOWN}
           </div>
 
-          <div className='dropdown-menu' onMouseLeave={handleLeaveDrpdwn}>
+          <div
+            className='dropdown-menu'
+            onMouseEnter={handleSortValueDrpdwnEnter}
+            onMouseLeave={handleSortValueDrpdwnLeave}
+          >
             <div
-              onMouseEnter={handleAscendingEnter}
-              onMouseLeave={handleAscendingLeave}
-              style={{
-                background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
-              }}
+              onMouseEnter={() => handleSortValueEnter('Ascending')}
+              onMouseLeave={() => handleSortValueLeave('Ascending')}
             >
-              Ascending
+              <span
+                style={{
+                  background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
+                }}
+              >
+                Ascending
+              </span>
             </div>
             <div
-              onMouseEnter={handleDescendingEnter}
-              onMouseLeave={handleDescendingLeave}
-              style={{
-                background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
-              }}
+              onMouseEnter={() => handleSortValueEnter('Descending')}
+              onMouseLeave={() => handleSortValueLeave('Descending')}
             >
-              Descending
+              <span
+                style={{
+                  background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
+                }}
+              >
+                Descending
+              </span>
             </div>
           </div>
         </div>

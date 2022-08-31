@@ -46,9 +46,7 @@ const SortButton = () => {
                       className='dropdown-selection'
                       style={{
                         background:
-                          index === indexOfTitle
-                            ? 'rgba(55, 53, 47, 0.08)'
-                            : '',
+                          index === indexOfTitle && 'rgba(55, 53, 47, 0.08)',
                       }}
                       onClick={() => handleKeyClick(index)}
                       onMouseEnter={() => handleMouseEnter(index)}
