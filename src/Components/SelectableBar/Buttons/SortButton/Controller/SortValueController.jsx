@@ -9,20 +9,25 @@ const SortValueController = () => {
   const previousRef = useRef(sortValue);
 
   useEffect(() => {
-    const handleSortValueDropdown = event => {
-      const sortValueDrpdwn = document.querySelector('.dropdown-menu');
-      const activeSelectionDrpdwn = document.querySelector(
-        '[data-selection-drpdwn].active'
-      );
+    const handleClickOnSortBtn = e => {
+      const isSortValueBtn = e.target.matches('[data-content-btn]');
+
+      if (isSortValueBtn) previousRef.current = sortValue;
+
+      switch (previousRef.current) {
+        case 'Ascending':
+          setHoveredOnAscending(true);
+          setHoveredOnDescending(false);
+          break;
+        case 'Descending':
+          setHoveredOnDescending(true);
+          setHoveredOnAscending(false);
+          break;
+        default:
+          return;
+      }
     };
 
-    document.addEventListener('click', handleSortValueDropdown);
-    return () => {
-      document.removeEventListener('click', handleSortValueDropdown);
-    };
-  }, [sortValue, hoveredOnDrpdwn, previousRef]);
-
-  useEffect(() => {
     switch (hoveredOnDrpdwn || previousRef.current) {
       case 'Ascending':
         setHoveredOnAscending(true);
@@ -35,8 +40,11 @@ const SortValueController = () => {
       default:
         return;
     }
-    console.log(sortValue);
-    if (!hoveredOnDrpdwn) previousRef.current = sortValue;
+
+    document.addEventListener('click', handleClickOnSortBtn);
+    return () => {
+      document.removeEventListener('click', handleClickOnSortBtn);
+    };
   }, [sortValue, hoveredOnDrpdwn, previousRef]);
 
   const handleSortValueDrpdwnEnter = () => {
@@ -73,13 +81,8 @@ const SortValueController = () => {
       default:
         console.log('get yeeted');
     }
-
     previousRef.current = sortValueProp;
   };
-
-  useEffect(() => {
-    console.log(previousRef);
-  }, [hoveredOnDrpdwn]);
 
   return {
     handleSortValueDrpdwnEnter,
