@@ -13,10 +13,6 @@ const SortSelectionController = () => {
       const isSelectionBtn = e.target.matches('[data-selection-btn]');
       const selectionDrpdwn = document.querySelector('[data-selection-drpdwn]');
 
-      const activeContentDrpdwn = document.querySelector(
-        '[data-content-drpdwn].active'
-      );
-
       const mainSortBckgrnd = document.querySelector('[data-background]');
 
       if (chosenSortSelection && isInitialRender) {

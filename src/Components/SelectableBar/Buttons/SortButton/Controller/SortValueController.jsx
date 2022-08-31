@@ -6,33 +6,38 @@ const SortValueController = () => {
   const [hoveredOnDrpdwn, setHoverOnDrpdwn] = useState(false);
   const [hoveredOnAscending, setHoveredOnAscending] = useState(false);
   const [hoveredOnDescending, setHoveredOnDescending] = useState(false);
-  const previousRef = useRef('Descending');
+  const previousRef = useRef(sortValue);
 
   useEffect(() => {
     const handleSortValueDropdown = event => {
       const sortValueDrpdwn = document.querySelector('.dropdown-menu');
+      const activeSelectionDrpdwn = document.querySelector(
+        '[data-selection-drpdwn].active'
+      );
     };
 
     document.addEventListener('click', handleSortValueDropdown);
     return () => {
       document.removeEventListener('click', handleSortValueDropdown);
     };
-  });
+  }, [sortValue, hoveredOnDrpdwn, previousRef]);
 
   useEffect(() => {
-    if (!hoveredOnDrpdwn) {
-      switch (previousRef.current) {
-        case 'Ascending':
-          setHoveredOnAscending(true);
-          break;
-        case 'Descending':
-          setHoveredOnDescending(true);
-          break;
-        default:
-          return;
-      }
+    switch (hoveredOnDrpdwn || previousRef.current) {
+      case 'Ascending':
+        setHoveredOnAscending(true);
+        setHoveredOnDescending(false);
+        break;
+      case 'Descending':
+        setHoveredOnDescending(true);
+        setHoveredOnAscending(false);
+        break;
+      default:
+        return;
     }
-  }, [sortValue, hoveredOnDrpdwn]);
+    console.log(sortValue);
+    if (!hoveredOnDrpdwn) previousRef.current = sortValue;
+  }, [sortValue, hoveredOnDrpdwn, previousRef]);
 
   const handleSortValueDrpdwnEnter = () => {
     setHoverOnDrpdwn(true);
@@ -42,8 +47,8 @@ const SortValueController = () => {
     setHoverOnDrpdwn(false);
   };
 
-  const handleSortValueEnter = sortValue => {
-    switch (sortValue) {
+  const handleSortValueEnter = sortValueProp => {
+    switch (sortValueProp) {
       case 'Ascending':
         setHoveredOnAscending(true);
         setHoveredOnDescending(false);
@@ -57,9 +62,8 @@ const SortValueController = () => {
     }
   };
 
-  const handleSortValueLeave = sortValue => {
-    previousRef.current = sortValue;
-    switch (sortValue) {
+  const handleSortValueLeave = sortValueProp => {
+    switch (sortValueProp) {
       case 'Ascending':
         setHoveredOnAscending(false);
         break;
@@ -69,7 +73,13 @@ const SortValueController = () => {
       default:
         console.log('get yeeted');
     }
+
+    previousRef.current = sortValueProp;
   };
+
+  useEffect(() => {
+    console.log(previousRef);
+  }, [hoveredOnDrpdwn]);
 
   return {
     handleSortValueDrpdwnEnter,
