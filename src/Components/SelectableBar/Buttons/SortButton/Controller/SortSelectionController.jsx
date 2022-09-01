@@ -9,7 +9,6 @@ const SortSelectionController = () => {
 
   useEffect(() => {
     const handleSelectionDropdown = e => {
-      const isSortBtn = e.target.matches('[data-sort-dropdown-btn]');
       const isSelectionBtn = e.target.matches('[data-selection-btn]');
       const selectionDrpdwn = document.querySelector('[data-selection-drpdwn]');
 
@@ -30,11 +29,7 @@ const SortSelectionController = () => {
         return;
       }
 
-      if (isSelectionBtn || isSortBtn) {
-        // ! FIX THIS ISSUE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        console.log('isSortBtn', isSortBtn);
-        console.log('isSelectionBtn', isSelectionBtn);
-        console.log(selectionDrpdwn);
+      if (isSelectionBtn) {
         selectionDrpdwn.classList.toggle('active');
         mainSortBckgrnd.classList.toggle('active');
         return;

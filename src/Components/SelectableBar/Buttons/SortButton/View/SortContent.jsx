@@ -4,17 +4,21 @@ import SortContentController from '../Controller/SortContentController';
 import SortSelectionController from '../Controller/SortSelectionController';
 import SortValueController from '../Controller/SortValueController';
 
+import { useContext } from 'react';
+import { SearchContext } from '../../../../../Contexts/SearchContext';
+
 const SortContent = () => {
+  const { setSortValue } = useContext(SearchContext);
   const { chosenSortSelection } = SortSelectionController();
   const { sortValue } = SortContentController();
   const {
-    handleSortValueClick,
     handleSortValueDrpdwnEnter,
     handleSortValueDrpdwnLeave,
     hoveredOnAscending,
     hoveredOnDescending,
     handleSortValueEnter,
     handleSortValueLeave,
+    handleSortValueClick,
   } = SortValueController();
 
   return (

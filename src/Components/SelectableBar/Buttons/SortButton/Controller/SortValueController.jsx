@@ -88,11 +88,6 @@ const SortValueController = () => {
     if (sortValue === sortValueProp) return;
 
     setSortValue(sortValueProp);
-    // ! FIX THIS ISSUE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // const contentDrpdwn = document.querySelector('[data-content-drpdwn]');
-    // const contentBckgrnd = document.querySelector('[data-content-bckgrnd]');
-    // contentDrpdwn.classList.remove('active');
-    // contentBckgrnd.classList.remove('active');
   };
 
   return {

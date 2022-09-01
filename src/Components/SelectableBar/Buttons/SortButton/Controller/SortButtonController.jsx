@@ -7,7 +7,7 @@ const SortButtonController = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HOOK DECLARATIONS
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  const { setSortValue } = useContext(SearchContext);
+  const { sortValue, setSortValue } = useContext(SearchContext);
   const { chosenSortSelection, setChosenSortSelection } =
     useContext(SortContext);
   const [searchSelection, setSearchSelection] = useState('');
@@ -20,16 +20,22 @@ const SortButtonController = () => {
   //                              HANDLE DROPDOWN
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
-    if (!isInitialRender && chosenSortSelection) return;
-    console.log('not chosen yet and not initial render');
-
     const handleSortMenuDropdown = e => {
       const isSortBtn = e.target.matches('[data-sort-dropdown-btn]');
-      const mainSortBackground = document.querySelector('[data-background]');
-
+      const mainSortBckgrnd = document.querySelector('[data-background]');
+      const selectionDrpdwn = document.querySelector('[data-selection-drpdwn]');
       const activeSortDropdown = document.querySelector(
         '[data-sort-dropdown].active'
       );
+
+      if (!isInitialRender && chosenSortSelection) {
+        if (isSortBtn) {
+          console.log(isSortBtn);
+          selectionDrpdwn.classList.toggle('active');
+          mainSortBckgrnd.classList.toggle('active');
+        }
+        return;
+      }
 
       if (!isSortBtn && e.target.closest('[data-sort-dropdown]') !== null)
         return;
@@ -39,14 +45,14 @@ const SortButtonController = () => {
         currentDropdown = e.target.closest('[data-sort-dropdown]');
         selectionSearchRef.current.focus();
         currentDropdown.classList.toggle('active');
-        mainSortBackground.classList.toggle('active');
+        mainSortBckgrnd.classList.toggle('active');
       }
 
       if (activeSortDropdown) {
         selectionSearchRef.current.value = '';
         setFilteredTitles(HEADER_TITLES);
         activeSortDropdown.classList.remove('active');
-        mainSortBackground.classList.remove('active');
+        mainSortBckgrnd.classList.remove('active');
       }
 
       if (chosenSortSelection) setIsInitialRender(false);
@@ -56,7 +62,7 @@ const SortButtonController = () => {
     return () => {
       document.removeEventListener('click', handleSortMenuDropdown);
     };
-  }, [chosenSortSelection, isInitialRender]);
+  }, [chosenSortSelection, isInitialRender, sortValue]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                      HANDLE SEARCH SELECTION FILTER
