@@ -30,7 +30,6 @@ const SortButtonController = () => {
 
       if (!isInitialRender && chosenSortSelection) {
         if (isSortBtn) {
-          console.log(isSortBtn);
           selectionDrpdwn.classList.toggle('active');
           mainSortBckgrnd.classList.toggle('active');
         }
