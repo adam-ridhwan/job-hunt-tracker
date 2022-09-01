@@ -8,10 +8,10 @@ const SortContentController = () => {
 
   useEffect(() => {
     const handleContentDropdown = e => {
-      const isContentBtn = e.target.matches('[data-content-btn]');
-      const contentDrpdwn = document.querySelector('[data-content-drpdwn]');
+      const isContentBtn = e.target.matches('[data-sort-value-btn]');
+      const contentDrpdwn = document.querySelector('[data-sort-value-drpdwn]');
       const activeContentDrpdwn = document.querySelector(
-        '[data-content-drpdwn].active'
+        '[data-sort-value-drpdwn].active'
       );
       const activeSelectionDrpdwn = document.querySelector(
         '[data-selection-drpdwn].active'
@@ -19,7 +19,7 @@ const SortContentController = () => {
       const mainSortBckgrnd = document.querySelector('[data-background]');
       const contentBckgrnd = document.querySelector('[data-content-bckgrnd]');
 
-      if (!isContentBtn && e.target.closest('[data-content-drpdwn]')) return;
+      if (!isContentBtn && e.target.closest('[data-sort-value-drpdwn]')) return;
 
       if (isContentBtn) {
         contentDrpdwn.classList.toggle('active');

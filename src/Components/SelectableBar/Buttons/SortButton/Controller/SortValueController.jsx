@@ -10,7 +10,7 @@ const SortValueController = () => {
 
   useEffect(() => {
     const handleClickOnSortBtn = e => {
-      const isSortValueBtn = e.target.matches('[data-content-btn]');
+      const isSortValueBtn = e.target.matches('[data-sort-value-btn]');
 
       if (isSortValueBtn) previousRef.current = sortValue;
 

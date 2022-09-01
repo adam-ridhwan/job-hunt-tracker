@@ -4,7 +4,6 @@ import { SortContext } from '../../Contexts/SortContext';
 
 import { bodyIcons, headerIcons } from '../../Icons/Icons';
 import CountEntries from '../../Utilities/CountEntries';
-import EditableElement from '../../Utilities/EditableElement';
 
 import SortSelectionComponent from '../SelectableBar/Buttons/SortButton/View/SortSelection';
 

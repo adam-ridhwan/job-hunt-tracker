@@ -1,12 +1,12 @@
-// import './Sort.css';
-
 import SortContentController from '../Controller/SortContentController';
+import SortOptionController from '../Controller/SortOptionController';
 import SortSelectionController from '../Controller/SortSelectionController';
 import SortValueController from '../Controller/SortValueController';
 
 const SortContent = () => {
   const { chosenSortSelection } = SortSelectionController();
   const { sortValue } = SortContentController();
+  SortOptionController();
   const {
     handleSortValueDrpdwnEnter,
     handleSortValueDrpdwnLeave,
@@ -23,15 +23,18 @@ const SortContent = () => {
 
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
-        <div className='dropdown'>
-          <div className='link'>
+
+        <div className='dropdown' data-option-drpwn>
+          <div className='link' data-option-btn>
             {chosenSortSelection}
             {CHEVRON_DOWN}
           </div>
+
+          <div className='dropdown-menu'>Hello</div>
         </div>
 
-        <div className='dropdown' data-content-drpdwn>
-          <div className='link' data-content-btn>
+        <div className='dropdown' data-sort-value-drpdwn>
+          <div className='link' data-sort-value-btn>
             {sortValue}
             {CHEVRON_DOWN}
           </div>
