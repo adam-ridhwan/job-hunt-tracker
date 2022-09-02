@@ -3,10 +3,15 @@ import SortOptionController from '../Controller/SortOptionController';
 import SortSelectionController from '../Controller/SortSelectionController';
 import SortValueController from '../Controller/SortValueController';
 
+import { useEffect, useState } from 'react';
+
+import { HEADER_TITLES } from '../../../../../Data.js';
+
 const SortContent = () => {
   const { chosenSortSelection } = SortSelectionController();
   const { sortValue } = SortContentController();
   SortOptionController();
+
   const {
     handleSortValueDrpdwnEnter,
     handleSortValueDrpdwnLeave,
@@ -17,6 +22,47 @@ const SortContent = () => {
     handleSortValueClick,
   } = SortValueController();
 
+  const AscendingBtn = () => {
+    return (
+      <div
+        onMouseEnter={() => handleSortValueEnter('Ascending')}
+        onMouseLeave={() => handleSortValueLeave('Ascending')}
+        onClick={() => handleSortValueClick('Ascending')}
+      >
+        <span
+          style={{
+            background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
+          }}
+        >
+          Ascending
+        </span>
+      </div>
+    );
+  };
+
+  const DescendingBtn = () => {
+    return (
+      <div
+        onMouseEnter={() => handleSortValueEnter('Descending')}
+        onMouseLeave={() => handleSortValueLeave('Descending')}
+        onClick={() => handleSortValueClick('Descending')}
+      >
+        <span
+          style={{
+            background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
+          }}
+        >
+          Descending
+        </span>
+      </div>
+    );
+  };
+
+  const [indexOfTitle, setIndexOfTitle] = useState(0);
+  const handleHover = index => {
+    setIndexOfTitle(index);
+  };
+
   return (
     <>
       <div className='dropdown-background' data-content-bckgrnd />
@@ -24,13 +70,40 @@ const SortContent = () => {
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
 
-        <div className='dropdown' data-option-drpwn>
-          <div className='link' data-option-btn>
+        <div className='option-drpdwn' data-option-drpdwn>
+          <div className='option-link' data-option-btn>
             {chosenSortSelection}
             {CHEVRON_DOWN}
           </div>
 
-          <div className='dropdown-menu'>Hello</div>
+          <div className='option-menu'>
+            <div className='drpdwn-options-searchbar'>
+              <input
+                id='selectionSearchId'
+                // ref={selectionSearchRef}
+                type='search'
+                placeholder='Search for a property'
+                // onChange={handleSearchChange}
+              />
+            </div>
+
+            {HEADER_TITLES.map((title, index) => {
+              return (
+                <div
+                  key={index}
+                  // role='button'
+                  className='drpdwn-options'
+                  style={{
+                    background:
+                      index === indexOfTitle && 'rgba(55, 53, 47, 0.08)',
+                  }}
+                  onMouseEnter={() => handleHover(index)}
+                >
+                  <p>{title}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <div className='dropdown' data-sort-value-drpdwn>
@@ -44,36 +117,17 @@ const SortContent = () => {
             onMouseEnter={handleSortValueDrpdwnEnter}
             onMouseLeave={handleSortValueDrpdwnLeave}
           >
-            <div
-              onMouseEnter={() => handleSortValueEnter('Ascending')}
-              onMouseLeave={() => handleSortValueLeave('Ascending')}
-              onClick={() => handleSortValueClick('Ascending')}
-            >
-              <span
-                style={{
-                  background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
-                }}
-              >
-                Ascending
-              </span>
-            </div>
-            <div
-              onMouseEnter={() => handleSortValueEnter('Descending')}
-              onMouseLeave={() => handleSortValueLeave('Descending')}
-              onClick={() => handleSortValueClick('Descending')}
-            >
-              <span
-                style={{
-                  background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
-                }}
-              >
-                Descending
-              </span>
-            </div>
+            <AscendingBtn />
+            <DescendingBtn />
           </div>
         </div>
 
-        <div className='sort-content-icons'>{DELETE_ICON}</div>
+        <div
+          className='sort-content-icons'
+          style={{ marginLeft: 'auto', marginRight: '20px' }}
+        >
+          {DELETE_ICON}
+        </div>
       </div>
 
       <div className='add-delete-container'>

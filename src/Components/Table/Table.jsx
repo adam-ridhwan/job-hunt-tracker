@@ -9,27 +9,16 @@ import SortSelectionComponent from '../SelectableBar/Buttons/SortButton/View/Sor
 
 import { HEADER_TITLES } from '../../Data';
 
+import { THEME_COLORS } from '../../Data';
+
 import './Table.css';
 
-const colors = {
-  LightGray: 'rgba(227, 226, 224, 0.5)',
-  Gray: 'rgba(227, 226, 224, 0.5)',
-  Brown: 'rgb(238, 224, 218)',
-  Orange: 'rgb(250, 222, 201)',
-  Yellow: 'rgb(253, 236, 200)',
-  Green: 'rgb(219, 237, 219)',
-  Blue: 'rgb(211, 229, 239)',
-  Purple: 'rgb(232, 222, 238)',
-  Pink: 'rgb(245, 224, 233)',
-  Red: 'rgb(255, 226, 221)',
-};
-
-const stageColors = {
-  Applied: colors.Orange,
-  Interview: colors.Yellow,
-  Rejected: colors.Red,
-  Offered: colors.Blue,
-  Signed: colors.Green,
+const stageCOLORS = {
+  Applied: THEME_COLORS.Orange,
+  Interview: THEME_COLORS.Yellow,
+  Rejected: THEME_COLORS.Red,
+  Offered: THEME_COLORS.Blue,
+  Signed: THEME_COLORS.Green,
 };
 
 const Table = () => {
@@ -64,7 +53,7 @@ const Table = () => {
                   <span
                     className='option-dropdown'
                     style={{
-                      background: stageColors[entry.stage],
+                      background: stageCOLORS[entry.stage],
                     }}
                   >
                     {entry.stage}
