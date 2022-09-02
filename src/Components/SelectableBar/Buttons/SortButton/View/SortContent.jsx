@@ -1,16 +1,15 @@
 import SortContentController from '../Controller/SortContentController';
-import SortOptionController from '../Controller/SortOptionController';
+
 import SortSelectionController from '../Controller/SortSelectionController';
 import SortValueController from '../Controller/SortValueController';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { HEADER_TITLES } from '../../../../../Data.js';
 
 const SortContent = () => {
   const { chosenSortSelection } = SortSelectionController();
   const { sortValue } = SortContentController();
-  SortOptionController();
 
   const {
     handleSortValueDrpdwnEnter,
@@ -58,11 +57,6 @@ const SortContent = () => {
     );
   };
 
-  const [indexOfTitle, setIndexOfTitle] = useState(0);
-  const handleHover = index => {
-    setIndexOfTitle(index);
-  };
-
   return (
     <>
       <div className='dropdown-background' data-content-bckgrnd />
@@ -77,7 +71,7 @@ const SortContent = () => {
           </div>
 
           <div className='option-menu'>
-            <div className='drpdwn-options-searchbar'>
+            {/* <div className='drpdwn-options-searchbar'>
               <input
                 id='selectionSearchId'
                 // ref={selectionSearchRef}
@@ -85,24 +79,19 @@ const SortContent = () => {
                 placeholder='Search for a property'
                 // onChange={handleSearchChange}
               />
-            </div>
+            </div> */}
 
-            {HEADER_TITLES.map((title, index) => {
+            {/* {HEADER_TITLES.map((title, index) => {
               return (
                 <div
                   key={index}
                   // role='button'
                   className='drpdwn-options'
-                  style={{
-                    background:
-                      index === indexOfTitle && 'rgba(55, 53, 47, 0.08)',
-                  }}
-                  onMouseEnter={() => handleHover(index)}
                 >
                   <p>{title}</p>
                 </div>
               );
-            })}
+            })} */}
           </div>
         </div>
 
