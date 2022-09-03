@@ -4,8 +4,9 @@ import SortButtonController from '../Controller/SortButtonController';
 import SortContent from './SortContent';
 
 const SortSelectionComponent = () => {
-  const { chosenSortSelection } = SortButtonController();
-  const { sortValue } = useContext(SearchContext);
+  const { sortValue, chosenSortSelection, setIsSelectionDrpdwnOpen } =
+    SortButtonController();
+  // const { sortValue } = useContext(SerchContext);
 
   return (
     <>

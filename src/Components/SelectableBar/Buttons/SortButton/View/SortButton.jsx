@@ -4,13 +4,13 @@ import '../Sort.css';
 
 const SortButton = () => {
   const {
+    filteredTitles,
+    chosenSortSelection,
+    selectionSearchRef,
     handleSearchChange,
     handleKeyClick,
     indexOfTitle,
     handleMouseEnter,
-    chosenSortSelection,
-    selectionSearchRef,
-    filteredTitles,
   } = SortButtonController();
 
   const sortClassName = chosenSortSelection ? 'sort-link-active' : 'sort-link';
@@ -20,8 +20,8 @@ const SortButton = () => {
       <div className='main-background' data-background />
 
       <div className='sort-container'>
-        <div className='sort-dropdown-menu' data-sort-dropdown>
-          <button className={sortClassName} data-sort-dropdown-btn>
+        <div className='sort-dropdown-menu' data-sort-drpdwn>
+          <button className={sortClassName} data-sort-btn>
             Sort
           </button>
 

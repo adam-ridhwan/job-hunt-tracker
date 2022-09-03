@@ -20,50 +20,25 @@ const SortButtonController = () => {
   //                              HANDLE DROPDOWN
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
-    const handleSortMenuDropdown = e => {
-      const isSortBtn = e.target.matches('[data-sort-dropdown-btn]');
+    const handleSortDrpdwn = e => {
+      const isSortBtn = e.target.matches('[data-sort-btn]');
+
       const mainSortBckgrnd = document.querySelector('[data-background]');
-      const selectionDrpdwn = document.querySelector('[data-selection-drpdwn]');
-      const activeSortDropdown = document.querySelector(
-        '[data-sort-dropdown].active'
-      );
 
-      if (!isInitialRender && chosenSortSelection) {
-        if (isSortBtn) {
-          console.log('get');
-          console.log(sortValue);
-          selectionDrpdwn.classList.toggle('active');
-          mainSortBckgrnd.classList.toggle('active');
-        }
-        return;
-      }
+      if (!isSortBtn && e.target.closest('[data-sort-drpdwn') !== null) return;
 
-      if (!isSortBtn && e.target.closest('[data-sort-dropdown]') !== null)
-        return;
-
-      let currentDropdown;
+      let currentDrpdwn;
       if (isSortBtn) {
-        currentDropdown = e.target.closest('[data-sort-dropdown]');
-        selectionSearchRef.current.focus();
-        currentDropdown.classList.toggle('active');
+        currentDrpdwn = e.target.closest('[data-sort-drpdwn]');
+        currentDrpdwn.classList.toggle('active');
         mainSortBckgrnd.classList.toggle('active');
       }
-
-      if (activeSortDropdown) {
-        selectionSearchRef.current.value = '';
-        setFilteredTitles(HEADER_TITLES);
-        activeSortDropdown.classList.remove('active');
-        mainSortBckgrnd.classList.remove('active');
-      }
-
-      if (chosenSortSelection) setIsInitialRender(false);
     };
-
-    document.addEventListener('click', handleSortMenuDropdown);
+    document.addEventListener('click', handleSortDrpdwn);
     return () => {
-      document.removeEventListener('click', handleSortMenuDropdown);
+      document.removeEventListener('click', handleSortDrpdwn);
     };
-  }, [chosenSortSelection, isInitialRender, sortValue]);
+  }, []);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                      HANDLE SEARCH SELECTION FILTER
@@ -82,10 +57,7 @@ const SortButtonController = () => {
 
   const handleKeyClick = index => {
     setChosenSortSelection(filteredTitles[index]);
-
-    const currentDropdown = document.querySelector('[data-sort-dropdown]');
     setSortValue('Ascending');
-    currentDropdown.classList.remove('active');
   };
 
   const [indexOfTitle, setIndexOfTitle] = useState(0);
@@ -99,13 +71,15 @@ const SortButtonController = () => {
   }, [filteredTitles]);
 
   return {
+    sortValue,
+
+    filteredTitles,
+    chosenSortSelection,
+    selectionSearchRef,
     handleSearchChange,
     handleKeyClick,
     indexOfTitle,
     handleMouseEnter,
-    chosenSortSelection,
-    selectionSearchRef,
-    filteredTitles,
   };
 };
 

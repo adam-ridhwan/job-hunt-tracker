@@ -1,37 +1,35 @@
-import SortContentController from '../Controller/SortContentController';
-
-import SortSelectionController from '../Controller/SortSelectionController';
 import SortValueController from '../Controller/SortValueController';
 
-import { useState } from 'react';
-
 import { HEADER_TITLES } from '../../../../../Data.js';
+import SortButtonController from '../Controller/SortButtonController';
 
 const SortContent = () => {
-  const { chosenSortSelection } = SortSelectionController();
-  const { sortValue } = SortContentController();
+  const { chosenSortSelection } = SortButtonController();
+  const { sortValue } = SortButtonController();
 
-  const {
-    handleSortValueDrpdwnEnter,
-    handleSortValueDrpdwnLeave,
-    hoveredOnAscending,
-    hoveredOnDescending,
-    handleSortValueEnter,
-    handleSortValueLeave,
-    handleSortValueClick,
-  } = SortValueController();
+  // const {
+  //   handleSortValueDrpdwnEnter,
+  //   handleSortValueDrpdwnLeave,
+  //   hoveredOnAscending,
+  //   hoveredOnDescending,
+  //   handleSortValueEnter,
+  //   handleSortValueLeave,
+  //   handleSortValueClick,
+  // } = SortValueController();
 
   const AscendingBtn = () => {
     return (
       <div
-        onMouseEnter={() => handleSortValueEnter('Ascending')}
-        onMouseLeave={() => handleSortValueLeave('Ascending')}
-        onClick={() => handleSortValueClick('Ascending')}
+      // onMouseEnter={() => handleSortValueEnter('Ascending')}
+      // onMouseLeave={() => handleSortValueLeave('Ascending')}
+      // onClick={() => handleSortValueClick('Ascending')}
       >
         <span
-          style={{
-            background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
-          }}
+          style={
+            {
+              // background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
+            }
+          }
         >
           Ascending
         </span>
@@ -42,14 +40,16 @@ const SortContent = () => {
   const DescendingBtn = () => {
     return (
       <div
-        onMouseEnter={() => handleSortValueEnter('Descending')}
-        onMouseLeave={() => handleSortValueLeave('Descending')}
-        onClick={() => handleSortValueClick('Descending')}
+      // onMouseEnter={() => handleSortValueEnter('Descending')}
+      // onMouseLeave={() => handleSortValueLeave('Descending')}
+      // onClick={() => handleSortValueClick('Descending')}
       >
         <span
-          style={{
-            background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
-          }}
+          style={
+            {
+              // background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
+            }
+          }
         >
           Descending
         </span>
@@ -103,8 +103,8 @@ const SortContent = () => {
 
           <div
             className='dropdown-menu'
-            onMouseEnter={handleSortValueDrpdwnEnter}
-            onMouseLeave={handleSortValueDrpdwnLeave}
+            // onMouseEnter={handleSortValueDrpdwnEnter}
+            // onMouseLeave={handleSortValueDrpdwnLeave}
           >
             <AscendingBtn />
             <DescendingBtn />
