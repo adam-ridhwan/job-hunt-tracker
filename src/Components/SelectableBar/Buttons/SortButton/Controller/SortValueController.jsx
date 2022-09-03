@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { SearchContext } from '../../../../../Contexts/SearchContext';
+// import { useContext, useEffect, useRef, useState } from 'react';
+// import { SearchContext } from '../../../../../Contexts/SearchContext';
 
 const SortValueController = () => {
   // const { sortValue, setSortValue } = useContext(SearchContext);
@@ -88,5 +88,3 @@ const SortValueController = () => {
   //   handleSortValueClick,
   // };
 };
-
-export default SortValueController;

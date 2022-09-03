@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
+
 import { SearchContext } from '../../../../../Contexts/SearchContext';
 import { SortContext } from '../../../../../Contexts/SortContext';
 import { HEADER_TITLES } from '../../../../../Data';
@@ -15,30 +16,6 @@ const SortButtonController = () => {
   const [filteredTitles, setFilteredTitles] = useState(selection);
   const selectionSearchRef = useRef();
   const [isInitialRender, setIsInitialRender] = useState(true);
-
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                              HANDLE DROPDOWN
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  useEffect(() => {
-    const handleSortDrpdwn = e => {
-      const isSortBtn = e.target.matches('[data-sort-btn]');
-
-      const mainSortBckgrnd = document.querySelector('[data-background]');
-
-      if (!isSortBtn && e.target.closest('[data-sort-drpdwn') !== null) return;
-
-      let currentDrpdwn;
-      if (isSortBtn) {
-        currentDrpdwn = e.target.closest('[data-sort-drpdwn]');
-        currentDrpdwn.classList.toggle('active');
-        mainSortBckgrnd.classList.toggle('active');
-      }
-    };
-    document.addEventListener('click', handleSortDrpdwn);
-    return () => {
-      document.removeEventListener('click', handleSortDrpdwn);
-    };
-  }, []);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                      HANDLE SEARCH SELECTION FILTER
@@ -72,12 +49,12 @@ const SortButtonController = () => {
 
   return {
     sortValue,
-
     filteredTitles,
     chosenSortSelection,
     selectionSearchRef,
     handleSearchChange,
     handleKeyClick,
+    setChosenSortSelection,
     indexOfTitle,
     handleMouseEnter,
   };

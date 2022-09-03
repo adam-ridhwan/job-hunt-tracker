@@ -1,3 +1,5 @@
+import { useContext, useEffect, useRef, useState } from 'react';
+import { SortContext } from '../../../../../Contexts/SortContext';
 import SortButtonController from '../Controller/SortButtonController';
 
 import '../Sort.css';
@@ -5,23 +7,42 @@ import '../Sort.css';
 const SortButton = () => {
   const {
     filteredTitles,
-    chosenSortSelection,
     selectionSearchRef,
     handleSearchChange,
     handleKeyClick,
     indexOfTitle,
     handleMouseEnter,
+    chosenSortSelection,
   } = SortButtonController();
 
   const sortClassName = chosenSortSelection ? 'sort-link-active' : 'sort-link';
+
+  let sortRef = useRef();
+  const [isSortDrpdwnOpen, setIsSortDrpdwnOpen] = useState(false);
+
+  useEffect(() => {
+    const sortDrpdwn = sortRef.current;
+    console.log(sortRef.current);
+    if (isSortDrpdwnOpen) {
+      sortDrpdwn.classList.add('active');
+      setIsSortDrpdwnOpen(prev => !prev);
+    }
+    if (sortDrpdwn.classList.contains('active')) return;
+    sortDrpdwn.classList.remove('active');
+  }, [isSortDrpdwnOpen]);
 
   return (
     <>
       <div className='main-background' data-background />
 
       <div className='sort-container'>
-        <div className='sort-dropdown-menu' data-sort-drpdwn>
-          <button className={sortClassName} data-sort-btn>
+        <div ref={sortRef} className='sort-dropdown-menu' data-sort-drpdwn>
+          <button
+            className={sortClassName}
+            onClick={() =>
+              setIsSortDrpdwnOpen(isSortDrpdwnOpen => !isSortDrpdwnOpen)
+            }
+          >
             Sort
           </button>
 
@@ -41,9 +62,9 @@ const SortButton = () => {
                 filteredTitles.map((title, index) => {
                   return (
                     <div
+                      data-header-titles
                       id='selection-title'
                       key={index}
-                      role='button'
                       className='dropdown-selection'
                       style={{
                         background:

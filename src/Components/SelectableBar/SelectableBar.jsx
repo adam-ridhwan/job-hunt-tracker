@@ -8,6 +8,7 @@ import SearchButton from './Buttons/SearchButton/SearchButton';
 import SortButton from './Buttons/SortButton/View/SortButton';
 
 import { selectableBarIcons } from '../../Icons/Icons';
+import SortButtonController from './Buttons/SortButton/Controller/SortButtonController';
 import './SelectableBar.css';
 
 const { allAppsIcon } = selectableBarIcons;
@@ -73,14 +74,7 @@ const SelectableBar = () => {
         ));
 
     setFilteredEntries(newFilteredEntry);
-  }, [
-    chosenSortSelection,
-    searchField,
-    sortValue,
-    setFilteredEntries,
-    setSortedEntries,
-    sortedEntries,
-  ]);
+  }, [chosenSortSelection, searchField, sortValue, sortedEntries]);
 
   return (
     <div className='routings-container'>
