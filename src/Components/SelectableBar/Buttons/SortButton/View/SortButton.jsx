@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { SortContext } from '../../../../../Contexts/SortContext';
+import { useEffect, useRef, useState } from 'react';
+
 import SortButtonController from '../Controller/SortButtonController';
 
 import '../Sort.css';
@@ -25,10 +25,12 @@ const SortButton = () => {
     console.log(sortRef.current);
     if (isSortDrpdwnOpen) {
       sortDrpdwn.classList.add('active');
-      setIsSortDrpdwnOpen(prev => !prev);
     }
-    if (sortDrpdwn.classList.contains('active')) return;
-    sortDrpdwn.classList.remove('active');
+    if (!isSortDrpdwnOpen) sortDrpdwn.classList.remove('active');
+  }, [isSortDrpdwnOpen]);
+
+  useEffect(() => {
+    console.log(isSortDrpdwnOpen);
   }, [isSortDrpdwnOpen]);
 
   return (
@@ -36,7 +38,7 @@ const SortButton = () => {
       <div className='main-background' data-background />
 
       <div className='sort-container'>
-        <div ref={sortRef} className='sort-dropdown-menu' data-sort-drpdwn>
+        <div ref={sortRef} className='sort-dropdown-menu'>
           <button
             className={sortClassName}
             onClick={() =>

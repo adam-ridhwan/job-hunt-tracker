@@ -133,7 +133,6 @@
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
 .dropdown-selection-container {
-  /* outline: 2px solid green; */
   padding-left: 5px;
   padding-right: 5px;
   padding-bottom: 10px;
@@ -150,7 +149,6 @@
 }
 
 .dropdown-selection p {
-  /* outline: 1px solid blue; */
   font-size: 12px;
   padding-left: 8px;
   color: rgb(55, 53, 47);
@@ -167,7 +165,7 @@
 /**                               Sort Content                                */
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-.sort-content-container {
+/* .sort-content-container {
   display: flex;
   align-items: center;
   margin-left: 12px;
@@ -185,7 +183,7 @@
   background-color: green;
   opacity: 25%;
   z-index: 49;
-}
+} */
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 /* .option-drpdwn {
@@ -302,14 +300,14 @@
 } */
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-.dropdown {
-  /* outline: 1px solid red; */
+/* .dropdown {
+
   position: relative;
   height: 32px;
 }
 
 .link {
-  /* outline: 1px solid blue; */
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -385,10 +383,10 @@
   transform: translate3d(0, 0, 0);
   pointer-events: auto;
   z-index: 50;
-}
+} */
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-
+/*
 .add-delete-container {
   margin: 10px 12px;
   display: flex;
@@ -400,7 +398,6 @@
 }
 
 .sort-content-icons {
-  /* outline: 1px solid green; */
   width: 23px;
   height: 23px;
   margin-right: 8px;
@@ -412,11 +409,11 @@
 }
 
 .add-delete-container div {
-  /* outline: 1px solid blue; */
+
   display: flex;
   align-items: center;
   height: 27px;
-}
+} */
 
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 /**                              Sort Selection                               */
@@ -427,11 +424,11 @@
   align-items: center;
   margin: 0 100px;
   padding-top: 12px;
-  padding-bottom: 8px; /* put this back to 8px when the dropdown is fixed */
+  padding-bottom: 8px;
 }
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-
+/*
 .sort-selection-dropdown {
   position: relative;
   pointer-events: auto;
@@ -462,7 +459,7 @@
   transform: translate3d(0, 0px, 0);
   z-index: 50;
   pointer-events: auto;
-}
+} */
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
