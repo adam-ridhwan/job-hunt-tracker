@@ -46,13 +46,6 @@ const SortButtonController = () => {
     setIndexOfTitle(0);
   }, [filteredTitles]);
 
-  // const handleSubmitEnter = e => {
-  //   if (e.code === 'Enter') {
-  //     setChosenSortSelection(filteredTitles[0]);
-  //     setSortValue('Ascending');
-  //   }
-  // };
-
   return {
     sortValue,
     filteredTitles,

@@ -5,6 +5,7 @@ export const SortContext = createContext();
 export const SortProvider = ({ children }) => {
   const [chosenSortSelection, setChosenSortSelection] = useState(null);
   const [isSortValueBtnOpen, setIsSortValueBtnOpen] = useState(false);
+  const [isOptionValueBtnOpen, setIsOptionValueBtnOpen] = useState(false);
 
   return (
     <SortContext.Provider
@@ -13,6 +14,8 @@ export const SortProvider = ({ children }) => {
         setChosenSortSelection,
         isSortValueBtnOpen,
         setIsSortValueBtnOpen,
+        isOptionValueBtnOpen,
+        setIsOptionValueBtnOpen,
       }}
     >
       {children}

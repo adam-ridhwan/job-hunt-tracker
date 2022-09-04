@@ -4,7 +4,7 @@ import SortButtonController from '../Controller/SortButtonController';
 import SortContent from './SortContent';
 
 const SortSelectionComponent = () => {
-  const { isSortValueBtnOpen } = useContext(SortContext);
+  const { isSortValueBtnOpen, isOptionValueBtnOpen } = useContext(SortContext);
   const { sortValue, chosenSortSelection } = SortButtonController();
 
   const selectionRef = useRef();
@@ -15,7 +15,7 @@ const SortSelectionComponent = () => {
 
   useEffect(() => {
     const selectionBtnHandler = e => {
-      if (isSortValueBtnOpen) return;
+      if (isSortValueBtnOpen || isOptionValueBtnOpen) return;
 
       if (!selectionRef.current.contains(e.target)) {
         setIsSelectionDrpdwnOpen(false);
@@ -30,6 +30,7 @@ const SortSelectionComponent = () => {
     isSelectionDrpdwnOpen,
     selectionRef,
     isSortValueBtnOpen,
+    isOptionValueBtnOpen,
   ]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

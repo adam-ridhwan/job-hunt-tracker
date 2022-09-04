@@ -12,6 +12,7 @@ const SortValueController = () => {
   useEffect(() => {
     const handleClickOnSortBtn = () => {
       if (currentSortValue) previousRef.current = sortValue;
+
       switch (previousRef.current) {
         case 'Ascending':
           setHoveredOnAscending(true);
