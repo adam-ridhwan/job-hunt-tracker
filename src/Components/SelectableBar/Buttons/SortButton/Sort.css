@@ -423,6 +423,17 @@
 /**                              Sort Selection                               */
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
+.sort-selection-background.active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  opacity: 25%;
+  z-index: 49;
+}
+
 .sort-selection-container {
   display: flex;
   align-items: center;

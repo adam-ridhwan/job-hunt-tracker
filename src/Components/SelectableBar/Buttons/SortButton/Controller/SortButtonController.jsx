@@ -15,9 +15,6 @@ const SortButtonController = () => {
   const [selection] = useState(HEADER_TITLES);
   const [filteredTitles, setFilteredTitles] = useState(selection);
   const selectionSearchRef = useRef();
-  const [isInitialRender, setIsInitialRender] = useState(true);
-
-  let bckgrndRef = useRef();
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                      HANDLE SEARCH SELECTION FILTER
@@ -50,7 +47,6 @@ const SortButtonController = () => {
   }, [filteredTitles]);
 
   return {
-    bckgrndRef,
     sortValue,
     filteredTitles,
     chosenSortSelection,
@@ -60,8 +56,6 @@ const SortButtonController = () => {
     setChosenSortSelection,
     indexOfTitle,
     handleMouseEnter,
-    isInitialRender,
-    setIsInitialRender,
   };
 };
 

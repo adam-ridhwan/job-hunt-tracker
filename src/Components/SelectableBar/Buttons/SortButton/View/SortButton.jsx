@@ -4,7 +4,6 @@ import '../Sort.css';
 
 const SortButton = () => {
   const {
-    bckgrndRef,
     filteredTitles,
     selectionSearchRef,
     handleSearchChange,
@@ -12,14 +11,16 @@ const SortButton = () => {
     indexOfTitle,
     handleMouseEnter,
     chosenSortSelection,
-    isInitialRender,
-    setIsInitialRender,
+    // isInitialRender,
+    // setIsInitialRender,
   } = SortButtonController();
 
   let sortBtnRef = useRef();
   let sortTitleRef = useRef();
+  let bckgrndRef = useRef();
 
   const [isSortDrpdwnOpen, setIsSortDrpdwnOpen] = useState(false);
+  const [isInitialRender, setIsInitialRender] = useState(true);
 
   useEffect(() => {
     const sortBtnHandler = e => {
@@ -69,6 +70,7 @@ const SortButton = () => {
       <div className='sort-container'>
         <div ref={sortBtnRef} className='sort-dropdown-menu'>
           <button
+            data-sort-button
             className={chosenSortSelection ? 'sort-link-active' : 'sort-link'}
             onClick={() =>
               setIsSortDrpdwnOpen(isSortDrpdwnOpen => !isSortDrpdwnOpen)

@@ -4,31 +4,78 @@ import SortContent from './SortContent';
 
 const SortSelectionComponent = () => {
   const { sortValue, chosenSortSelection } = SortButtonController();
-
   const selectionRef = useRef();
+  const bckgrndRef = useRef();
 
-  const [isSelectionDrpdwnOpen, setIsSelectionDrpdwnOpen] = useState(false);
+  const [isSelectionDrpdwnOpen, setIsSelectionDrpdwnOpen] = useState(true);
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+  useEffect(() => {
+    const selectionBtnHandler = e => {
+      if (!selectionRef.current.contains(e.target)) {
+        setIsSelectionDrpdwnOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', selectionBtnHandler);
+    return () => {
+      document.removeEventListener('mousedown', selectionBtnHandler);
+    };
+  }, [chosenSortSelection, isSelectionDrpdwnOpen]);
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
   useEffect(() => {
     const selectionDrpdwn = selectionRef.current;
+    const bckgrnd = bckgrndRef.current;
 
-    console.log(selectionDrpdwn);
-    // const bckgrnd = bckgrndRef.current;
+    const sortBtnHandler = e => {
+      const isSortBtn = e.target.matches('[data-sort-button]');
+
+      if (!isSortBtn) return;
+
+      if (isSortBtn) {
+        selectionDrpdwn.classList.add('active');
+        bckgrnd.classList.add('active');
+        setIsSelectionDrpdwnOpen(true);
+      }
+    };
+    document.addEventListener('mousedown', sortBtnHandler);
+    return () => {
+      document.removeEventListener('mousedown', sortBtnHandler);
+    };
+  });
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+  useEffect(() => {
+    const selectionDrpdwn = selectionRef.current;
+    const bckgrnd = bckgrndRef.current;
+
+    if (isInitialRender) {
+      setTimeout(() => {
+        selectionDrpdwn.classList.add('active');
+        bckgrnd.classList.add('active');
+      }, 100);
+      setIsInitialRender(false);
+      return;
+    }
 
     if (isSelectionDrpdwnOpen) {
       selectionDrpdwn.classList.add('active');
-      // bckgrnd.classList.add('active');
+      bckgrnd.classList.add('active');
       return;
     }
 
     if (!isSelectionDrpdwnOpen) {
       selectionDrpdwn.classList.remove('active');
-      // bckgrnd.classList.remove('active');
+      bckgrnd.classList.remove('active');
     }
-  }, [chosenSortSelection, isSelectionDrpdwnOpen]);
+  }, [chosenSortSelection, isSelectionDrpdwnOpen, isInitialRender]);
 
   return (
     <>
+      <div className='main-background' ref={bckgrndRef} />
+
       <div className='sort-selection-container'>
         <div className='sort-selection-dropdown' ref={selectionRef}>
           <div

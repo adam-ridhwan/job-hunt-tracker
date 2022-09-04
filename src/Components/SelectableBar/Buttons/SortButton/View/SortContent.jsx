@@ -1,34 +1,64 @@
-import SortValueController from '../Controller/SortValueController';
-
-import { HEADER_TITLES } from '../../../../../Data.js';
+import { useEffect, useRef, useState } from 'react';
 import SortButtonController from '../Controller/SortButtonController';
+import SortValueController from '../Controller/SortValueController';
 
 const SortContent = () => {
   const { sortValue, chosenSortSelection } = SortButtonController();
+  const {
+    handleSortValueDrpdwnEnter,
+    handleSortValueDrpdwnLeave,
+    hoveredOnAscending,
+    hoveredOnDescending,
+    handleSortValueEnter,
+    handleSortValueLeave,
+    handleSortValueClick,
+  } = SortValueController();
 
-  // const {
-  //   handleSortValueDrpdwnEnter,
-  //   handleSortValueDrpdwnLeave,
-  //   hoveredOnAscending,
-  //   hoveredOnDescending,
-  //   handleSortValueEnter,
-  //   handleSortValueLeave,
-  //   handleSortValueClick,
-  // } = SortValueController();
+  const [isSortValueBtnOpen, setIsSortValueBtnOpen] = useState(false);
+  const sortValueBtnRef = useRef();
+  const sortValueBckgrndRef = useRef();
+
+  useEffect(() => {
+    const sortBtnHandler = e => {
+      if (!sortValueBtnRef.current.contains(e.target)) {
+        setIsSortValueBtnOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', sortBtnHandler);
+    return () => {
+      document.removeEventListener('mousedown', sortBtnHandler);
+    };
+  }, [chosenSortSelection, isSortValueBtnOpen]);
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+  useEffect(() => {
+    const selectionDrpdwn = sortValueBtnRef.current;
+    const bckgrnd = sortValueBckgrndRef.current;
+
+    if (isSortValueBtnOpen) {
+      selectionDrpdwn.classList.add('active');
+      bckgrnd.classList.add('active');
+      return;
+    }
+
+    if (!isSortValueBtnOpen) {
+      selectionDrpdwn.classList.remove('active');
+      bckgrnd.classList.remove('active');
+    }
+  }, [chosenSortSelection, isSortValueBtnOpen]);
 
   const AscendingBtn = () => {
     return (
       <div
-      // onMouseEnter={() => handleSortValueEnter('Ascending')}
-      // onMouseLeave={() => handleSortValueLeave('Ascending')}
-      // onClick={() => handleSortValueClick('Ascending')}
+        onMouseEnter={() => handleSortValueEnter('Ascending')}
+        onMouseLeave={() => handleSortValueLeave('Ascending')}
+        onClick={() => handleSortValueClick('Ascending')}
       >
         <span
-          style={
-            {
-              // background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
-            }
-          }
+          style={{
+            background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
+          }}
         >
           Ascending
         </span>
@@ -39,16 +69,14 @@ const SortContent = () => {
   const DescendingBtn = () => {
     return (
       <div
-      // onMouseEnter={() => handleSortValueEnter('Descending')}
-      // onMouseLeave={() => handleSortValueLeave('Descending')}
-      // onClick={() => handleSortValueClick('Descending')}
+        onMouseEnter={() => handleSortValueEnter('Descending')}
+        onMouseLeave={() => handleSortValueLeave('Descending')}
+        onClick={() => handleSortValueClick('Descending')}
       >
         <span
-          style={
-            {
-              // background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
-            }
-          }
+          style={{
+            background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
+          }}
         >
           Descending
         </span>
@@ -58,7 +86,7 @@ const SortContent = () => {
 
   return (
     <>
-      <div className='dropdown-background' data-content-bckgrnd />
+      <div className='dropdown-background' ref={sortValueBckgrndRef} />
 
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
@@ -69,41 +97,24 @@ const SortContent = () => {
             {CHEVRON_DOWN}
           </div>
 
-          <div className='option-menu'>
-            <div className='drpdwn-options-searchbar'>
-              <input
-                id='selectionSearchId'
-                // ref={selectionSearchRef}
-                type='search'
-                placeholder='Search for a property'
-                // onChange={handleSearchChange}
-              />
-            </div>
-
-            {/* {HEADER_TITLES.map((title, index) => {
-              return (
-                <div
-                  key={index}
-                  // role='button'
-                  className='drpdwn-options'
-                >
-                  <p>{title}</p>
-                </div>
-              );
-            })} */}
-          </div>
+          <div className='option-menu'>content</div>
         </div>
 
-        <div className='dropdown' data-sort-value-drpdwn>
-          <div className='link' data-sort-value-btn>
+        {/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
+
+        <div className='dropdown' ref={sortValueBtnRef}>
+          <div
+            className='link'
+            onClick={() => setIsSortValueBtnOpen(prev => !prev)}
+          >
             {sortValue}
             {CHEVRON_DOWN}
           </div>
 
           <div
             className='dropdown-menu'
-            // onMouseEnter={handleSortValueDrpdwnEnter}
-            // onMouseLeave={handleSortValueDrpdwnLeave}
+            onMouseEnter={handleSortValueDrpdwnEnter}
+            onMouseLeave={handleSortValueDrpdwnLeave}
           >
             <AscendingBtn />
             <DescendingBtn />
