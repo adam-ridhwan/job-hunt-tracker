@@ -4,6 +4,7 @@ import '../Sort.css';
 
 const SortButton = () => {
   const {
+    bckgrndRef,
     filteredTitles,
     selectionSearchRef,
     handleSearchChange,
@@ -11,13 +12,12 @@ const SortButton = () => {
     indexOfTitle,
     handleMouseEnter,
     chosenSortSelection,
+    isInitialRender,
+    setIsInitialRender,
   } = SortButtonController();
-
-  const sortClassName = chosenSortSelection ? 'sort-link-active' : 'sort-link';
 
   let sortBtnRef = useRef();
   let sortTitleRef = useRef();
-  let bckgrndRef = useRef();
 
   const [isSortDrpdwnOpen, setIsSortDrpdwnOpen] = useState(false);
 
@@ -33,9 +33,13 @@ const SortButton = () => {
     };
   }, [chosenSortSelection, isSortDrpdwnOpen]);
 
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
   useEffect(() => {
     const sortDrpdwn = sortBtnRef.current;
     const bckgrnd = bckgrndRef.current;
+
+    if (!isInitialRender && chosenSortSelection) return;
 
     if (isSortDrpdwnOpen) {
       sortDrpdwn.classList.add('active');
@@ -47,8 +51,17 @@ const SortButton = () => {
       sortDrpdwn.classList.remove('active');
       bckgrnd.classList.remove('active');
     }
-  }, [chosenSortSelection, isSortDrpdwnOpen]);
 
+    if (chosenSortSelection) setIsInitialRender(false);
+  }, [
+    chosenSortSelection,
+    isSortDrpdwnOpen,
+    bckgrndRef,
+    isInitialRender,
+    setIsInitialRender,
+  ]);
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   return (
     <>
       <div className='main-background' ref={bckgrndRef} />
@@ -56,7 +69,7 @@ const SortButton = () => {
       <div className='sort-container'>
         <div ref={sortBtnRef} className='sort-dropdown-menu'>
           <button
-            className={sortClassName}
+            className={chosenSortSelection ? 'sort-link-active' : 'sort-link'}
             onClick={() =>
               setIsSortDrpdwnOpen(isSortDrpdwnOpen => !isSortDrpdwnOpen)
             }

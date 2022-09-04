@@ -1,16 +1,44 @@
+import { useEffect, useRef, useState } from 'react';
 import SortButtonController from '../Controller/SortButtonController';
 import SortContent from './SortContent';
 
 const SortSelectionComponent = () => {
-  const { sortValue, chosenSortSelection, setIsSelectionDrpdwnOpen } =
-    SortButtonController();
-  // const { sortValue } = useContext(SerchContext);
+  const { sortValue, chosenSortSelection } = SortButtonController();
+
+  const selectionRef = useRef();
+
+  const [isSelectionDrpdwnOpen, setIsSelectionDrpdwnOpen] = useState(false);
+
+  useEffect(() => {
+    const selectionDrpdwn = selectionRef.current;
+
+    console.log(selectionDrpdwn);
+    // const bckgrnd = bckgrndRef.current;
+
+    if (isSelectionDrpdwnOpen) {
+      selectionDrpdwn.classList.add('active');
+      // bckgrnd.classList.add('active');
+      return;
+    }
+
+    if (!isSelectionDrpdwnOpen) {
+      selectionDrpdwn.classList.remove('active');
+      // bckgrnd.classList.remove('active');
+    }
+  }, [chosenSortSelection, isSelectionDrpdwnOpen]);
 
   return (
     <>
       <div className='sort-selection-container'>
-        <div className='sort-selection-dropdown' data-selection-drpdwn>
-          <div className='sort-selection-link' data-selection-btn>
+        <div className='sort-selection-dropdown' ref={selectionRef}>
+          <div
+            className='sort-selection-link'
+            onClick={() =>
+              setIsSelectionDrpdwnOpen(
+                isSelectionDrpdwnOpen => !isSelectionDrpdwnOpen
+              )
+            }
+          >
             {sortValue === 'Ascending'
               ? ASCENDING_ARROW_ICON
               : DESCENDING_ARROW_ICON}

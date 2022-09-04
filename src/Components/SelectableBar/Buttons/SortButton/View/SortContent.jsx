@@ -56,81 +56,81 @@ const SortContent = () => {
     );
   };
 
-  // return (
-  //   <>
-  //     <div className='dropdown-background' data-content-bckgrnd />
+  return (
+    <>
+      <div className='dropdown-background' data-content-bckgrnd />
 
-  //     <div className='sort-content-container'>
-  //       <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
+      <div className='sort-content-container'>
+        <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
 
-  //       <div className='option-drpdwn' data-option-drpdwn>
-  //         <div className='option-link' data-option-btn>
-  //           {chosenSortSelection}
-  //           {CHEVRON_DOWN}
-  //         </div>
+        <div className='option-drpdwn' data-option-drpdwn>
+          <div className='option-link' data-option-btn>
+            {chosenSortSelection}
+            {CHEVRON_DOWN}
+          </div>
 
-  //         <div className='option-menu'>
-  //           <div className='drpdwn-options-searchbar'>
-  //             <input
-  //               id='selectionSearchId'
-  //               // ref={selectionSearchRef}
-  //               type='search'
-  //               placeholder='Search for a property'
-  //               // onChange={handleSearchChange}
-  //             />
-  //           </div>
+          <div className='option-menu'>
+            <div className='drpdwn-options-searchbar'>
+              <input
+                id='selectionSearchId'
+                // ref={selectionSearchRef}
+                type='search'
+                placeholder='Search for a property'
+                // onChange={handleSearchChange}
+              />
+            </div>
 
-  //           {HEADER_TITLES.map((title, index) => {
-  //             return (
-  //               <div
-  //                 key={index}
-  //                 // role='button'
-  //                 className='drpdwn-options'
-  //               >
-  //                 <p>{title}</p>
-  //               </div>
-  //             );
-  //           })}
-  //         </div>
-  //       </div>
+            {/* {HEADER_TITLES.map((title, index) => {
+              return (
+                <div
+                  key={index}
+                  // role='button'
+                  className='drpdwn-options'
+                >
+                  <p>{title}</p>
+                </div>
+              );
+            })} */}
+          </div>
+        </div>
 
-  //       <div className='dropdown' data-sort-value-drpdwn>
-  //         <div className='link' data-sort-value-btn>
-  //           {sortValue}
-  //           {CHEVRON_DOWN}
-  //         </div>
+        <div className='dropdown' data-sort-value-drpdwn>
+          <div className='link' data-sort-value-btn>
+            {sortValue}
+            {CHEVRON_DOWN}
+          </div>
 
-  //         <div
-  //           className='dropdown-menu'
-  //           // onMouseEnter={handleSortValueDrpdwnEnter}
-  //           // onMouseLeave={handleSortValueDrpdwnLeave}
-  //         >
-  //           <AscendingBtn />
-  //           <DescendingBtn />
-  //         </div>
-  //       </div>
+          <div
+            className='dropdown-menu'
+            // onMouseEnter={handleSortValueDrpdwnEnter}
+            // onMouseLeave={handleSortValueDrpdwnLeave}
+          >
+            <AscendingBtn />
+            <DescendingBtn />
+          </div>
+        </div>
 
-  //       <div
-  //         className='sort-content-icons'
-  //         style={{ marginLeft: 'auto', marginRight: '20px' }}
-  //       >
-  //         {DELETE_ICON}
-  //       </div>
-  //     </div>
+        <div
+          className='sort-content-icons'
+          style={{ marginLeft: 'auto', marginRight: '20px' }}
+        >
+          {DELETE_ICON}
+        </div>
+      </div>
 
-  //     <div className='add-delete-container'>
-  //       <div>
-  //         <div className='sort-content-icons'>{ADD_ICON}</div>
-  //         <div className='sort-content-title'>Add sort</div>
-  //       </div>
+      <div className='add-delete-container'>
+        <div>
+          <div className='sort-content-icons'>{ADD_ICON}</div>
+          <div className='sort-content-title'>Add sort</div>
+        </div>
 
-  //       <div>
-  //         <div className='sort-content-icons'>{TRASH_ICON}</div>
-  //         <div className='sort-content-title'>Delete sort</div>
-  //       </div>
-  //     </div>
-  //   </>
-  // );
+        <div>
+          <div className='sort-content-icons'>{TRASH_ICON}</div>
+          <div className='sort-content-title'>Delete sort</div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default SortContent;

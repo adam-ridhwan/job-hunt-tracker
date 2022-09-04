@@ -172,7 +172,7 @@
 /**                               Sort Content                                */
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-/* .sort-content-container {
+.sort-content-container {
   display: flex;
   align-items: center;
   margin-left: 12px;
@@ -190,10 +190,10 @@
   background-color: green;
   opacity: 25%;
   z-index: 49;
-} */
+}
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-/* .option-drpdwn {
+.option-drpdwn {
   position: relative;
   height: 32px;
 }
@@ -304,17 +304,15 @@
   height: 15px;
   width: 15px;
   cursor: pointer;
-} */
+}
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-/* .dropdown {
-
+.dropdown {
   position: relative;
   height: 32px;
 }
 
 .link {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -390,10 +388,10 @@
   transform: translate3d(0, 0, 0);
   pointer-events: auto;
   z-index: 50;
-} */
+}
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-/*
+
 .add-delete-container {
   margin: 10px 12px;
   display: flex;
@@ -416,11 +414,10 @@
 }
 
 .add-delete-container div {
-
   display: flex;
   align-items: center;
   height: 27px;
-} */
+}
 
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 /**                              Sort Selection                               */
@@ -435,7 +432,7 @@
 }
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-/*
+
 .sort-selection-dropdown {
   position: relative;
   pointer-events: auto;
@@ -466,7 +463,7 @@
   transform: translate3d(0, 0px, 0);
   z-index: 50;
   pointer-events: auto;
-} */
+}
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
