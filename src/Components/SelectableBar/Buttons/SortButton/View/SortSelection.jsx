@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { SearchContext } from '../../../../../Contexts/SearchContext';
 import SortButtonController from '../Controller/SortButtonController';
 import SortContent from './SortContent';
 

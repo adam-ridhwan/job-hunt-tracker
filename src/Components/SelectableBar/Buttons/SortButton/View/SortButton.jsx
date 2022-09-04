@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-
 import SortButtonController from '../Controller/SortButtonController';
-
 import '../Sort.css';
 
 const SortButton = () => {
@@ -17,28 +15,46 @@ const SortButton = () => {
 
   const sortClassName = chosenSortSelection ? 'sort-link-active' : 'sort-link';
 
-  let sortRef = useRef();
+  let sortBtnRef = useRef();
+  let sortTitleRef = useRef();
+  let bckgrndRef = useRef();
+
   const [isSortDrpdwnOpen, setIsSortDrpdwnOpen] = useState(false);
 
   useEffect(() => {
-    const sortDrpdwn = sortRef.current;
-    console.log(sortRef.current);
-    if (isSortDrpdwnOpen) {
-      sortDrpdwn.classList.add('active');
-    }
-    if (!isSortDrpdwnOpen) sortDrpdwn.classList.remove('active');
-  }, [isSortDrpdwnOpen]);
+    const sortBtnHandler = e => {
+      if (!sortBtnRef.current.contains(e.target)) {
+        setIsSortDrpdwnOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', sortBtnHandler);
+    return () => {
+      document.removeEventListener('mousedown', sortBtnHandler);
+    };
+  }, [chosenSortSelection, isSortDrpdwnOpen]);
 
   useEffect(() => {
-    console.log(isSortDrpdwnOpen);
-  }, [isSortDrpdwnOpen]);
+    const sortDrpdwn = sortBtnRef.current;
+    const bckgrnd = bckgrndRef.current;
+
+    if (isSortDrpdwnOpen) {
+      sortDrpdwn.classList.add('active');
+      bckgrnd.classList.add('active');
+      return;
+    }
+
+    if (!isSortDrpdwnOpen || chosenSortSelection) {
+      sortDrpdwn.classList.remove('active');
+      bckgrnd.classList.remove('active');
+    }
+  }, [chosenSortSelection, isSortDrpdwnOpen]);
 
   return (
     <>
-      <div className='main-background' data-background />
+      <div className='main-background' ref={bckgrndRef} />
 
       <div className='sort-container'>
-        <div ref={sortRef} className='sort-dropdown-menu'>
+        <div ref={sortBtnRef} className='sort-dropdown-menu'>
           <button
             className={sortClassName}
             onClick={() =>
@@ -59,12 +75,15 @@ const SortButton = () => {
               />
             </div>
 
-            <div className='dropdown-selection-container'>
+            <div
+              className='dropdown-selection-container'
+              ref={sortTitleRef}
+              onClick={() => setIsSortDrpdwnOpen(false)}
+            >
               {filteredTitles.length > 0 ? (
                 filteredTitles.map((title, index) => {
                   return (
                     <div
-                      data-header-titles
                       id='selection-title'
                       key={index}
                       className='dropdown-selection'

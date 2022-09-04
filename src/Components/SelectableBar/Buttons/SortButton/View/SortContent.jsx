@@ -4,8 +4,7 @@ import { HEADER_TITLES } from '../../../../../Data.js';
 import SortButtonController from '../Controller/SortButtonController';
 
 const SortContent = () => {
-  const { chosenSortSelection } = SortButtonController();
-  const { sortValue } = SortButtonController();
+  const { sortValue, chosenSortSelection } = SortButtonController();
 
   // const {
   //   handleSortValueDrpdwnEnter,

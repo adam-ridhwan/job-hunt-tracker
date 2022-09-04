@@ -94,6 +94,13 @@
   pointer-events: auto;
 }
 
+.sort-dropdown-menu.active > .sort-link-active + .sort-dropdown-content {
+  opacity: 1;
+  z-index: 50;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto;
+}
+
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
 .dropdown-input-searchbar input {

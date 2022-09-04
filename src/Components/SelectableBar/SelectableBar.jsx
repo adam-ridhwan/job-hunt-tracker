@@ -30,51 +30,58 @@ const SelectableBar = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                    HANDLE SORTING ASCENDING/DESCENDING
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  useEffect(() => {
-    let key;
+  // useEffect(() => {
+  //   let key;
 
-    if (chosenSortSelection) {
-      key = chosenSortSelection.toLowerCase();
-      // 'Descending'log(key, Boolean(key.match(/^[A-Za-z]*$/)));
-    }
+  //   if (chosenSortSelection) {
+  //     key = chosenSortSelection.toLowerCase();
+  //     // 'Descending'log(key, Boolean(key.match(/^[A-Za-z]*$/)));
+  //   }
 
-    if (sortValue === 'Ascending') {
-      setSortedEntries(
-        sortedEntries.sort((a, b) => {
-          const nameA = a[key].toUpperCase().trim();
-          const nameB = b[key].toUpperCase().trim();
+  //   if (sortValue === 'Ascending') {
+  //     setSortedEntries(
+  //       sortedEntries.sort((a, b) => {
+  //         const nameA = a[key].toUpperCase().trim();
+  //         const nameB = b[key].toUpperCase().trim();
 
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
-        })
-      );
-    }
+  //         if (nameA < nameB) return -1;
+  //         if (nameA > nameB) return 1;
+  //         return 0;
+  //       })
+  //     );
+  //   }
 
-    if (sortValue === 'Descending') {
-      setSortedEntries(
-        sortedEntries.sort((a, b) => {
-          const nameA = a[key].toUpperCase().trim();
-          const nameB = b[key].toUpperCase().trim();
+  //   if (sortValue === 'Descending') {
+  //     setSortedEntries(
+  //       sortedEntries.sort((a, b) => {
+  //         const nameA = a[key].toUpperCase().trim();
+  //         const nameB = b[key].toUpperCase().trim();
 
-          if (nameA > nameB) return -1;
-          if (nameA < nameB) return 1;
-          return 0;
-        })
-      );
-    }
+  //         if (nameA > nameB) return -1;
+  //         if (nameA < nameB) return 1;
+  //         return 0;
+  //       })
+  //     );
+  //   }
 
-    let newFilteredEntry;
-    key
-      ? (newFilteredEntry = sortedEntries.filter(entry =>
-          entry[key].toLocaleLowerCase().includes(searchField)
-        ))
-      : (newFilteredEntry = sortedEntries.filter(entry =>
-          entry.company.toLocaleLowerCase().includes(searchField)
-        ));
+  //   let newFilteredEntry;
+  //   key
+  //     ? (newFilteredEntry = sortedEntries.filter(entry =>
+  //         entry[key].toLocaleLowerCase().includes(searchField)
+  //       ))
+  //     : (newFilteredEntry = sortedEntries.filter(entry =>
+  //         entry.company.toLocaleLowerCase().includes(searchField)
+  //       ));
 
-    setFilteredEntries(newFilteredEntry);
-  }, [chosenSortSelection, searchField, sortValue, sortedEntries]);
+  //   setFilteredEntries(newFilteredEntry);
+  // }, [
+  //   chosenSortSelection,
+  //   searchField,
+  //   setFilteredEntries,
+  //   setSortedEntries,
+  //   sortValue,
+  //   sortedEntries,
+  // ]);
 
   return (
     <div className='routings-container'>
