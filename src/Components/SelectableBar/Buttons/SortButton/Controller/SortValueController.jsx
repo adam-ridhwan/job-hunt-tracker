@@ -10,19 +10,21 @@ const SortValueController = () => {
   const previousRef = useRef(sortValue);
 
   useEffect(() => {
-    if (currentSortValue) previousRef.current = sortValue;
-    switch (previousRef.current) {
-      case 'Ascending':
-        setHoveredOnAscending(true);
-        setHoveredOnDescending(false);
-        break;
-      case 'Descending':
-        setHoveredOnDescending(true);
-        setHoveredOnAscending(false);
-        break;
-      default:
-        return;
-    }
+    const handleClickOnSortBtn = () => {
+      if (currentSortValue) previousRef.current = sortValue;
+      switch (previousRef.current) {
+        case 'Ascending':
+          setHoveredOnAscending(true);
+          setHoveredOnDescending(false);
+          break;
+        case 'Descending':
+          setHoveredOnDescending(true);
+          setHoveredOnAscending(false);
+          break;
+        default:
+          return;
+      }
+    };
 
     switch (hoveredOnDrpdwn || previousRef.current) {
       case 'Ascending':
@@ -36,7 +38,11 @@ const SortValueController = () => {
       default:
         return;
     }
-  }, [sortValue, hoveredOnDrpdwn, previousRef, currentSortValue]);
+    document.addEventListener('click', handleClickOnSortBtn);
+    return () => {
+      document.removeEventListener('click', handleClickOnSortBtn);
+    };
+  }, [sortValue, hoveredOnDrpdwn, currentSortValue]);
 
   const handleSortValueDrpdwnEnter = () => {
     setHoverOnDrpdwn(true);

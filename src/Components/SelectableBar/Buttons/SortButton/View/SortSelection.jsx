@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { SortContext } from '../../../../../Contexts/SortContext';
 import SortButtonController from '../Controller/SortButtonController';
 import SortContent from './SortContent';
 
 const SortSelectionComponent = () => {
+  const { isSortValueBtnOpen } = useContext(SortContext);
   const { sortValue, chosenSortSelection } = SortButtonController();
+
   const selectionRef = useRef();
   const bckgrndRef = useRef();
 
@@ -12,6 +15,8 @@ const SortSelectionComponent = () => {
 
   useEffect(() => {
     const selectionBtnHandler = e => {
+      if (isSortValueBtnOpen) return;
+
       if (!selectionRef.current.contains(e.target)) {
         setIsSelectionDrpdwnOpen(false);
       }
@@ -20,7 +25,12 @@ const SortSelectionComponent = () => {
     return () => {
       document.removeEventListener('mousedown', selectionBtnHandler);
     };
-  }, [chosenSortSelection, isSelectionDrpdwnOpen]);
+  }, [
+    chosenSortSelection,
+    isSelectionDrpdwnOpen,
+    selectionRef,
+    isSortValueBtnOpen,
+  ]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
@@ -69,15 +79,20 @@ const SortSelectionComponent = () => {
     if (!isSelectionDrpdwnOpen) {
       selectionDrpdwn.classList.remove('active');
       bckgrnd.classList.remove('active');
+      return;
     }
   }, [chosenSortSelection, isSelectionDrpdwnOpen, isInitialRender]);
 
   return (
     <>
-      <div className='main-background' ref={bckgrndRef} />
+      <div className='main-background' ref={bckgrndRef} data-background />
 
       <div className='sort-selection-container'>
-        <div className='sort-selection-dropdown' ref={selectionRef}>
+        <div
+          className='sort-selection-dropdown'
+          ref={selectionRef}
+          data-selection-drpdwn
+        >
           <div
             className='sort-selection-link'
             onClick={() =>

@@ -11,8 +11,6 @@ const SortButton = () => {
     indexOfTitle,
     handleMouseEnter,
     chosenSortSelection,
-    // isInitialRender,
-    // setIsInitialRender,
   } = SortButtonController();
 
   let sortBtnRef = useRef();

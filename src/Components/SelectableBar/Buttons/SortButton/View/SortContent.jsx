@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
+import { SortContext } from '../../../../../Contexts/SortContext';
 import SortButtonController from '../Controller/SortButtonController';
 import SortValueController from '../Controller/SortValueController';
 
 const SortContent = () => {
+  const { isSortValueBtnOpen, setIsSortValueBtnOpen } = useContext(SortContext);
   const { sortValue, chosenSortSelection } = SortButtonController();
   const {
     handleSortValueDrpdwnEnter,
@@ -12,9 +14,10 @@ const SortContent = () => {
     handleSortValueEnter,
     handleSortValueLeave,
     handleSortValueClick,
+
+    selectionRef,
   } = SortValueController();
 
-  const [isSortValueBtnOpen, setIsSortValueBtnOpen] = useState(false);
   const sortValueBtnRef = useRef();
   const sortValueBckgrndRef = useRef();
 
@@ -28,25 +31,23 @@ const SortContent = () => {
     return () => {
       document.removeEventListener('mousedown', sortBtnHandler);
     };
-  }, [chosenSortSelection, isSortValueBtnOpen]);
+  }, [chosenSortSelection, isSortValueBtnOpen, setIsSortValueBtnOpen]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
   useEffect(() => {
-    const selectionDrpdwn = sortValueBtnRef.current;
+    const sortValueDrpdwn = sortValueBtnRef.current;
     const bckgrnd = sortValueBckgrndRef.current;
-
     if (isSortValueBtnOpen) {
-      selectionDrpdwn.classList.add('active');
+      sortValueDrpdwn.classList.add('active');
       bckgrnd.classList.add('active');
-      return;
     }
 
     if (!isSortValueBtnOpen) {
-      selectionDrpdwn.classList.remove('active');
+      sortValueDrpdwn.classList.remove('active');
       bckgrnd.classList.remove('active');
     }
-  }, [chosenSortSelection, isSortValueBtnOpen]);
+  }, [chosenSortSelection, isSortValueBtnOpen, selectionRef]);
 
   const AscendingBtn = () => {
     return (
@@ -91,8 +92,8 @@ const SortContent = () => {
       <div className='sort-content-container'>
         <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
 
-        <div className='option-drpdwn' data-option-drpdwn>
-          <div className='option-link' data-option-btn>
+        <div className='option-drpdwn'>
+          <div className='option-link'>
             {chosenSortSelection}
             {CHEVRON_DOWN}
           </div>
@@ -102,7 +103,7 @@ const SortContent = () => {
 
         {/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
 
-        <div className='dropdown' ref={sortValueBtnRef}>
+        <div className='dropdown' ref={sortValueBtnRef} data-sort-value-drpdwn>
           <div
             className='link'
             onClick={() => setIsSortValueBtnOpen(prev => !prev)}
