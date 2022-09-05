@@ -185,8 +185,6 @@ const SortContent = () => {
     {
       opacity: '0',
       transform: 'translate3d(0, -5px, 0)',
-      transition:
-        'opacity 150ms cubic-bezier(0.42, -0.02, 1, 1), transform 150ms cubic-bezier(0.42, -0.02, 1, 1)',
       zIndex: '-50',
     },
   ];
@@ -221,8 +219,9 @@ const SortContent = () => {
                 {chosenTitle}
                 {CHEVRON_DOWN}
               </div>
-
               {/* dropdwn menu ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
+
+              {/* //! fix this ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  */}
               <div
                 className='option-menu'
                 style={
