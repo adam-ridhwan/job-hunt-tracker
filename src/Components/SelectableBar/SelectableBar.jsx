@@ -31,21 +31,21 @@ const SelectableBar = () => {
   //                    HANDLE SORTING ASCENDING/DESCENDING
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
-    let key;
-    console.log(chosenSortSelection);
+    let firstIndexOfSortArray;
 
     if (chosenSortSelection.length === 0) return;
 
     if (chosenSortSelection.length > 0) {
-      key = chosenSortSelection[0].toLowerCase();
-      // 'Descending'log(key, Boolean(key.match(/^[A-Za-z]*$/)));
+      console.log('render on table', chosenSortSelection);
+      firstIndexOfSortArray = chosenSortSelection[0].toLowerCase();
+      // 'Descending'log(firstIndexOfSortArray, Boolean(firstIndexOfSortArray.match(/^[A-Za-z]*$/)));
     }
 
     if (sortValue === 'Ascending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
-          const nameA = a[key].toUpperCase().trim();
-          const nameB = b[key].toUpperCase().trim();
+          const nameA = a[firstIndexOfSortArray].toUpperCase().trim();
+          const nameB = b[firstIndexOfSortArray].toUpperCase().trim();
 
           if (nameA < nameB) return -1;
           if (nameA > nameB) return 1;
@@ -57,8 +57,8 @@ const SelectableBar = () => {
     if (sortValue === 'Descending') {
       setSortedEntries(
         sortedEntries.sort((a, b) => {
-          const nameA = a[key].toUpperCase().trim();
-          const nameB = b[key].toUpperCase().trim();
+          const nameA = a[firstIndexOfSortArray].toUpperCase().trim();
+          const nameB = b[firstIndexOfSortArray].toUpperCase().trim();
 
           if (nameA > nameB) return -1;
           if (nameA < nameB) return 1;
@@ -68,9 +68,9 @@ const SelectableBar = () => {
     }
 
     let newFilteredEntry;
-    key
+    firstIndexOfSortArray
       ? (newFilteredEntry = sortedEntries.filter(entry =>
-          entry[key].toLocaleLowerCase().includes(searchField)
+          entry[firstIndexOfSortArray].toLocaleLowerCase().includes(searchField)
         ))
       : (newFilteredEntry = sortedEntries.filter(entry =>
           entry.company.toLocaleLowerCase().includes(searchField)

@@ -11,9 +11,11 @@ const SortContent = () => {
     setIsSortValueBtnOpen,
     isOptionValueBtnOpen,
     setIsOptionValueBtnOpen,
+    chosenSortSelection,
+    setChosenSortSelection,
   } = useContext(SortContext);
 
-  const { sortValue, chosenSortSelection } = SortButtonController();
+  const { sortValue } = SortButtonController();
 
   const {
     handleSortValueDrpdwnEnter,
@@ -35,6 +37,7 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                     ASCENDING AND DESCENDING BUTTONS
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
   const AscendingBtn = () => {
     return (
       <div
@@ -88,7 +91,7 @@ const SortContent = () => {
       optionValueDrpdwn.classList.remove('active');
       bckgrnd.classList.remove('active');
     }
-  }, [isOptionValueBtnOpen]);
+  }, [chosenSortSelection, isOptionValueBtnOpen]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             SORT VALUE BUTTON
@@ -144,7 +147,7 @@ const SortContent = () => {
       return title.toLocaleLowerCase().includes(searchSelection);
     });
     setFilteredTitles(filteredSelections);
-  }, [searchSelection, selection]);
+  }, [chosenSortSelection, searchSelection, selection]);
 
   const handleSearchChange = event => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
@@ -156,8 +159,43 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const [indexOfTitle, setIndexOfTitle] = useState();
 
-  const handleHoverTitle = index => {
-    setIndexOfTitle(index);
+  const handleHoverTitle = indexOfArrayDiv => {
+    setIndexOfTitle(indexOfArrayDiv);
+  };
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                            HANDLE CHANGE TITLE
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+  const handleChangeTitle = (indexOfArrayDiv, indexOfChosenSelectionArray) => {
+    console.log(indexOfArrayDiv);
+    console.log(indexOfChosenSelectionArray);
+  };
+
+  //* RETURN ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+  const style = [
+    {
+      opacity: '0',
+      transform: 'translate3d(0, -5px, 0)',
+      transition:
+        'opacity 150ms cubic-bezier(0.42, -0.02, 1, 1), transform 150ms cubic-bezier(0.42, -0.02, 1, 1)',
+      zIndex: '-50',
+    },
+    {
+      opacity: '0',
+      transform: 'translate3d(0, -5px, 0)',
+      transition:
+        'opacity 150ms cubic-bezier(0.42, -0.02, 1, 1), transform 150ms cubic-bezier(0.42, -0.02, 1, 1)',
+      zIndex: '-50',
+    },
+  ];
+
+  const styleOpen = {
+    opacity: '1',
+    transform: 'translate3d(0, 0, 0)',
+    pointerEvents: 'auto',
+    zIndex: '50',
   };
 
   return (
@@ -166,76 +204,99 @@ const SortContent = () => {
 
       {/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
 
-      <div className='sort-content-container'>
-        <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
-
-        <div className='option-drpdwn' ref={optionValueBtnRef}>
+      {chosenSortSelection.map((chosenTitle, indexOfChosenSelectionArray) => {
+        return (
           <div
-            className='option-link'
-            onClick={() => setIsOptionValueBtnOpen(prev => !prev)}
+            key={indexOfChosenSelectionArray}
+            className='sort-content-container'
           >
-            {chosenSortSelection}
-            {CHEVRON_DOWN}
-          </div>
+            <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
 
-          <div className='option-menu'>
-            <div className='drpdwn-options-searchbar'>
-              <input
-                id='selectionSearchId'
-                ref={chosenSearchSelectionRef}
-                onChange={handleSearchChange}
-                type='search'
-                placeholder='Search for a property...'
-                autoComplete='off'
-              />
+            {/* dropdown button ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
+            <div className='option-drpdwn' ref={optionValueBtnRef}>
+              <div
+                className='option-link'
+                onClick={() => setIsOptionValueBtnOpen(prev => !prev)}
+              >
+                {chosenTitle}
+                {CHEVRON_DOWN}
+              </div>
+
+              {/* dropdwn menu ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
+              <div
+                className='option-menu'
+                style={
+                  isOptionValueBtnOpen
+                    ? { styleOpen }
+                    : style[indexOfChosenSelectionArray]
+                }
+              >
+                <div className='drpdwn-options-searchbar'>
+                  <input
+                    id='selectionSearchId'
+                    ref={chosenSearchSelectionRef}
+                    onChange={handleSearchChange}
+                    type='search'
+                    placeholder='Search for a property...'
+                    autoComplete='off'
+                  />
+                </div>
+
+                {filteredTitles.map((title, indexOfArrayDiv) => {
+                  return (
+                    <div
+                      key={indexOfArrayDiv}
+                      className='drpdwn-options'
+                      onMouseEnter={() => handleHoverTitle(indexOfArrayDiv)}
+                      onClick={() =>
+                        handleChangeTitle(
+                          indexOfArrayDiv,
+                          indexOfChosenSelectionArray
+                        )
+                      }
+                      style={{
+                        background:
+                          indexOfArrayDiv === indexOfTitle &&
+                          'rgba(55, 53, 47, 0.08)',
+                      }}
+                    >
+                      <p>{title}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            {filteredTitles.map((title, index) => {
-              return (
-                <div
-                  key={index}
-                  className='drpdwn-options'
-                  onMouseEnter={() => handleHoverTitle(index)}
-                  style={{
-                    background:
-                      index === indexOfTitle && 'rgba(55, 53, 47, 0.08)',
-                  }}
-                >
-                  <p>{title}</p>
-                </div>
-              );
-            })}
+            <div className='dropdown' ref={sortValueBtnRef}>
+              <div
+                className='link'
+                onClick={() => setIsSortValueBtnOpen(prev => !prev)}
+              >
+                {sortValue}
+                {CHEVRON_DOWN}
+              </div>
+
+              <div
+                className='dropdown-menu'
+                onMouseEnter={handleSortValueDrpdwnEnter}
+                onMouseLeave={handleSortValueDrpdwnLeave}
+              >
+                <AscendingBtn />
+                <DescendingBtn />
+              </div>
+            </div>
+
+            <div
+              className='sort-content-icons'
+              style={{ marginLeft: 'auto', marginRight: '20px' }}
+            >
+              {DELETE_ICON}
+            </div>
           </div>
-        </div>
+        );
+      })}
 
-        {/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
-
-        <div className='dropdown' ref={sortValueBtnRef}>
-          <div
-            className='link'
-            onClick={() => setIsSortValueBtnOpen(prev => !prev)}
-          >
-            {sortValue}
-            {CHEVRON_DOWN}
-          </div>
-
-          <div
-            className='dropdown-menu'
-            onMouseEnter={handleSortValueDrpdwnEnter}
-            onMouseLeave={handleSortValueDrpdwnLeave}
-          >
-            <AscendingBtn />
-            <DescendingBtn />
-          </div>
-        </div>
-
-        <div
-          className='sort-content-icons'
-          style={{ marginLeft: 'auto', marginRight: '20px' }}
-        >
-          {DELETE_ICON}
-        </div>
-      </div>
+      {/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
 
       <div className='add-delete-container'>
         <div>
