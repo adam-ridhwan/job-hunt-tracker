@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { createRef, useContext, useEffect, useRef, useState } from 'react';
 
 import { SortContext } from '../../../../../Contexts/SortContext';
 import { HEADER_TITLES } from '../../../../../Data';
@@ -29,10 +29,14 @@ const SortContent = () => {
   } = SortValueController();
 
   const sortValueBtnRef = useRef();
-  const optionValueBtnRef = useRef();
   const sortBckgrndRef = useRef();
-
   const chosenSearchSelectionRef = useRef();
+  const optionValueBtnRef = useRef([]);
+  const dropdownMenuRef = useRef();
+
+  optionValueBtnRef.current = chosenSortSelection.map(
+    (_, index) => optionValueBtnRef.current[index] ?? createRef()
+  );
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                     ASCENDING AND DESCENDING BUTTONS
@@ -83,27 +87,42 @@ const SortContent = () => {
     const bckgrnd = sortBckgrndRef.current;
 
     if (isOptionValueBtnOpen) {
-      optionValueDrpdwn.classList.add('active');
       bckgrnd.classList.add('active');
     }
 
     if (!isOptionValueBtnOpen) {
-      optionValueDrpdwn.classList.remove('active');
+      chosenSortSelection.forEach((_, index) => {
+        optionValueBtnRef.current[index].current.classList.remove('active');
+      });
       bckgrnd.classList.remove('active');
     }
   }, [chosenSortSelection, isOptionValueBtnOpen]);
+
+  const handleOptionChange = indexOfChosenSelectionArray => {
+    setIsOptionValueBtnOpen(true);
+
+    optionValueBtnRef.current[
+      indexOfChosenSelectionArray
+    ].current.classList.add('active');
+  };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             SORT VALUE BUTTON
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     const sortBtnHandler = e => {
-      if (!sortValueBtnRef.current.contains(e.target)) {
-        setIsSortValueBtnOpen(false);
+      const drpdwnBckgrnd = sortBckgrndRef.current;
+      const mainBckgrnd = document.querySelector('[data-background]');
+
+      const isMainBckgrndClicked = mainBckgrnd.contains(e.target);
+      const isDrpdwnBckgrndClicked = drpdwnBckgrnd.contains(e.target);
+
+      if (isMainBckgrndClicked || isDrpdwnBckgrndClicked) {
+        setIsOptionValueBtnOpen(false);
       }
 
-      if (!optionValueBtnRef.current.contains(e.target)) {
-        setIsOptionValueBtnOpen(false);
+      if (!sortValueBtnRef.current.contains(e.target)) {
+        setIsSortValueBtnOpen(false);
       }
     };
     document.addEventListener('mousedown', sortBtnHandler);
@@ -174,28 +193,6 @@ const SortContent = () => {
 
   //* RETURN ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-  const style = [
-    {
-      opacity: '0',
-      transform: 'translate3d(0, -5px, 0)',
-      transition:
-        'opacity 150ms cubic-bezier(0.42, -0.02, 1, 1), transform 150ms cubic-bezier(0.42, -0.02, 1, 1)',
-      zIndex: '-50',
-    },
-    {
-      opacity: '0',
-      transform: 'translate3d(0, -5px, 0)',
-      zIndex: '-50',
-    },
-  ];
-
-  const styleOpen = {
-    opacity: '1',
-    transform: 'translate3d(0, 0, 0)',
-    pointerEvents: 'auto',
-    zIndex: '50',
-  };
-
   return (
     <>
       <div className='dropdown-background' ref={sortBckgrndRef} />
@@ -211,10 +208,13 @@ const SortContent = () => {
             <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
 
             {/* dropdown button ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
-            <div className='option-drpdwn' ref={optionValueBtnRef}>
+            <div
+              className='option-drpdwn'
+              ref={optionValueBtnRef.current[indexOfChosenSelectionArray]}
+            >
               <div
                 className='option-link'
-                onClick={() => setIsOptionValueBtnOpen(prev => !prev)}
+                onClick={() => handleOptionChange(indexOfChosenSelectionArray)}
               >
                 {chosenTitle}
                 {CHEVRON_DOWN}
@@ -222,14 +222,7 @@ const SortContent = () => {
               {/* dropdwn menu ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
 
               {/* //! fix this ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  */}
-              <div
-                className='option-menu'
-                style={
-                  isOptionValueBtnOpen
-                    ? { styleOpen }
-                    : style[indexOfChosenSelectionArray]
-                }
-              >
+              <div className='option-menu'>
                 <div className='drpdwn-options-searchbar'>
                   <input
                     id='selectionSearchId'

@@ -82,7 +82,7 @@ const SortButton = () => {
 
   return (
     <>
-      <div className='main-background' ref={bckgrndRef} />
+      <div className='main-background' ref={bckgrndRef} data-main-background />
 
       <div className='sort-container'>
         <div ref={sortBtnRef} className='sort-dropdown-menu'>
