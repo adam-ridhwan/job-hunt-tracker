@@ -266,19 +266,23 @@
 }
 
 .drpdwn-options p {
-  font-size: 12px;
+  font-size: 14px;
   padding-left: 8px;
   color: rgb(55, 53, 47);
   font-weight: 400;
 }
 
-.drpdwn-options-searchbar input {
-  margin: 10px;
-  border: none;
-  outline: none;
+.drpdwn-options-searchbar {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.drpdwn-options-searchbar input {
+  margin: 7px;
+  border: none;
+  outline: none;
+
   width: 250px;
   font-size: 12px;
   color: rgba(55, 53, 47, 0.343);
@@ -294,7 +298,7 @@
 }
 
 .drpdwn-options-searchbar input:focus {
-  outline: 2px solid #c1efff;
+  outline: 2px solid #b8ecfdb8;
 }
 
 .drpdwn-options-searchbar input::-webkit-search-cancel-button {

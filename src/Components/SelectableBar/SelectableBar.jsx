@@ -8,7 +8,7 @@ import SearchButton from './Buttons/SearchButton/SearchButton';
 import SortButton from './Buttons/SortButton/View/SortButton';
 
 import { selectableBarIcons } from '../../Icons/Icons';
-import SortButtonController from './Buttons/SortButton/Controller/SortButtonController';
+
 import './SelectableBar.css';
 
 const { allAppsIcon } = selectableBarIcons;

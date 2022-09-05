@@ -1,5 +1,7 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+
 import { SortContext } from '../../../../../Contexts/SortContext';
+import { HEADER_TITLES } from '../../../../../Data';
 import SortButtonController from '../Controller/SortButtonController';
 import SortValueController from '../Controller/SortValueController';
 
@@ -27,6 +29,8 @@ const SortContent = () => {
   const sortValueBtnRef = useRef();
   const optionValueBtnRef = useRef();
   const sortBckgrndRef = useRef();
+
+  const chosenSearchSelectionRef = useRef();
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                            OPTION VALUE BUTTON
@@ -128,6 +132,34 @@ const SortContent = () => {
     );
   };
 
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                             HANDLE SEARCH BAR
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  const [selection] = useState(HEADER_TITLES);
+  const [filteredTitles, setFilteredTitles] = useState(selection);
+  const [searchSelection, setSearchSelection] = useState('');
+
+  useEffect(() => {
+    const filteredSelections = selection.filter(title => {
+      return title.toLocaleLowerCase().includes(searchSelection);
+    });
+    setFilteredTitles(filteredSelections);
+  }, [searchSelection, selection]);
+
+  const handleSearchChange = event => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchSelection(searchFieldString);
+  };
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                        HANDLE HOVER ON PROPERTIES
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  const [indexOfTitle, setIndexOfTitle] = useState();
+
+  const handleHoverTitle = index => {
+    setIndexOfTitle(index);
+  };
+
   return (
     <>
       <div className='dropdown-background' ref={sortBckgrndRef} />
@@ -146,7 +178,34 @@ const SortContent = () => {
             {CHEVRON_DOWN}
           </div>
 
-          <div className='option-menu'>content</div>
+          <div className='option-menu'>
+            <div className='drpdwn-options-searchbar'>
+              <input
+                id='selectionSearchId'
+                ref={chosenSearchSelectionRef}
+                onChange={handleSearchChange}
+                type='search'
+                placeholder='Search for a property'
+                autoComplete='off'
+              />
+            </div>
+
+            {filteredTitles.map((title, index) => {
+              return (
+                <div
+                  key={index}
+                  className='drpdwn-options'
+                  onMouseEnter={() => handleHoverTitle(index)}
+                  style={{
+                    background:
+                      index === indexOfTitle && 'rgba(55, 53, 47, 0.08)',
+                  }}
+                >
+                  <p>{title}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
