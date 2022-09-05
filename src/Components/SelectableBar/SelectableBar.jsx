@@ -32,9 +32,12 @@ const SelectableBar = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     let key;
+    console.log(chosenSortSelection);
 
-    if (chosenSortSelection) {
-      key = chosenSortSelection.toLowerCase();
+    if (chosenSortSelection.length === 0) return;
+
+    if (chosenSortSelection.length > 0) {
+      key = chosenSortSelection[0].toLowerCase();
       // 'Descending'log(key, Boolean(key.match(/^[A-Za-z]*$/)));
     }
 

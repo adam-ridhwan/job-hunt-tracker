@@ -51,7 +51,7 @@ const SortButton = () => {
     const bckgrnd = bckgrndRef.current;
     const searchBar = selectionSearchRef.current;
 
-    if (!isInitialRender && chosenSortSelection) return;
+    if (!isInitialRender && chosenSortSelection.length > 0) return;
 
     if (isSortDrpdwnOpen) {
       searchBar.focus();
@@ -60,14 +60,14 @@ const SortButton = () => {
       return;
     }
 
-    if (!isSortDrpdwnOpen || chosenSortSelection) {
+    if (!isSortDrpdwnOpen || chosenSortSelection.length === 0) {
       searchBar.value = '';
       setFilteredTitles([...HEADER_TITLES]);
       sortDrpdwn.classList.remove('active');
       bckgrnd.classList.remove('active');
     }
 
-    if (chosenSortSelection) setIsInitialRender(false);
+    if (chosenSortSelection.length > 0) setIsInitialRender(false);
   }, [
     chosenSortSelection,
     isSortDrpdwnOpen,
@@ -88,7 +88,9 @@ const SortButton = () => {
         <div ref={sortBtnRef} className='sort-dropdown-menu'>
           <button
             data-sort-button
-            className={chosenSortSelection ? 'sort-link-active' : 'sort-link'}
+            className={
+              chosenSortSelection.length > 0 ? 'sort-link-active' : 'sort-link'
+            }
             onClick={() =>
               setIsSortDrpdwnOpen(isSortDrpdwnOpen => !isSortDrpdwnOpen)
             }

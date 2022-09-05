@@ -33,6 +33,45 @@ const SortContent = () => {
   const chosenSearchSelectionRef = useRef();
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                     ASCENDING AND DESCENDING BUTTONS
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  const AscendingBtn = () => {
+    return (
+      <div
+        onMouseEnter={() => handleSortValueEnter('Ascending')}
+        onMouseLeave={() => handleSortValueLeave('Ascending')}
+        onClick={() => handleSortValueClick('Ascending')}
+      >
+        <span
+          style={{
+            background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
+          }}
+        >
+          Ascending
+        </span>
+      </div>
+    );
+  };
+
+  const DescendingBtn = () => {
+    return (
+      <div
+        onMouseEnter={() => handleSortValueEnter('Descending')}
+        onMouseLeave={() => handleSortValueLeave('Descending')}
+        onClick={() => handleSortValueClick('Descending')}
+      >
+        <span
+          style={{
+            background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
+          }}
+        >
+          Descending
+        </span>
+      </div>
+    );
+  };
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                            OPTION VALUE BUTTON
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
@@ -94,45 +133,6 @@ const SortContent = () => {
   }, [chosenSortSelection, isSortValueBtnOpen, selectionRef]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                     ASCENDING AND DESCENDING BUTTONS
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  const AscendingBtn = () => {
-    return (
-      <div
-        onMouseEnter={() => handleSortValueEnter('Ascending')}
-        onMouseLeave={() => handleSortValueLeave('Ascending')}
-        onClick={() => handleSortValueClick('Ascending')}
-      >
-        <span
-          style={{
-            background: hoveredOnAscending && 'rgba(55, 53, 47, 0.08)',
-          }}
-        >
-          Ascending
-        </span>
-      </div>
-    );
-  };
-
-  const DescendingBtn = () => {
-    return (
-      <div
-        onMouseEnter={() => handleSortValueEnter('Descending')}
-        onMouseLeave={() => handleSortValueLeave('Descending')}
-        onClick={() => handleSortValueClick('Descending')}
-      >
-        <span
-          style={{
-            background: hoveredOnDescending && 'rgba(55, 53, 47, 0.08)',
-          }}
-        >
-          Descending
-        </span>
-      </div>
-    );
-  };
-
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HANDLE SEARCH BAR
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const [selection] = useState(HEADER_TITLES);
@@ -185,7 +185,7 @@ const SortContent = () => {
                 ref={chosenSearchSelectionRef}
                 onChange={handleSearchChange}
                 type='search'
-                placeholder='Search for a property'
+                placeholder='Search for a property...'
                 autoComplete='off'
               />
             </div>

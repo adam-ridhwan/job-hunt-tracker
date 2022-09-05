@@ -27,7 +27,7 @@ const Table = () => {
 
   return (
     <>
-      {chosenSortSelection ? <SortSelectionComponent /> : ''}
+      {chosenSortSelection.length > 0 ? <SortSelectionComponent /> : ''}
 
       <div className='main-container'>
         <div className='header-container'>

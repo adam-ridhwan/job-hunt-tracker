@@ -279,11 +279,10 @@
 }
 
 .drpdwn-options-searchbar input {
-  margin: 7px;
+  margin: 10px;
   border: none;
   outline: none;
-
-  width: 250px;
+  width: 100%;
   font-size: 12px;
   color: rgba(55, 53, 47, 0.343);
   line-height: 20px;
@@ -294,7 +293,7 @@
   background: rgba(242, 241, 238, 0.6);
   cursor: text;
   height: 28px;
-  color: rgba(55, 53, 47, 1);
+  color: rgba(55, 53, 47, 0.45);
 }
 
 .drpdwn-options-searchbar input:focus {
