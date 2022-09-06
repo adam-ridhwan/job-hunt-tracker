@@ -32,8 +32,8 @@ const SortContent = () => {
   const sortBckgrndRef = useRef();
   const chosenSearchSelectionRef = useRef();
   const optionValueBtnRef = useRef([]);
-  const dropdownMenuRef = useRef();
 
+  // LINK: https://dev.to/nicm42/react-refs-in-a-loop-1jk4
   optionValueBtnRef.current = chosenSortSelection.map(
     (_, index) => optionValueBtnRef.current[index] ?? createRef()
   );
@@ -95,12 +95,10 @@ const SortContent = () => {
     }
   }, [chosenSortSelection, isOptionValueBtnOpen]);
 
-  const handleOptionChange = indexOfChosenSelectionArray => {
+  const handleOptionChange = clickedIndex => {
     setIsOptionValueBtnOpen(true);
 
-    optionValueBtnRef.current[
-      indexOfChosenSelectionArray
-    ].current.classList.add('active');
+    optionValueBtnRef.current[clickedIndex].current.classList.add('active');
   };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -175,21 +173,20 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   const [indexOfTitle, setIndexOfTitle] = useState();
 
-  const handleHoverTitle = indexOfArrayDiv => {
-    setIndexOfTitle(indexOfArrayDiv);
+  const handleHoverTitle = indexOfDiv => {
+    setIndexOfTitle(indexOfDiv);
   };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                            HANDLE CHANGE TITLE
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  const handleChangeTitle = (indexOfArrayDiv, indexOfChosenSelectionArray) => {
+  const handleChangeTitle = (indexOfDiv, clickedIndex) => {
     setChosenSortSelection(chosenSortSelection =>
       chosenSortSelection.map((_, index) => {
-        if (index === indexOfChosenSelectionArray) {
-          return HEADER_TITLES[indexOfArrayDiv];
-        }
+        if (index === clickedIndex) return HEADER_TITLES[indexOfDiv];
       })
     );
+    setIsOptionValueBtnOpen(false);
   };
 
   //* RETURN ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -200,22 +197,19 @@ const SortContent = () => {
 
       {/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
 
-      {chosenSortSelection.map((chosenTitle, indexOfChosenSelectionArray) => {
+      {chosenSortSelection.map((chosenTitle, clickedIndex) => {
         return (
-          <div
-            key={indexOfChosenSelectionArray}
-            className='sort-content-container'
-          >
+          <div key={clickedIndex} className='sort-content-container'>
             <div className='sort-content-icons'>{DRAG_HANDLE_ICON}</div>
 
             {/* dropdown button ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
             <div
               className='option-drpdwn'
-              ref={optionValueBtnRef.current[indexOfChosenSelectionArray]}
+              ref={optionValueBtnRef.current[clickedIndex]}
             >
               <div
                 className='option-link'
-                onClick={() => handleOptionChange(indexOfChosenSelectionArray)}
+                onClick={() => handleOptionChange(clickedIndex)}
               >
                 {chosenTitle}
                 {CHEVRON_DOWN}
@@ -234,21 +228,18 @@ const SortContent = () => {
                   />
                 </div>
 
-                {filteredTitles.map((title, indexOfArrayDiv) => {
+                {filteredTitles.map((title, indexOfDiv) => {
                   return (
                     <div
-                      key={indexOfArrayDiv}
+                      key={indexOfDiv}
                       className='drpdwn-options'
-                      onMouseEnter={() => handleHoverTitle(indexOfArrayDiv)}
+                      onMouseEnter={() => handleHoverTitle(indexOfDiv)}
                       onClick={() =>
-                        handleChangeTitle(
-                          indexOfArrayDiv,
-                          indexOfChosenSelectionArray
-                        )
+                        handleChangeTitle(indexOfDiv, clickedIndex)
                       }
                       style={{
                         background:
-                          indexOfArrayDiv === indexOfTitle &&
+                          indexOfDiv === indexOfTitle &&
                           'rgba(55, 53, 47, 0.08)',
                       }}
                     >
