@@ -31,12 +31,12 @@ const SortContent = () => {
   const sortValueBtnRef = useRef();
   const sortBckgrndRef = useRef();
   const chosenSearchSelectionRef = useRef();
-  const optionValueBtnRef = useRef([]);
+  let optionValueBtnRef = useRef([]);
 
   // LINK: https://dev.to/nicm42/react-refs-in-a-loop-1jk4
-  optionValueBtnRef.current = chosenSortSelection.map(
-    (_, index) => optionValueBtnRef.current[index] ?? createRef()
-  );
+  // optionValueBtnRef.current = chosenSortSelection.map(
+  //   (_, index) => optionValueBtnRef.current[index] ?? createRef()
+  // );
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                     ASCENDING AND DESCENDING BUTTONS
@@ -79,26 +79,48 @@ const SortContent = () => {
   };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                            OPTION VALUE BUTTON
+  //                            HANDLE CHANGE TITLE
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
+  const handleChangeTitle = (indexOfDiv, clickedIndex) => {
+    if (clickedIndex !== -1)
+      setChosenSortSelection(
+        (chosenSortSelection[clickedIndex] = HEADER_TITLES[indexOfDiv])
+      );
+
+    console.log(chosenSortSelection);
+
+    setIsOptionValueBtnOpen(false);
+  };
+
+  useEffect(() => {
+    optionValueBtnRef.current.forEach((_, i) => {
+      console.log(optionValueBtnRef.current[i]);
+    });
+  }, [chosenSortSelection]);
+
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  //                            OPTION VALUE BUTTON
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  // close background && option dropdwn
   useEffect(() => {
     const bckgrnd = sortBckgrndRef.current;
 
-    if (isOptionValueBtnOpen) bckgrnd.classList.add('active');
-
     if (!isOptionValueBtnOpen) {
       chosenSortSelection.forEach((_, index) => {
-        optionValueBtnRef.current[index].current.classList.remove('active');
+        optionValueBtnRef.current[index].classList.remove('active');
       });
       bckgrnd.classList.remove('active');
     }
   }, [chosenSortSelection, isOptionValueBtnOpen]);
 
-  const handleOptionChange = clickedIndex => {
+  // open background && option dropdown
+  const handleOpenDrpdwn = clickedIndex => {
     setIsOptionValueBtnOpen(true);
+    const bckgrnd = sortBckgrndRef.current;
+    bckgrnd.classList.add('active');
 
-    optionValueBtnRef.current[clickedIndex].current.classList.add('active');
+    optionValueBtnRef.current[clickedIndex].classList.add('active');
   };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -177,18 +199,6 @@ const SortContent = () => {
     setIndexOfTitle(indexOfDiv);
   };
 
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  //                            HANDLE CHANGE TITLE
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  const handleChangeTitle = (indexOfDiv, clickedIndex) => {
-    setChosenSortSelection(chosenSortSelection =>
-      chosenSortSelection.map((_, index) => {
-        if (index === clickedIndex) return HEADER_TITLES[indexOfDiv];
-      })
-    );
-    setIsOptionValueBtnOpen(false);
-  };
-
   //* RETURN ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
   return (
@@ -205,11 +215,11 @@ const SortContent = () => {
             {/* dropdown button ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
             <div
               className='option-drpdwn'
-              ref={optionValueBtnRef.current[clickedIndex]}
+              ref={ref => (optionValueBtnRef.current[clickedIndex] = ref)}
             >
               <div
                 className='option-link'
-                onClick={() => handleOptionChange(clickedIndex)}
+                onClick={() => handleOpenDrpdwn(clickedIndex)}
               >
                 {chosenTitle}
                 {CHEVRON_DOWN}

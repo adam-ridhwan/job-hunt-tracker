@@ -33,10 +33,7 @@ const SelectableBar = () => {
   useEffect(() => {
     let firstIndexOfSortArray;
 
-    // if (chosenSortSelection.length === 0) return;
-
     if (chosenSortSelection.length > 0) {
-      console.log('render on table', chosenSortSelection);
       firstIndexOfSortArray = chosenSortSelection[0].toLowerCase();
       // 'Descending'log(firstIndexOfSortArray, Boolean(firstIndexOfSortArray.match(/^[A-Za-z]*$/)));
     }
