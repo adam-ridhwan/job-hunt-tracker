@@ -177,7 +177,6 @@
 /** ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
 .sort-content-container {
-  outline: 1px solid blue;
   display: flex;
   align-items: center;
   margin-left: 12px;

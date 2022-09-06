@@ -85,7 +85,6 @@ const SortValueController = () => {
     setCurrentSortValue(sortValueProp);
     if (sortValue === sortValueProp) return;
     setSortValue(sortValueProp);
-    // setIsOptionValueBtnOpen(false);
   };
 
   return {

@@ -33,7 +33,7 @@ const SelectableBar = () => {
   useEffect(() => {
     let firstIndexOfSortArray;
 
-    if (chosenSortSelection.length === 0) return;
+    // if (chosenSortSelection.length === 0) return;
 
     if (chosenSortSelection.length > 0) {
       console.log('render on table', chosenSortSelection);

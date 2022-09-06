@@ -83,12 +83,9 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
   useEffect(() => {
-    const optionValueDrpdwn = optionValueBtnRef.current;
     const bckgrnd = sortBckgrndRef.current;
 
-    if (isOptionValueBtnOpen) {
-      bckgrnd.classList.add('active');
-    }
+    if (isOptionValueBtnOpen) bckgrnd.classList.add('active');
 
     if (!isOptionValueBtnOpen) {
       chosenSortSelection.forEach((_, index) => {
@@ -185,10 +182,14 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                            HANDLE CHANGE TITLE
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-
   const handleChangeTitle = (indexOfArrayDiv, indexOfChosenSelectionArray) => {
-    console.log(indexOfArrayDiv);
-    console.log(indexOfChosenSelectionArray);
+    setChosenSortSelection(chosenSortSelection =>
+      chosenSortSelection.map((_, index) => {
+        if (index === indexOfChosenSelectionArray) {
+          return HEADER_TITLES[indexOfArrayDiv];
+        }
+      })
+    );
   };
 
   //* RETURN ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -219,9 +220,8 @@ const SortContent = () => {
                 {chosenTitle}
                 {CHEVRON_DOWN}
               </div>
-              {/* dropdwn menu ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
 
-              {/* //! fix this ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  */}
+              {/* dropdwn menu ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
               <div className='option-menu'>
                 <div className='drpdwn-options-searchbar'>
                   <input

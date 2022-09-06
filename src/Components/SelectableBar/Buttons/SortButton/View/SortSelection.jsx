@@ -105,7 +105,9 @@ const SortSelectionComponent = () => {
             {sortValue === 'Ascending'
               ? ASCENDING_ARROW_ICON
               : DESCENDING_ARROW_ICON}
-            {chosenSortSelection}
+            {chosenSortSelection.length > 1
+              ? `${chosenSortSelection.length} sorts`
+              : chosenSortSelection[0]}
             {CHEVRON_DOWN}
           </div>
 
