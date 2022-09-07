@@ -83,10 +83,11 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
   const handleChangeTitle = (indexOfDiv, clickedIndex) => {
-    if (clickedIndex !== -1)
-      setChosenSortSelection(
-        (chosenSortSelection[clickedIndex] = HEADER_TITLES[indexOfDiv])
-      );
+    setChosenSortSelection(
+      chosenSortSelection.map((e, i) => {
+        return i === clickedIndex ? HEADER_TITLES[indexOfDiv] : e;
+      })
+    );
 
     console.log(chosenSortSelection);
 
