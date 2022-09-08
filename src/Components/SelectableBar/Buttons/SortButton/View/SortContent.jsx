@@ -33,6 +33,10 @@ const SortContent = () => {
   let chosenSearchSelectionRef = useRef([]);
   let optionValueBtnRef = useRef([]);
 
+  const [selection] = useState([...HEADER_TITLES]);
+  const [filteredTitles, setFilteredTitles] = useState(selection);
+  const [searchSelection, setSearchSelection] = useState('');
+
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                     ASCENDING AND DESCENDING BUTTONS
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -78,12 +82,18 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
   const handleChangeTitle = (indexOfDiv, clickedIndex) => {
-    // https://stackoverflow.com/questions/73639545/replace-specific-value-in-useref-array-in-loop/73639794#73639794
     setChosenSortSelection(
       chosenSortSelection.map((el, index) => {
+        if (searchSelection) {
+          return index === clickedIndex ? filteredTitles[indexOfDiv] : el;
+        }
         return index === clickedIndex ? HEADER_TITLES[indexOfDiv] : el;
       })
     );
+    // console.log(HEADER_TITLES);
+    chosenSortSelection.map((el, index) => {
+      setFilteredTitles([...HEADER_TITLES]);
+    });
 
     setIsOptionValueBtnOpen(false);
   };
@@ -104,7 +114,7 @@ const SortContent = () => {
       setIndexOfTitle('');
       bckgrnd.classList.remove('active');
     }
-  }, [chosenSortSelection, isOptionValueBtnOpen]);
+  }, [chosenSortSelection, isOptionValueBtnOpen, setFilteredTitles]);
 
   // open background && option dropdown
   const handleOpenDrpdwn = clickedIndex => {
@@ -113,6 +123,7 @@ const SortContent = () => {
     bckgrnd.classList.add('active');
     chosenSearchSelectionRef.current[clickedIndex].focus();
     optionValueBtnRef.current[clickedIndex].classList.add('active');
+    setFilteredTitles([...HEADER_TITLES]);
   };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -128,11 +139,12 @@ const SortContent = () => {
 
       if (isMainBckgrndClicked || isDrpdwnBckgrndClicked) {
         setIsOptionValueBtnOpen(false);
-      }
-
-      if (!sortValueBtnRef.current.contains(e.target)) {
         setIsSortValueBtnOpen(false);
       }
+
+      // if (!sortValueBtnRef.current.contains(e.target)) {
+      //
+      // }
     };
     document.addEventListener('mousedown', sortBtnHandler);
     return () => {
@@ -166,9 +178,6 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HANDLE SEARCH BAR
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  const [selection] = useState(HEADER_TITLES);
-  const [filteredTitles, setFilteredTitles] = useState(selection);
-  const [searchSelection, setSearchSelection] = useState('');
 
   useEffect(() => {
     const filteredSelections = selection.filter(title => {
@@ -238,7 +247,7 @@ const SortContent = () => {
                       key={indexOfDiv}
                       className='drpdwn-options'
                       onMouseEnter={() => handleHoverTitle(indexOfDiv)}
-                      onClick={() =>
+                      onMouseDown={() =>
                         handleChangeTitle(indexOfDiv, clickedIndex)
                       }
                       style={{

@@ -33,10 +33,9 @@ const SortButtonController = () => {
 
   const handleKeyClick = index => {
     setChosenSortSelection(chosenSortSelection => [
-      ...chosenSortSelection,
       filteredTitles[index],
-      filteredTitles[2],
-      filteredTitles[5],
+      // filteredTitles[2],
+      // filteredTitles[5],
     ]);
     setSortValue('Ascending');
   };
