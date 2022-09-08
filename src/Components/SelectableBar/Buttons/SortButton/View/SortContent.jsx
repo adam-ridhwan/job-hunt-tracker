@@ -30,13 +30,8 @@ const SortContent = () => {
 
   const sortValueBtnRef = useRef();
   const sortBckgrndRef = useRef();
-  const chosenSearchSelectionRef = useRef();
+  let chosenSearchSelectionRef = useRef([]);
   let optionValueBtnRef = useRef([]);
-
-  // LINK: https://dev.to/nicm42/react-refs-in-a-loop-1jk4
-  // optionValueBtnRef.current = chosenSortSelection.map(
-  //   (_, index) => optionValueBtnRef.current[index] ?? createRef()
-  // );
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                     ASCENDING AND DESCENDING BUTTONS
@@ -83,22 +78,15 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
   const handleChangeTitle = (indexOfDiv, clickedIndex) => {
+    // https://stackoverflow.com/questions/73639545/replace-specific-value-in-useref-array-in-loop/73639794#73639794
     setChosenSortSelection(
-      chosenSortSelection.map((e, i) => {
-        return i === clickedIndex ? HEADER_TITLES[indexOfDiv] : e;
+      chosenSortSelection.map((el, index) => {
+        return index === clickedIndex ? HEADER_TITLES[indexOfDiv] : el;
       })
     );
 
-    console.log(chosenSortSelection);
-
     setIsOptionValueBtnOpen(false);
   };
-
-  useEffect(() => {
-    optionValueBtnRef.current.forEach((_, i) => {
-      console.log(optionValueBtnRef.current[i]);
-    });
-  }, [chosenSortSelection]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                            OPTION VALUE BUTTON
@@ -110,7 +98,10 @@ const SortContent = () => {
     if (!isOptionValueBtnOpen) {
       chosenSortSelection.forEach((_, index) => {
         optionValueBtnRef.current[index].classList.remove('active');
+        chosenSearchSelectionRef.current[index].value = '';
+        setFilteredTitles([...HEADER_TITLES]);
       });
+      setIndexOfTitle('');
       bckgrnd.classList.remove('active');
     }
   }, [chosenSortSelection, isOptionValueBtnOpen]);
@@ -120,7 +111,7 @@ const SortContent = () => {
     setIsOptionValueBtnOpen(true);
     const bckgrnd = sortBckgrndRef.current;
     bckgrnd.classList.add('active');
-
+    chosenSearchSelectionRef.current[clickedIndex].focus();
     optionValueBtnRef.current[clickedIndex].classList.add('active');
   };
 
@@ -231,7 +222,9 @@ const SortContent = () => {
                 <div className='drpdwn-options-searchbar'>
                   <input
                     id='selectionSearchId'
-                    ref={chosenSearchSelectionRef}
+                    ref={ref =>
+                      (chosenSearchSelectionRef.current[clickedIndex] = ref)
+                    }
                     onChange={handleSearchChange}
                     type='search'
                     placeholder='Search for a property...'
@@ -280,10 +273,7 @@ const SortContent = () => {
               </div>
             </div>
 
-            <div
-              className='sort-content-icons'
-              style={{ marginLeft: 'auto', marginRight: '20px' }}
-            >
+            <div className='sort-content-icons' style={{ marginLeft: 'auto' }}>
               {DELETE_ICON}
             </div>
           </div>

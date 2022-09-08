@@ -179,10 +179,10 @@
 .sort-content-container {
   display: flex;
   align-items: center;
-  margin-left: 12px;
+  padding-left: 12px;
   margin-top: 13px;
   width: 100%;
-  max-width: 300px;
+  /* max-width: 300px; */
   /* position: relative; */
 }
 
@@ -219,8 +219,9 @@
   border: 1px solid rgba(55, 53, 47, 0.16);
   background: white;
   margin-right: 8px;
-  max-width: 180px;
+  max-width: 150px;
   min-width: 100px;
+  overflow: hidden;
 }
 
 .option-link:hover {
@@ -468,7 +469,7 @@
   box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px,
     rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
   min-width: 300px;
-  max-width: 300px;
+  /* max-width: 300px; */
   pointer-events: none;
   opacity: 0;
   transform: translate3d(0, -10px, 0);
