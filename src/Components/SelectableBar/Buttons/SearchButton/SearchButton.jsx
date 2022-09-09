@@ -84,6 +84,7 @@ const SearchButton = () => {
             onChange={handleSearchChange}
             onBlur={handleDefocus}
             required
+            autoComplete='off'
           />
         </div>
       ) : (

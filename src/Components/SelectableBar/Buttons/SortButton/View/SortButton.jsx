@@ -38,10 +38,11 @@ const SortButton = () => {
   const handleSubmitEnter = e => {
     if (e.code === 'Enter') {
       e.preventDefault();
-      setChosenSortSelection(filteredTitles[0]);
+      setChosenSortSelection([filteredTitles[0]]);
       setSortValue('Ascending');
       setIsSortDrpdwnOpen(false);
     }
+    console.log(chosenSortSelection);
   };
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
