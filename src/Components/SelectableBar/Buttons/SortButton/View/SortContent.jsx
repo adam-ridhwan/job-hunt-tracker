@@ -90,10 +90,6 @@ const SortContent = () => {
         return index === clickedIndex ? HEADER_TITLES[indexOfDiv] : el;
       })
     );
-    // console.log(HEADER_TITLES);
-    // chosenSortSelection.map((el, index) => {
-    //   setFilteredTitles([...HEADER_TITLES]);
-    // });
 
     setIsOptionValueBtnOpen(false);
   };
