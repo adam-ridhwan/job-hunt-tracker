@@ -91,9 +91,9 @@ const SortContent = () => {
       })
     );
     // console.log(HEADER_TITLES);
-    chosenSortSelection.map((el, index) => {
-      setFilteredTitles([...HEADER_TITLES]);
-    });
+    // chosenSortSelection.map((el, index) => {
+    //   setFilteredTitles([...HEADER_TITLES]);
+    // });
 
     setIsOptionValueBtnOpen(false);
   };
@@ -108,8 +108,10 @@ const SortContent = () => {
     if (!isOptionValueBtnOpen) {
       chosenSortSelection.forEach((_, index) => {
         optionValueBtnRef.current[index].classList.remove('active');
-        chosenSearchSelectionRef.current[index].value = '';
-        setFilteredTitles([...HEADER_TITLES]);
+        setTimeout(() => {
+          chosenSearchSelectionRef.current[index].value = '';
+          setFilteredTitles([...HEADER_TITLES]);
+        }, 160);
       });
       setIndexOfTitle('');
       bckgrnd.classList.remove('active');

@@ -61,8 +61,11 @@ const SortButton = () => {
     }
 
     if (!isSortDrpdwnOpen || chosenSortSelection.length === 0) {
-      searchBar.value = '';
-      setFilteredTitles([...HEADER_TITLES]);
+      setTimeout(() => {
+        searchBar.value = '';
+        setFilteredTitles([...HEADER_TITLES]);
+      }, 160);
+
       sortDrpdwn.classList.remove('active');
       bckgrnd.classList.remove('active');
     }
