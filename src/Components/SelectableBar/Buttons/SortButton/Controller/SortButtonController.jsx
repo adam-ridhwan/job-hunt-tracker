@@ -32,7 +32,7 @@ const SortButtonController = () => {
   };
 
   const handleKeyClick = index => {
-    setChosenSortSelection(chosenSortSelection => [
+    setChosenSortSelection([
       filteredTitles[index],
       // filteredTitles[2],
       // filteredTitles[5],
