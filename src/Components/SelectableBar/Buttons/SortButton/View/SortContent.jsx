@@ -97,7 +97,7 @@ const SortContent = () => {
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                            OPTION VALUE BUTTON
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  // close background && option dropdwn
+  // close background & option dropdwn
   useEffect(() => {
     const bckgrnd = sortBckgrndRef.current;
 
@@ -114,7 +114,7 @@ const SortContent = () => {
     }
   }, [chosenSortSelection, isOptionValueBtnOpen, setFilteredTitles]);
 
-  // open background && option dropdown
+  // open background & option dropdown
   const handleOpenDrpdwn = clickedIndex => {
     setIsOptionValueBtnOpen(true);
     const bckgrnd = sortBckgrndRef.current;
