@@ -34,7 +34,8 @@ const SelectableBar = () => {
     let firstIndexOfSortArray;
 
     if (chosenSortSelection.length > 0) {
-      firstIndexOfSortArray = chosenSortSelection[0].toLowerCase();
+      const firstChosenTitle = chosenSortSelection[0][0];
+      firstIndexOfSortArray = firstChosenTitle.toLowerCase();
       // 'Descending'log(firstIndexOfSortArray, Boolean(firstIndexOfSortArray.match(/^[A-Za-z]*$/)));
     }
 

@@ -217,7 +217,7 @@ const SortContent = () => {
                 className='option-link'
                 onClick={() => handleOpenDrpdwn(clickedIndex)}
               >
-                {chosenTitle}
+                {chosenTitle[0]}
                 {CHEVRON_DOWN}
               </div>
 
@@ -263,7 +263,7 @@ const SortContent = () => {
                 className='link'
                 onClick={() => setIsSortValueBtnOpen(prev => !prev)}
               >
-                {sortValue} {/* change this one */}
+                {chosenTitle[1]} {/* change this one */}
                 {CHEVRON_DOWN}
               </div>
 

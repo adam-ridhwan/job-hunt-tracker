@@ -9,6 +9,7 @@ export const SearchProvider = ({ children, jobInput }) => {
   const [sortedEntries, setSortedEntries] = useState(entries);
   const [filteredEntries, setFilteredEntries] = useState(sortedEntries);
 
+  // need to update this one
   const [sortValue, setSortValue] = useState();
 
   return (
