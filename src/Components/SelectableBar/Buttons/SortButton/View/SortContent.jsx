@@ -1,4 +1,4 @@
-import { createRef, useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { SortContext } from '../../../../../Contexts/SortContext';
 import { HEADER_TITLES } from '../../../../../Data';
@@ -32,6 +32,7 @@ const SortContent = () => {
   const sortBckgrndRef = useRef();
   let chosenSearchSelectionRef = useRef([]);
   let optionValueBtnRef = useRef([]);
+  let newSortValueBtnRef = useRef([]);
 
   const [selection] = useState([...HEADER_TITLES]);
   const [filteredTitles, setFilteredTitles] = useState(selection);
@@ -124,6 +125,8 @@ const SortContent = () => {
     setFilteredTitles([...HEADER_TITLES]);
   };
 
+  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
   useEffect(() => {
     const sortValueDrpdwn = sortValueBtnRef.current;
     const bckgrnd = sortBckgrndRef.current;
@@ -166,10 +169,6 @@ const SortContent = () => {
     isOptionValueBtnOpen,
     setIsOptionValueBtnOpen,
   ]);
-
-  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-
-
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HANDLE SEARCH BAR
@@ -264,7 +263,7 @@ const SortContent = () => {
                 className='link'
                 onClick={() => setIsSortValueBtnOpen(prev => !prev)}
               >
-                {sortValue}
+                {sortValue} {/* change this one */}
                 {CHEVRON_DOWN}
               </div>
 
