@@ -124,6 +124,21 @@ const SortContent = () => {
     setFilteredTitles([...HEADER_TITLES]);
   };
 
+  useEffect(() => {
+    const sortValueDrpdwn = sortValueBtnRef.current;
+    const bckgrnd = sortBckgrndRef.current;
+
+    if (isSortValueBtnOpen) {
+      sortValueDrpdwn.classList.add('active');
+      bckgrnd.classList.add('active');
+    }
+
+    if (!isSortValueBtnOpen) {
+      sortValueDrpdwn.classList.remove('active');
+      bckgrnd.classList.remove('active');
+    }
+  }, [chosenSortSelection, isSortValueBtnOpen, selectionRef]);
+
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             SORT VALUE BUTTON
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -139,10 +154,6 @@ const SortContent = () => {
         setIsOptionValueBtnOpen(false);
         setIsSortValueBtnOpen(false);
       }
-
-      // if (!sortValueBtnRef.current.contains(e.target)) {
-      //
-      // }
     };
     document.addEventListener('mousedown', sortBtnHandler);
     return () => {
@@ -158,20 +169,7 @@ const SortContent = () => {
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-  useEffect(() => {
-    const sortValueDrpdwn = sortValueBtnRef.current;
-    const bckgrnd = sortBckgrndRef.current;
 
-    if (isSortValueBtnOpen) {
-      sortValueDrpdwn.classList.add('active');
-      bckgrnd.classList.add('active');
-    }
-
-    if (!isSortValueBtnOpen) {
-      sortValueDrpdwn.classList.remove('active');
-      bckgrnd.classList.remove('active');
-    }
-  }, [chosenSortSelection, isSortValueBtnOpen, selectionRef]);
 
   // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   //                             HANDLE SEARCH BAR
